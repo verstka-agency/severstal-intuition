@@ -1,0 +1,77 @@
+@import 'src/scss/variables';
+
+.choose-avatar {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1.5rem;
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-gap: 1rem;
+
+
+    & > * {
+      width: calc((100% - 3rem) / 4);
+    }
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-gap: 12px;
+
+    @media all and (min-width: $desktop) {
+      position: relative;
+    }
+  }
+
+  &__navigation {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__button {
+    @media all and (min-width: $desktop) {
+      width: 343px;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 1rem;
+    grid-gap: 0.5rem;
+    align-items: center;
+    transition-duration: 250ms;
+    cursor: pointer;
+    user-select: none;
+
+    &--not-active {
+      background-color: $white;
+      border: 2px solid $white;
+    }
+
+    &--active {
+      background-color: transparent;
+      border: 2px solid blue;
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

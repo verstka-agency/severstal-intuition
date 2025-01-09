@@ -1,0 +1,17 @@
+@import 'src/scss/variables';
+
+.game {
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    text-align: center;
+
+    @media all and (min-width: $desktop) {
+      width: 409px;
+    }
+  }
+}

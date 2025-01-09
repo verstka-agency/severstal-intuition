@@ -1,0 +1,19 @@
+@import 'src/scss/variables';
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5rem;
+
+  &__label {
+  }
+
+  &__items {
+    display: flex;
+    grid-gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__validation {
+  }
+}

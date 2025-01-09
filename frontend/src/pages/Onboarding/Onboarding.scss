@@ -1,0 +1,48 @@
+@import 'src/scss/variables';
+
+.onboarding {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "progress-bar"
+    "text"
+    "image"
+    "button";
+
+  @media all and (min-width: $desktop) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 1.5rem;
+    grid-template-areas:
+      "progress-bar image"
+      "text image"
+      "button image";
+  }
+
+  &__progress-bar {
+    grid-area: progress-bar;
+  }
+
+  &__button {
+    grid-area: button;
+  }
+
+  &__image {
+    grid-area: image;
+    width: 343px;
+    height: 343px;
+    background-color: $dark-blue;
+    border-radius: 12px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1rem;
+    text-align: center;
+
+    @media all and (min-width: $desktop) {
+      text-align: left;
+    }
+  }
+}

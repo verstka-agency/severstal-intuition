@@ -1,0 +1,86 @@
+@use "src/scss/mixins";
+@import 'src/scss/variables';
+
+.input {
+  position: relative;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid $grey;
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  min-width: 200px;
+  cursor: text;
+  overflow: hidden;
+  background-color: $white;
+
+  &--filled {
+    padding-bottom: 8px;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    & > * {
+      cursor: not-allowed;
+    }
+  }
+
+  &:active {
+    border-color: $blue;
+  }
+
+  &--error {
+    border-color: $light-red;
+  }
+
+  &:focus-within,
+  &:focus-visible,
+  &:focus {
+    border-color: $blue;
+  }
+
+  @media all and (hover) {
+    transition-duration: 250ms;
+
+    &:hover {
+      border-color: $blue;
+      border-width: 2px;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    transition-duration: 250ms;
+    color: $dark-grey;
+
+    &--active {
+      top: 8px;
+      left: 1rem;
+      @include mixins.int-4;
+    }
+
+    &--not-active {
+      top: 50%;
+      transform: translateY(-50%);
+      left: 1rem;
+      @include mixins.int-2;
+    }
+
+    &--required {
+      &:after {
+        content: " *";
+        color: $dark-red;
+      }
+    }
+  }
+
+  &__field {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    @include mixins.int-2;
+  }
+}

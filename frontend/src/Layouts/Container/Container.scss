@@ -1,0 +1,15 @@
+@import 'src/scss/variables';
+
+.container {
+  background-color: $blue;
+
+  // TODO определить паттерны, которые будут использоваться для background-color
+
+  &__inner {
+    @media all and (min-width: $desktop) {
+      max-width: $desktop;
+      margin: 0 auto;
+      position: relative;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import 'src/scss/variables';
+
+.index {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1rem;
+  }
+}

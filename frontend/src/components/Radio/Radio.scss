@@ -1,0 +1,12 @@
+@import 'src/scss/variables';
+
+.radio {
+
+  &--selected {
+    background-color: red;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+}

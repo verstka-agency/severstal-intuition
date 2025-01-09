@@ -1,0 +1,13 @@
+@import 'src/scss/variables';
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+
+  &__questions {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 0.5rem;
+  }
+}

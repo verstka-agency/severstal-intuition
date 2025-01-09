@@ -1,0 +1,59 @@
+@use "src/scss/mixins";
+@import "src/scss/variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.h1 {
+  @include mixins.h1;
+}
+
+.h2 {
+  @include mixins.h2;
+}
+
+.h3 {
+  @include mixins.h3;
+}
+
+.h4 {
+  @include mixins.h4;
+}
+
+.int-1 {
+  @include mixins.int-1;
+}
+
+.int-2 {
+  @include mixins.int-2;
+}
+
+.int-3 {
+  @include mixins.int-3;
+}
+
+// int-4 в дизайне какая-то срань
+.int-4 {
+  @include mixins.int-4;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 4px;
+}
+
+.blue {
+  color: $blue;
+}
+
+.light-red {
+  color: $light-red;
+}
+
+.white {
+  color: $white;
+}

@@ -1,0 +1,14 @@
+@import 'src/scss/variables';
+
+.paper {
+  padding: 1rem;
+  background-color: $very-light-blue;
+
+  @media all and (min-width: $desktop) {
+    margin: 3rem auto 0;
+    position: relative;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 758px;
+  }
+}

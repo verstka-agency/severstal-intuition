@@ -1,0 +1,45 @@
+@use "src/scss/mixins";
+@import "src/scss/variables";
+
+.button {
+  background-color: transparent;
+  outline: none;
+  border: 1px solid transparent;
+
+  &--primary {
+    @include mixins.primaryButtonStyles;
+    @include mixins.h2;
+
+    padding: 16px;
+
+    @media all and (min-width: $desktop) {
+      padding: 16px 60px;
+    }
+  }
+
+  &--primary-next {
+    @include mixins.primaryButtonStyles;
+    @include mixins.h3;
+    padding: 12px 16px;
+  }
+
+  &--secondary {
+    @include mixins.secondaryButtonStyles;
+    @include mixins.h2;
+  }
+
+  &--secondary-round {
+    @include mixins.secondaryButtonStyles;
+    @include mixins.h3;
+    position: relative;
+    border-radius: 1rem;
+    height: 77px;
+  }
+
+  &--link {
+    color: $blue;
+    display: flex;
+    grid-gap: 0.5rem;
+    @include mixins.int-3;
+  }
+}

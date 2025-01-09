@@ -1,0 +1,9 @@
+@import 'src/scss/variables';
+
+.progress-bar {
+  display: flex;
+  grid-gap: 5px;
+
+  height: 6px;
+  width: 100%;
+}

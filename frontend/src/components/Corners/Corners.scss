@@ -1,0 +1,78 @@
+@import "src/scss/variables";
+
+.corners {
+  width: 77px;
+  height: 77px;
+
+  @media all and (min-width: $desktop) {
+    position: absolute;
+
+    &--lt {
+      border-top: 1rem solid $light-red;
+      border-left: 1rem solid $light-red;
+      border-top-left-radius: 1rem;
+    }
+
+    &--outside-lt {
+      top: -40px;
+      left: -40px;
+    }
+
+    &--not-outside-lt {
+      top: 0;
+      left: 0;
+    }
+
+    &--rt {
+      border-top: 1rem solid $light-red;
+      border-right: 1rem solid $light-red;
+      border-top-right-radius: 1rem;
+      top: -40px;
+      right: -40px;
+    }
+
+    &--outside-rt {
+      top: -40px;
+      right: -40px;
+    }
+
+    &--not-outside-rt {
+      top: 0;
+      right: 0;
+    }
+
+    &--rb {
+      border-bottom: 1rem solid $light-red;
+      border-right: 1rem solid $light-red;
+      border-bottom-right-radius: 1rem;
+    }
+
+    &--outside-rb {
+      bottom: -40px;
+      right: -40px;
+    }
+
+    &--not-outside-rb {
+      bottom: 0;
+      right: 0;
+    }
+
+    &--lb {
+      border-bottom: 1rem solid $light-red;
+      border-left: 1rem solid $light-red;
+      border-bottom-left-radius: 1rem;
+      bottom: -40px;
+      left: -40px;
+    }
+
+    &--outside-lb {
+      bottom: -40px;
+      left: -40px;
+    }
+
+    &--not-outside-lb {
+      bottom: 0;
+      left: 0;
+    }
+  }
+}

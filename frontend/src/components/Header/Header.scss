@@ -1,0 +1,13 @@
+@import 'src/scss/variables';
+
+.header {
+  height: $headerHeightMobile;
+
+  @media all and (min-width: $desktop) {
+    position: relative;
+    height: $headerHeightDesktop;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

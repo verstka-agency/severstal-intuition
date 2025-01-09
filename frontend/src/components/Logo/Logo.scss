@@ -1,0 +1,10 @@
+@import 'src/scss/variables';
+
+.logo {
+  @media all and (min-width: $desktop) {
+    position: absolute;
+    bottom: calc(100% + 1rem);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

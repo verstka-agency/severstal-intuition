@@ -1,0 +1,14 @@
+@import "src/scss/variables";
+
+.game-indicators {
+  display: flex;
+
+  @media all and (min-width: $desktop) {
+    flex-direction: column;
+    grid-gap: 1rem;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    padding: 1rem;
+  }
+}

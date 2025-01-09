@@ -1,0 +1,92 @@
+@use "src/scss/mixins";
+@import 'src/scss/variables';
+
+.menu {
+  position: absolute;
+
+  &--not-active {
+    top: 60%;
+    transform: translateY(-50%);
+    right: 40px;
+
+    @media all and (hover) {
+      cursor: pointer;
+    }
+  }
+
+  &--active {
+    top: 0;
+    right: 0;
+    width: 340px;
+    border: 1px solid $white;
+    z-index: 999;
+    background-color: $blue;
+
+    @media all and (min-width: $desktop) {
+      width: 356px;
+    }
+  }
+
+  &__container {
+    padding: 24px 40px 40px 24px;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1.5rem;
+
+    picture {
+      @media all and (hover) {
+        cursor: pointer;
+      }
+      width: fit-content;
+      align-self: flex-end;
+    }
+  }
+
+
+  &__list {
+    list-style-type: none;
+
+    display: flex;
+    flex-direction: column;
+
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    li {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid $dark-grey;
+    }
+
+    li:first-child {
+      padding-top: 0;
+    }
+
+    li:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  &__link {
+
+    &:link,
+    &:hover,
+    &:visited,
+    &:active {
+      text-decoration: none;
+    }
+
+    @include mixins.h3;
+
+    &--active {
+      color: $dark-grey;
+    }
+
+    &--not-active {
+      color: $white;
+    }
+
+  }
+}

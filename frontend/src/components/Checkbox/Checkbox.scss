@@ -1,0 +1,65 @@
+@use "src/scss/mixins";
+@import "src/scss/variables";
+
+.checkbox {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 4px;
+
+
+  &__container {
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 12px;
+  }
+
+  &--disabled {
+    opacity: 30%;
+    cursor: not-allowed;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__flag {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $grey;
+    padding: 4px 4px;
+    background-color: $white;
+
+    img {
+      width: 10px;
+    }
+
+    @media all and (hover) {
+      transition: 250ms;
+
+      &:hover {
+        border-color: $blue;
+      }
+    }
+
+    &:active {
+      transition-duration: 0ms;
+      outline: 2px solid $blue;
+      border: 1px solid $grey;
+    }
+
+    &--active {
+      background-color: $blue;
+      border: 1px solid $blue;
+    }
+  }
+
+  &__text {
+    @include mixins.int-3;
+    user-select: none;
+  }
+}

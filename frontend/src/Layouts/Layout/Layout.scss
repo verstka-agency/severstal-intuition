@@ -1,0 +1,11 @@
+@import "src/scss/variables";
+
+.layout {
+  min-height: 100dvh;
+
+  @media all and (min-width: $desktop) {
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: 100dvh;
+  }
+}

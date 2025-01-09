@@ -1,0 +1,132 @@
+@import './variables';
+
+@mixin h1 {
+  line-height: 1.1;
+  font-size: 32px;
+  font-weight: 600;
+
+  @media all and (min-width: $desktop) {
+    font-size: 40px;
+  }
+}
+
+@mixin h2 {
+  line-height: 1.2;
+  font-size: 20px;
+  font-weight: 600;
+
+  @media all and (min-width: $desktop) {
+    font-size: 24px;
+  }
+}
+
+@mixin h3 {
+  line-height: 1.3;
+  font-size: 16px;
+  font-weight: 600;
+
+  @media all and (min-width: $desktop) {
+    font-size: 16px;
+  }
+}
+
+@mixin h4 {
+  line-height: 1.3;
+  font-size: 16px;
+  font-weight: 600;
+
+  @media all and (min-width: $desktop) {
+    font-size: 12px;
+  }
+}
+
+@mixin int-1 {
+  line-height: 1.4;
+  font-size: 16px;
+
+  @media all and (min-width: $desktop) {
+    font-size: 20px;
+  }
+}
+
+@mixin int-2 {
+  line-height: 1.4;
+  font-size: 14px;
+
+  @media all and (min-width: $desktop) {
+    font-size: 16px;
+  }
+}
+
+@mixin int-3 {
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+@mixin int-4 {
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+@mixin primaryButtonStyles {
+  background-color: $light-red;
+  border-color: $light-red;
+  color: $white;
+
+  border-radius: 64px;
+  cursor: pointer;
+
+  @media all and (hover) {
+    transition-duration: 250ms;
+
+    &:hover {
+      background-color: $red;
+      border-color: $red;
+    }
+  }
+
+  &:active {
+    transition-duration: 0ms;
+    background-color: $dark-red;
+    border-color: $dark-red;
+  }
+
+  &:disabled {
+    transition-duration: 0ms;
+    cursor: not-allowed;
+    background-color: $grey;
+    border-color: $grey;
+  }
+}
+
+@mixin secondaryButtonStyles {
+  border-color: $white;
+  background-color: $blue;
+  color: $white;
+  border-radius: 64px;
+
+  @media all and (hover) {
+    transition-duration: 250ms;
+
+    &:hover {
+      background-color: $light-blue;
+      border: 1px solid $light-blue;
+    }
+  }
+
+  padding: 16px;
+  @media all and (min-width: $desktop) {
+    padding: 16px 60px;
+  }
+
+  &:active {
+    transition-duration: 0ms;
+    background-color: $dark-blue;
+    border-color: $dark-blue;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,11 @@
+@import 'src/scss/variables';
+
+.basic-layout {
+  min-height: calc(100dvh - $headerHeightMobile);
+
+  @media all and (min-width: $desktop) {
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: calc(100dvh - $headerHeightDesktop);
+  }
+}

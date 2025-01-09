@@ -1,0 +1,8 @@
+@use "src/scss/mixins";
+@import "src/scss/variables";
+
+.error-text {
+  color: $light-red;
+  padding-left: 1rem;
+  @include mixins.int-4;
+}

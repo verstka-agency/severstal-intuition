@@ -1,0 +1,29 @@
+@use 'src/scss/mixins';
+@import 'src/scss/variables';
+
+.chipfield {
+  padding: 10px 16px;
+  border: 1px solid $grey;
+  cursor: pointer;
+  width: fit-content;
+  border-radius: 20px;
+  transition-duration: 250ms;
+  user-select: none;
+  background-color: $white;
+
+  @include mixins.int-3;
+
+  @media all and (min-width: $desktop) {
+    padding: 8px 16px;
+  }
+
+  &__field {
+    display: none;
+  }
+
+  &--active {
+    background-color: $blue;
+    border-color: $blue;
+    color: $white;
+  }
+}

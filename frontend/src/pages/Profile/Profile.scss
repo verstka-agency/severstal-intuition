@@ -1,0 +1,15 @@
+@import 'src/scss/variables';
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1.5rem;
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+}
