@@ -1,10 +1,30 @@
 @use "src/scss/mixins";
 @import "src/scss/variables";
 
+// Добавляем шрифты
+@font-face {
+  font-family: 'Grtsk-Peta';
+  src: url('../fonts/Grtsk-Peta-Regular-Latin-Cyrillic-Severstal.woff2') format('woff2'),
+    url('../fonts/Grtsk-Peta-Regular-Latin-Cyrillic-Severstal.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grtsk-Peta';
+  src: url('../fonts/Grtsk-Peta-Semibold-Latin-Cyrillic-Severstal.woff2') format('woff2'),
+    url('../fonts/Grtsk-Peta-Semibold-Latin-Cyrillic-Severstal.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Grtsk-Peta', sans-serif;
 }
 
 .h1 {
