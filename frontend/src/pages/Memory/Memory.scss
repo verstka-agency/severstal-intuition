@@ -1,9 +1,63 @@
+@use 'src/scss/mixins';
 @import "src/scss/variables";
 
+.container {
+  background: radial-gradient(50% 69.6% at 50% 50%, #FFFFFF 0%, #DAE2EF 100%);
+}
+
 .memory {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__background {
+    &__image {
+      position: absolute;
+      width: 320px;
+      height: 395px;
+      background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIxIiBoZWlnaHQ9IjM5NCIgdmlld0JveD0iMCAwIDMyMSAzOTQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTMzLjI4IDIzNS4wMDFDMTgyLjM5MyAyNTcuOTAyIDI0MC42NTYgMjM2LjYyIDI2My40ODUgMTg3LjY2M0MyODYuMzE0IDEzOC43MDUgMjY1LjE2NyA4MC4zOTM2IDIxNi4wNTQgNTcuNDkxOUMxNjYuOTQxIDM0LjU5MDEgMTA4LjY3OCA1NS44NzIyIDg1Ljg0ODYgMTA0LjgzQzYzLjAxOTMgMTUzLjc4NyA4NC4xNjcgMjEyLjA5OSAxMzMuMjggMjM1LjAwMVpNMTI4LjE3OSAyNDUuOTRDMTgzLjIzOCAyNzEuNjE1IDI0OC42ODYgMjQ3Ljc5NCAyNzQuMzYxIDE5Mi43MzRDMzAwLjAzNSAxMzcuNjc1IDI3Ni4yMTQgNzIuMjI3MSAyMjEuMTU1IDQ2LjU1MjVDMTY2LjA5NSAyMC44Nzc4IDEwMC42NDggNDQuNjk4OSA3NC45NzI5IDk5Ljc1ODNDNDkuMjk4MyAxNTQuODE4IDczLjExOTQgMjIwLjI2NiAxMjguMTc5IDI0NS45NFoiIGZpbGw9IiNGRjAwMDAiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik03NS40MDgxIDM0NC45MUwxMTcuNjcgMjU0LjI3OUwxMjguNTQ2IDI1OS4zNTFMODYuMjgzOCAzNDkuOTgxTDc1LjQwODEgMzQ0LjkxWiIgZmlsbD0iI0ZGMDAwMCIvPgo8L3N2Zz4K') no-repeat;
+
+      &__left {
+        top: 220px;
+        left: 0;
+      }
+
+      &__right {
+        top: 400px;
+        right: 30px;
+        transform: rotate(300deg);
+      }
+    }
+
+  }
+
+  &__heading {
+    @include mixins.h2;
+    color: $blue;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
   &__cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
+    max-width: 768px;
   }
+}
+
+@media screen and (max-width: 768px) {
+  .memory {
+    &__background {
+      &__image {
+        display: none;
+      }
+    }
+  }
+
+  .memory__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
