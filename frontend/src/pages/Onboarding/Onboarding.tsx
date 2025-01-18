@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ProgressBar from '../../components/ProgressBar/ProgressBar'
 import './Onboarding.scss'
 import Button from "../../components/Button/Button"
@@ -7,10 +7,11 @@ import Paper from "src/components/Paper/Paper"
 import { ButtonVariantsEnum, CornersPosition } from "src/types"
 import Corners from "src/components/Corners/Corners"
 import Logo from "src/components/Logo/Logo"
+import { useNavigate } from "react-router-dom"
 
 const Onboarding = () => {
-    const [currentBar, setCurrentBar] = useState<number>(0)
-    const { currentSlides, amount } = useGetOnboardingSlides()
+    const { currentSlides, amount, currentBar, setCurrentBar } = useGetOnboardingSlides()
+    const navigate = useNavigate()
 
     return (
         <Paper>
@@ -30,16 +31,20 @@ const Onboarding = () => {
                     className={"onboarding__button"}
                     variant={ButtonVariantsEnum.PRIMARY_NEXT}
                     onClick={() => {
-                        if (currentBar <= amount) {
+                        if (currentBar < amount - 1) {
                             setCurrentBar((prev) => prev + 1)
                         } else {
-                            // navigate()
+                            navigate("/authorization")
                         }
                     }}
                 >
                     {currentSlides[currentBar].buttonText}
                 </Button>
-                <div className={"onboarding__image"}></div>
+                <img
+                    src={`/onboarding/${currentBar + 1}.png`}
+                    alt=""
+                    className={"onboarding__image"}
+                />
             </div>
         </Paper>
     )

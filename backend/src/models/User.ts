@@ -64,12 +64,7 @@ export const User = sequelize.define('User', {
     },
     money: {
         type: DataTypes.INTEGER,
-        defaultValue: 0,
+        defaultValue: 500,
         allowNull: false
     },
-    lives: {
-        type: DataTypes.INTEGER,
-        defaultValue: 5,
-        allowNull: false
-    }
 })

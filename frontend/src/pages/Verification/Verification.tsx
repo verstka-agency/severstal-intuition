@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useLocation } from "react-router-dom"
+import { Navigate, useLocation } from "react-router-dom"
 import { LocalStorageEnum } from "src/types"
 
 const Verification = () => {
@@ -13,7 +13,7 @@ const Verification = () => {
         }
     }, [])
 
-    return null
+    return <Navigate to={"/"}/>
 }
 
 export default Verification

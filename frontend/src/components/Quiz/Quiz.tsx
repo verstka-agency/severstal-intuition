@@ -6,9 +6,7 @@ import { ButtonVariantsEnum } from "src/types"
 import './Quiz.scss'
 
 const Quiz = () => {
-    const {
-        question
-    } = useGame()
+    const { question } = useGame()
 
     return (
         <Formik

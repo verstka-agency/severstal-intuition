@@ -5,7 +5,8 @@ import { useAuthentication } from "src/hooks"
 const PrivateRoute = () => {
     const { isAuthenticated } = useAuthentication()
 
-    return isAuthenticated ? <Outlet/> : <Navigate to={"/"}/>
+    // Если не зареган, то кидаем на первую страницу
+    return isAuthenticated ? <Outlet/> : <Navigate to={"/onboarding"}/>
 }
 
 export default PrivateRoute

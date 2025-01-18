@@ -4,8 +4,7 @@ import { userController } from '../controllers/userController'
 
 const router = express.Router()
 
-router.get('/user', userController.read)
-router.post('/user', userController.create)
-router.patch('/user', userController.update)
+router.get('/user', userController.getProfile)
+router.patch('/user', userController.updateProfile)
 
 export default router

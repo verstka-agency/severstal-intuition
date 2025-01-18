@@ -25,33 +25,28 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route element={<BasicLayout/>}>
-                    <Route path={'/'} element={<Index/>}/>
-                    <Route
-                        element={<PrivateRoute/>}
-                    >
-                        <Route path={'/onboarding'} element={<Onboarding/>}/>
+                    <Route path={'/onboarding'} element={<Onboarding/>}/>
+                    <Route path={"/authorization"}>
+                        <Route index={true} element={<Authorization/>}/>
+                        <Route path={"email-otp"} element={<EmailOtp/>}/>
+                        <Route path={"verification"} element={<Verification/>}/>
+                        <Route path={"vk"} element={<VKOtp/>}/>
+                    </Route>
+                    <Route element={<PrivateRoute/>}>
+                        <Route path={'*'} element={<Index/>}/>
+                        <Route path={'/'} element={<Index/>}/>
                         <Route path={'/main'} element={<Main/>}/>
                         <Route path={'/memory'} element={<Memory/>}/>
-
                         <Route path={'/postcards'} element={<Postcards/>}/>
                         <Route path={'/profile'} element={<Profile/>}/>
                         <Route path={"profile/avatar"} element={<ChooseAvatar/>}/>
                     </Route>
-                    <Route
-                        element={<PublicRoute/>}
-                    >
-                        <Route path={"/authorization"}>
-                            <Route index={true} element={<Authorization/>}/>
-                            <Route path={"email-otp"} element={<EmailOtp/>}/>
-                            <Route path={"verification"} element={<Verification/>}/>
-                            <Route path={"vk"} element={<VKOtp/>}/>
-                        </Route>
+                    <Route element={<PublicRoute/>}>
+
                     </Route>
                 </Route>
                 <Route element={<Layout/>}>
-                    <Route
-                        element={<PrivateRoute/>}
-                    >
+                    <Route element={<PrivateRoute/>}>
                         <Route path={'/game'} element={<Game/>}/>
                     </Route>
                 </Route>

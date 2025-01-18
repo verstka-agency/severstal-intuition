@@ -8,6 +8,7 @@ import CitiesProvider from "src/hoc/CitiesProvider"
 import SessionProvider from "src/hoc/SessionProvider"
 import ProfileProvider from "src/hoc/ProfileProvider"
 import GameProvider from "src/hoc/GameProvider"
+import { LocalStorageEnum } from "src/types"
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -31,6 +32,10 @@ root.render(
                 <ProfileProvider>
                     <CitiesProvider>
                         <GameProvider>
+                            <button onClick={() => {
+                                localStorage.removeItem(LocalStorageEnum.SEVERSTAL_TOKEN)
+                            }}>reset
+                            </button>
                             <App/>
                         </GameProvider>
                     </CitiesProvider>

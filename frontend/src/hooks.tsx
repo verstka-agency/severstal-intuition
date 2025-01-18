@@ -1,5 +1,5 @@
 import { AuthenticationContext } from "src/contexts/AuthenticationContext"
-import { useContext, useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react"
 import { NetworkContext } from "src/contexts/NetworkContext"
 import { OnboardingSlide } from "src/types"
 import { slides } from "src/pages/Onboarding/constants"
@@ -74,10 +74,13 @@ export const useMediaQuery = () => {
 
 export const useGetOnboardingSlides = (): {
     currentSlides: OnboardingSlide[],
-    amount: number
+    amount: number,
+    currentBar: number,
+    setCurrentBar: Dispatch<SetStateAction<number>>
 } => {
+    const [currentBar, setCurrentBar] = useState<number>(0)
     const { isAuthenticated } = useAuthentication()
-    const currentRound: number = 1
+    const { profile } = useProfile()
     const location = useLocation()
 
     let currentSlides: OnboardingSlide[] = []
@@ -86,7 +89,7 @@ export const useGetOnboardingSlides = (): {
         currentSlides = slides.filter((_, index) => index < 3)
     }
 
-    if (currentRound === 1) {
+    if (profile?.currentRound === 1) {
         currentSlides = slides.filter((_, index) => index > 2)
     }
 
@@ -96,6 +99,8 @@ export const useGetOnboardingSlides = (): {
 
     return {
         currentSlides: currentSlides,
-        amount: currentSlides.length
+        amount: currentSlides.length,
+        currentBar: currentBar,
+        setCurrentBar: setCurrentBar
     }
 }
