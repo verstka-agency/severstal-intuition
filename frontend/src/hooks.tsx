@@ -4,12 +4,7 @@ import { NetworkContext } from "src/contexts/NetworkContext"
 import { OnboardingSlide } from "src/types"
 import { slides } from "src/pages/Onboarding/constants"
 import { useLocation } from "react-router-dom"
-import { GameContext } from "src/contexts/GameContext"
 import { CitiesContext } from "src/contexts/CitiesContext"
-import { clearInterval } from "timers"
-import { useMutation, useQuery } from "@tanstack/react-query"
-import { apiProvider } from "src/api"
-import { FormikValues } from "formik"
 import { ProfileContext } from "src/contexts/ProfileContext"
 
 export const useAuthentication = () => {
@@ -24,14 +19,6 @@ export const useNetwork = () => {
     const context = useContext(NetworkContext)
     if (!context) {
         throw new Error("You should use hook in NetworkContext.Provider descendant")
-    }
-    return context
-}
-
-export const useGame = () => {
-    const context = useContext(GameContext)
-    if (!context) {
-        throw new Error("You should use hook in GameContext.Provider descendant")
     }
     return context
 }
@@ -85,16 +72,13 @@ export const useGetOnboardingSlides = (): {
 
     let currentSlides: OnboardingSlide[] = []
 
-    if (!isAuthenticated) {
-        currentSlides = slides.filter((_, index) => index < 3)
-    }
-
-    if (profile?.currentRound === 1) {
-        currentSlides = slides.filter((_, index) => index > 2)
-    }
 
     if (location.pathname === "about") {
         currentSlides = slides
+    } else if (!isAuthenticated) {
+        currentSlides = slides.filter((_, index) => index < 3)
+    } else if (profile?.game.currentRound === 1) {
+        currentSlides = slides.filter((_, index) => index > 2)
     }
 
     return {

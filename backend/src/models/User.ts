@@ -8,8 +8,13 @@ export const User = sequelize.define('User', {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4
     },
-    avatar: {
+    firstName: {
         type: DataTypes.STRING,
+        defaultValue: null
+    },
+    lastName: {
+        type: DataTypes.STRING,
+        defaultValue: null
     },
     email: {
         type: DataTypes.STRING,
@@ -19,21 +24,18 @@ export const User = sequelize.define('User', {
             isEmail: true
         },
     },
-    firstName: {
-        type: DataTypes.STRING,
-        defaultValue: null
+    phone: {
+        type: DataTypes.STRING
     },
-    lastName: {
-        type: DataTypes.STRING,
-        defaultValue: null
-    },
+
     city: {
         type: DataTypes.UUID,
         defaultValue: null
     },
-    phone: {
-        type: DataTypes.STRING
+    avatar: {
+        type: DataTypes.STRING,
     },
+
     isSeverstalEmployee: {
         type: DataTypes.STRING,
         defaultValue: "Нет",
@@ -47,6 +49,7 @@ export const User = sequelize.define('User', {
         type: DataTypes.STRING,
         defaultValue: ""
     },
+
     isPrivacyPolicyConfirmed: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
@@ -55,16 +58,6 @@ export const User = sequelize.define('User', {
     isGameRulesConfirmed: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
-        allowNull: false
-    },
-    currentRound: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-        allowNull: false
-    },
-    money: {
-        type: DataTypes.INTEGER,
-        defaultValue: 500,
         allowNull: false
     },
 })

@@ -1,7 +1,5 @@
-import { sequelize } from '../config/db'
-
+import { sequelize } from '../../config/db'
 import { DataTypes } from 'sequelize'
-import { Group } from "../models/Group"
 
 export const Avatar = sequelize.define(
     'Avatar', {

@@ -1,0 +1,48 @@
+@import 'src/scss/variables';
+
+.round-progress-bar {
+  display: flex;
+  align-items: center;
+
+  &__heading {
+    border-radius: 1rem;
+    padding: 8px 10px;
+    border: 2px solid $blue;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__line {
+    height: 0px;
+    border: 1px solid $blue;
+    width: 24px;
+
+    &--big {
+      width: 60px;
+    }
+  }
+
+  &__dot {
+    height: 24px;
+    width: 24px;
+    border: 2px solid $blue;
+    border-radius: 50%;
+    position: relative;
+
+    &--active {
+      &:after {
+        position: absolute;
+        content: "";
+        width: 16px;
+        height: 16px;
+        top: 50%;
+        left: 50%;
+        background-color: red;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

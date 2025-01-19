@@ -3,6 +3,7 @@
 
 .menu {
   position: absolute;
+  user-select: none;
 
   &--not-active {
     top: 60%;

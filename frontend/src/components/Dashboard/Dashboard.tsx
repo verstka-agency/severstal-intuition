@@ -1,36 +1,33 @@
 import React from 'react'
 import './Dashboard.scss'
+import { useProfile } from "src/hooks"
+import AvatarIcon from "src/components/AvatarIcon/AvatarIcon"
+import { AvatarIconSizeEnum } from "src/types"
+import DashboardTable from "src/components/DashboardTable/DashboardTable"
 
 const Dashboard = () => {
-    const dashboardData = [
-        {
-            id: "41241",
-            name: "Иван Иванов",
-            score: 13
-        }
-    ]
+    const { profile } = useProfile()
 
     return (
-        <table>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>ФИО</th>
-                <th>БАЛЛЫ</th>
-            </tr>
-            </thead>
-            <tbody>
-            {dashboardData.map((item, index) => {
-                return (
-                    <tr>
-                        <td>{index + 1}</td>
-                        <td>{item.name}</td>
-                        <td>{item.score}</td>
-                    </tr>
-                )
-            })}
-            </tbody>
-        </table>
+        <div className={"dashboard"}>
+            <h3 className={"h3 white dashboard__personal-name"}>{`${profile?.firstName} ${profile?.lastName}`}</h3>
+            <div className={"dashboard__personal-stats"}>
+                <AvatarIcon size={AvatarIconSizeEnum.SMALL}/>
+                <div className={"dashboard__personal-indicator"}>
+                    <p className={"int-2 white"}>Место</p>
+                    <p className={"int-2 white"}>{profile?.game.position}</p>
+                </div>
+                <div className={"dashboard__personal-indicator"}>
+                    <p className={"int-2 white"}>Раунд</p>
+                    <p className={"int-2 white"}>{profile?.game.currentRound}/5</p>
+                </div>/
+                <div className={"dashboard__personal-indicator"}>
+                    <p className={"int-2 white"}>Баллы</p>
+                    <p className={"int-2 white"}>{profile?.game.score}</p>
+                </div>
+            </div>
+            <DashboardTable/>
+        </div>
     )
 }
 

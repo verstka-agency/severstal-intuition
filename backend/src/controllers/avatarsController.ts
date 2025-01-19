@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { Avatar } from "../models/Avatar"
+import { Avatar } from "../models/avatar/Avatar"
 
 export const avatarsController = {
     getAvatars: async (req: Request, res: Response) => {

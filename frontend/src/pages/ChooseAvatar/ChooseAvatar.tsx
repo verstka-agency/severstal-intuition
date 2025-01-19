@@ -15,13 +15,13 @@ import { getStyles } from "src/utils/styles"
 const ChooseAvatar = () => {
     const navigate = useNavigate()
     const [currentGroup, setCurrentGroup] = useState<string | null>(null)
-    const { profile, isProfileLoading, updateProfile, isProfileUpdating, groups } = useProfile()
+    const { isProfileLoading, updateAvatar, isAvatarUploading, groups } = useProfile()
 
     const { data: avatars, isLoading: isAvatarsLoading } = useQuery({
         queryKey: ["avatars"],
         queryFn: async () => {
             try {
-                const response = await apiProvider.get(`/public/avatars`)
+                const response = await apiProvider.get(`/private/avatars`)
                 return response.data as AvatarProps[]
             } catch (error) {
                 console.error(error)
@@ -68,7 +68,7 @@ const ChooseAvatar = () => {
                     }}
                     enableReinitialize={true}
                     onSubmit={async (values) => {
-                        await updateProfile(values)
+                        await updateAvatar(values)
                         navigate(-1)
                     }}
                 >
@@ -90,7 +90,7 @@ const ChooseAvatar = () => {
                                                             key={avatar.id}
                                                             className={styles}
                                                             onClick={async () => {
-                                                                if (isProfileLoading || isProfileLoading) return
+                                                                if (isProfileLoading || isAvatarUploading) return
                                                                 setCurrentGroup(avatar.groupId)
                                                                 await setFieldValue("avatar", avatar.id)
                                                             }}
@@ -131,7 +131,7 @@ const ChooseAvatar = () => {
                                         variant={ButtonVariantsEnum.PRIMARY_NEXT}
                                         type={ButtonTypeEnum.SUBMIT}
                                         className={"choose-avatar__button"}
-                                        disabled={isProfileUpdating || isProfileLoading}
+                                        disabled={isAvatarUploading || isProfileLoading}
                                     >
                                         Сохранить
                                     </Button>

@@ -24,24 +24,31 @@ const Onboarding = () => {
                     barsAmount={amount}
                 />
                 <div className={"onboarding__text"}>
-                    <h3>{currentSlides[currentBar].heading}</h3>
-                    <p className={"int-3"}>{currentSlides[currentBar].text}</p>
+                    <h3>{currentSlides?.[currentBar]?.heading}</h3>
+                    <p className={"int-3"}>{currentSlides?.[currentBar]?.text}</p>
                 </div>
                 <Button
                     className={"onboarding__button"}
                     variant={ButtonVariantsEnum.PRIMARY_NEXT}
                     onClick={() => {
+
                         if (currentBar < amount - 1) {
                             setCurrentBar((prev) => prev + 1)
                         } else {
-                            navigate("/authorization")
+                            if (amount === 2) {
+                                navigate("/game")
+                            } else if (amount === 3) {
+                                navigate("/authorization")
+                            } else {
+                                navigate("/")
+                            }
                         }
                     }}
                 >
-                    {currentSlides[currentBar].buttonText}
+                    {currentBar !== 4 ? "Дальше" : "На главную"}
                 </Button>
                 <img
-                    src={`/onboarding/${currentBar + 1}.png`}
+                    src={`/onboarding/${currentSlides?.[currentBar]?.image}`}
                     alt=""
                     className={"onboarding__image"}
                 />

@@ -31,7 +31,7 @@ const ProfileProvider: React.FC<ProfileProviderProps> = (props) => {
         }],
         queryFn: async () => {
             try {
-                const response = await apiProvider.get(`/public/avatars?id=${profile?.avatar}`)
+                const response = await apiProvider.get(`/private/avatars?id=${profile?.avatar}`)
                 return response.data as AvatarProps
             } catch (error) {
                 console.error(error)
@@ -44,7 +44,7 @@ const ProfileProvider: React.FC<ProfileProviderProps> = (props) => {
         queryKey: ["groups"],
         queryFn: async () => {
             try {
-                const response = await apiProvider.get("/public/groups")
+                const response = await apiProvider.get("/private/groups")
                 return response.data as GroupProps[]
             } catch (error) {
                 console.error(error)
@@ -64,17 +64,32 @@ const ProfileProvider: React.FC<ProfileProviderProps> = (props) => {
         }
     })
 
+    const { mutate: updateAvatar, isLoading: isAvatarUploading } = useMutation({
+        mutationFn: async (variables: Partial<UserProps>) => {
+            try {
+                const response = await apiProvider.patch("/private/user/avatar", variables)
+                await refetchProfile()
+                return response.data
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    })
+
     return (
         <ProfileContext.Provider
             value={{
                 profile: profile,
+                refetchProfile: refetchProfile,
                 isProfileLoading: isProfileLoading,
                 updateProfile: updateProfile,
                 isProfileUpdating: isProfileUpdating,
                 avatar: avatar,
                 isAvatarLoading: isAvatarLoading,
                 groups: groups,
-                isLoadingGroups: isLoadingGroups
+                isLoadingGroups: isLoadingGroups,
+                updateAvatar: updateAvatar,
+                isAvatarUploading: isAvatarUploading
             }}
         >
             {children}

@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 import Index from './pages/Index/Index'
 import './scss/general.scss'
 import Verification from "src/pages/Verification/Verification"
@@ -17,41 +17,37 @@ const Authorization = lazy(() => import("./pages/Authorization/Authorization"))
 const EmailOtp = lazy(() => import("./pages/EmailOtp/EmailOtp"))
 const VKOtp = lazy(() => import("./pages/VKOtp/VKOtp"))
 const ChooseAvatar = lazy(() => import("./pages/ChooseAvatar/ChooseAvatar"))
-const Main = lazy(() => import("./pages/Main/Main"))
 
 const App = () => {
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route element={<BasicLayout/>}>
-                    <Route path={'/onboarding'} element={<Onboarding/>}/>
+        <Routes>
+            <Route element={<BasicLayout/>}>
+                <Route path={'/onboarding'} element={<Onboarding/>}/>
+                <Route element={<PrivateRoute/>}>
+                    <Route path={'*'} element={<Navigate to="/"/>}/>
+                    <Route path={'/'} element={<Index/>}/>
+                    <Route path={'/about'} element={<Onboarding/>}/>
+                    <Route path={'/memory'} element={<Memory/>}/>
+                    <Route path={'/postcards'} element={<Postcards/>}/>
+                    <Route path={'/profile'} element={<Profile/>}/>
+                    <Route path={"profile/avatar"} element={<ChooseAvatar/>}/>
+                </Route>
+                <Route element={<PublicRoute/>}>
                     <Route path={"/authorization"}>
                         <Route index={true} element={<Authorization/>}/>
                         <Route path={"email-otp"} element={<EmailOtp/>}/>
                         <Route path={"verification"} element={<Verification/>}/>
                         <Route path={"vk"} element={<VKOtp/>}/>
                     </Route>
-                    <Route element={<PrivateRoute/>}>
-                        <Route path={'*'} element={<Index/>}/>
-                        <Route path={'/'} element={<Index/>}/>
-                        <Route path={'/main'} element={<Main/>}/>
-                        <Route path={'/memory'} element={<Memory/>}/>
-                        <Route path={'/postcards'} element={<Postcards/>}/>
-                        <Route path={'/profile'} element={<Profile/>}/>
-                        <Route path={"profile/avatar"} element={<ChooseAvatar/>}/>
-                    </Route>
-                    <Route element={<PublicRoute/>}>
-
-                    </Route>
                 </Route>
-                <Route element={<Layout/>}>
-                    <Route element={<PrivateRoute/>}>
-                        <Route path={'/game'} element={<Game/>}/>
-                    </Route>
+            </Route>
+            <Route element={<Layout/>}>
+                <Route element={<PrivateRoute/>}>
+                    <Route path={'/game'} element={<Game/>}/>
                 </Route>
-            </Routes>
-        </BrowserRouter>
+            </Route>
+        </Routes>
     )
 }
 

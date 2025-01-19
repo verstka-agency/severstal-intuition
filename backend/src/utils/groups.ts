@@ -4,20 +4,12 @@ export const groups = [
         label: "Животные"
     },
     {
-        slug: "emoji",
-        label: "Эмодзи"
-    },
-    {
         slug: "men",
         label: "Мужчины"
     },
     {
         slug: "minimalism",
         label: "Минимализм"
-    },
-    {
-        slug: "nature",
-        label: "Природа"
     },
     {
         slug: "women",

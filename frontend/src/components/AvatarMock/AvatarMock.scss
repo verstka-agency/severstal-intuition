@@ -1,0 +1,21 @@
+@import 'src/scss/variables';
+
+.avatar-mock {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+
+
+  &--big {
+    border: 1px solid $blue;
+  }
+
+  &--small {
+    padding: 9px;
+    background: radial-gradient(50% 69.6% at 50% 50%, #FFFFFF 0%, #DAE2EF 100%);
+    border: 1px solid $white;
+  }
+}

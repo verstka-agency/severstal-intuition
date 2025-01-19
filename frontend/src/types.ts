@@ -1,3 +1,5 @@
+import { number } from "yup"
+
 export enum ButtonVariantsEnum {
     PRIMARY = "primary",
     PRIMARY_NEXT = "primary-next",
@@ -32,7 +34,7 @@ export enum CornersPosition {
 export interface OnboardingSlide {
     heading: string
     text: string
-    buttonText: string
+    image: string
 }
 
 export interface CityOption {
@@ -47,20 +49,23 @@ export enum LocalStorageEnum {
 }
 
 export interface UserProps {
-    avatar: string
+    id: string
     firstName: string
     lastName: string
     email: string
     phone: string
+
     city: string
+    avatar: string
+
     isSeverstalEmployee: "Да" | "Нет"
     subdivision: string
     jobTitle: string
+
     isPrivacyPolicyConfirmed: boolean
     isGameRulesConfirmed: boolean
-    money: number
-    lives: number
-    currentRound: number
+
+    game: GameProviderProps
 }
 
 export interface AvatarProps {
@@ -74,4 +79,20 @@ export interface GroupProps {
     id: string
     label: string
     slug: string
+}
+
+export enum AvatarIconSizeEnum {
+    BIG = "big",
+    SMALL = "small"
+}
+
+export interface GameProviderProps {
+    currentRound: number
+    currentQuestion: number
+    question: string
+    author: string
+    city: string
+    score: number
+    position: number
+    avatar: string | null
 }

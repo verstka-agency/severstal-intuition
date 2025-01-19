@@ -1,7 +1,8 @@
-import { sequelize } from '../config/db'
+import { sequelize } from '../../config/db'
 
 import { DataTypes } from 'sequelize'
 
+// Это группы аватарок
 export const Group = sequelize.define(
     'Group', {
         id: {

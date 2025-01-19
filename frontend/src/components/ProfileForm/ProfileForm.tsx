@@ -5,13 +5,14 @@ import { FormFieldEnum, formSchemas } from "src/validation/schemas"
 import Select from "src/components/Select/Select"
 import Checkbox from "src/components/Checkbox/Checkbox"
 import Button from "src/components/Button/Button"
-import { ButtonTypeEnum, ButtonVariantsEnum } from "src/types"
+import { AvatarIconSizeEnum, ButtonTypeEnum, ButtonVariantsEnum } from "src/types"
 import { useCities, useProfile } from "src/hooks"
 import './ProfileForm.scss'
 import Chipfield from "src/components/Chipfield/Chipfield"
 import { useNavigate } from "react-router-dom"
 import { profileInitials } from "src/contexts/ProfileContext"
 import { object } from "yup"
+import AvatarIcon from "src/components/AvatarIcon/AvatarIcon"
 
 const ProfileForm = () => {
     const { cities } = useCities()
@@ -20,17 +21,19 @@ const ProfileForm = () => {
         isProfileLoading,
         updateProfile,
         isProfileUpdating,
-        avatar,
         groups
     } = useProfile()
     const navigate = useNavigate()
 
-    // TODO на onChange formik необходимо записывать все значения
 
     return (
         <Formik
             initialValues={profile ?? profileInitials}
             onSubmit={(values, formikHelpers) => {
+                if (!profile?.isGameRulesConfirmed || !profile?.isPrivacyPolicyConfirmed) {
+                    updateProfile(values)
+                    navigate("/")
+                }
                 updateProfile(values)
             }}
             enableReinitialize={true}
@@ -46,7 +49,6 @@ const ProfileForm = () => {
                 [FormFieldEnum.IS_PRIVACY_POLICY_CONFIRMED]: formSchemas[FormFieldEnum.IS_PRIVACY_POLICY_CONFIRMED].validationFunction,
                 [FormFieldEnum.IS_GAME_RULES_CONFIRMED]: formSchemas[FormFieldEnum.IS_GAME_RULES_CONFIRMED].validationFunction,
             })}
-            validateOnMount={true}
         >
             {({ values, errors, isValid, setFieldValue }) => {
                 console.log('values', values)
@@ -58,14 +60,7 @@ const ProfileForm = () => {
                             <div className={"profile-form__avatar"}
                                  onClick={() => navigate("avatar")}
                             >
-                                <div className="profile-form__avatar-icon">
-                                    <img
-                                        src={avatar ? `/avatars/${groups && groups.filter(group => {
-                                            return group.id === avatar?.groupId
-                                        })[0].slug}/${avatar?.slug}.png` : "/inputs/avatar.svg"}
-                                        alt=""
-                                    />
-                                </div>
+                                <AvatarIcon size={AvatarIconSizeEnum.BIG}/>
                                 <div className={"profile-form__avatar-action"}>
                                     <span className={"h3 blue"}>Изменить аватар</span>
                                     <img src="/inputs/arrow-right.svg" alt=""/>
@@ -77,14 +72,14 @@ const ProfileForm = () => {
                                     name={FormFieldEnum.FIRST_NAME}
                                     label={formSchemas[FormFieldEnum.FIRST_NAME].label}
                                     required={true}
-                                    disabled={isProfileUpdating || isProfileLoading}
+                                    disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
                                 />
                             </div>
                             <Input
                                 name={FormFieldEnum.LAST_NAME}
                                 label={formSchemas[FormFieldEnum.LAST_NAME].label}
                                 required={true}
-                                disabled={isProfileUpdating || isProfileLoading}
+                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
                             />
                             <Input
                                 name={FormFieldEnum.EMAIL}
@@ -96,16 +91,17 @@ const ProfileForm = () => {
                                 name={FormFieldEnum.PHONE}
                                 label={formSchemas[FormFieldEnum.PHONE].label}
                                 required={true}
-                                disabled={isProfileUpdating || isProfileLoading}
+                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
                             />
                         </div>
                         <div className={"profile-form__right-side"}>
+                            {/* TODO баг: лейбл не поднимается при нажатии и наборе символов*/}
                             <Select
                                 options={cities}
                                 name={FormFieldEnum.CITY}
                                 label={formSchemas[FormFieldEnum.CITY].label}
                                 required={true}
-                                disabled={isProfileUpdating || isProfileLoading}
+                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
                             />
                             <p className={"int-3"}>Главные призы разыгрываются только среди сотрудников «Северстали»</p>
                             <div className={"profile-form__chipfield-container"}>
@@ -149,12 +145,12 @@ const ProfileForm = () => {
                             <Checkbox
                                 name={FormFieldEnum.IS_PRIVACY_POLICY_CONFIRMED}
                                 label={formSchemas[FormFieldEnum.IS_PRIVACY_POLICY_CONFIRMED].label}
-                                disabled={isProfileUpdating || isProfileLoading}
+                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
                             />
                             <Checkbox
                                 name={FormFieldEnum.IS_GAME_RULES_CONFIRMED}
                                 label={formSchemas[FormFieldEnum.IS_GAME_RULES_CONFIRMED].label}
-                                disabled={isProfileUpdating || isProfileLoading}
+                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
                             />
                             <Button
                                 variant={ButtonVariantsEnum.PRIMARY_NEXT}

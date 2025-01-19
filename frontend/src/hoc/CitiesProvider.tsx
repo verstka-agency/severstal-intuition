@@ -13,7 +13,7 @@ const CitiesProvider: React.FC<CitiesProviderProps> = (props) => {
         queryKey: ["cities"],
         queryFn: async () => {
             try {
-                const response = await apiProvider.get("/public/cities")
+                const response = await apiProvider.get("/private/cities")
                 return response.data
             } catch (error) {
                 console.error(error)

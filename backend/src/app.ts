@@ -11,12 +11,17 @@ import { authMiddleware } from "./middlewares/authMiddleware"
 import { User } from "./models/User"
 import swaggerUi from 'swagger-ui-express'
 import { swaggerSpec } from "./config/swaggerConfig"
-import { Avatar } from "./models/Avatar"
-import { avatars } from "./utils/avatars"
-import avatarsRoutes from "./routes/avatarsRoutes"
-import { Group } from "./models/Group"
+import { Group } from "./models/Avatar/Group"
 import { groups } from "./utils/groups"
 import groupsRoutes from "./routes/groupsRoutes"
+import { Question } from "./models/Game/Question"
+import { questions } from "./utils/questions"
+import { Answer } from './models/Game/Answer'
+import { users } from './utils/user'
+import gameRoutes from './routes/gameRoutes'
+import { avatars } from './utils/avatars'
+import avatarsRoutes from "./routes/avatarsRoutes"
+import { Avatar } from './models/avatar/Avatar'
 
 config()
 
@@ -24,14 +29,12 @@ const PORT = process.env.PORT || 8080
 const app = express()
 
 app.use(express.json())
-app.use('/api/public', citiesRoutes)
+app.use('/api/private',authMiddleware,  citiesRoutes)
 app.use('/api/public', authRoutes)
-app.use('/api/public', avatarsRoutes)
-app.use('/api/public', groupsRoutes)
-app.use('/api/private',
-    authMiddleware,
-    userRoutes
-)
+app.use('/api/private', authMiddleware, avatarsRoutes)
+app.use('/api/private', authMiddleware, groupsRoutes)
+app.use('/api/private', authMiddleware, userRoutes)
+app.use('/api/private', authMiddleware, gameRoutes)
 
 // Удалить этот эндпоинт позже
 // Подключение Swagger
@@ -52,20 +55,14 @@ app.use(
 // TODO логирование и отправка уведомлений об ошибках в телегу
 app.listen(PORT, async () => {
     await sequelize.sync({ force: true })  // { force: true } удаляет и пересоздает таблицу
-        .then(() => {
-            console.log('Table created')
-        })
-        .catch((error) => {
-            console.error('Error creating table:', error)
-        })
+
+    /**
+     * Cоздание и заполнение таблицы городов
+     */
     await City.bulkCreate(cities)
-    await User.create({
-        id: "54163575-a6b1-4684-8e4e-88cfa09f962a",
-        email: "hello@verstka.agency",
-        phone: "+37455544303",
-        firstName: "Карен",
-        lastName: "Мартиросян"
-    })
+    /**
+     * Создание групп аватарок и аватарок
+     */
     const createdGroups = await Group.bulkCreate(groups)
     const formattedGroups = createdGroups
         .map((createdGroup) => {
@@ -74,6 +71,7 @@ app.listen(PORT, async () => {
                 id: createdGroup.dataValues.id
             }
         })
+
     const formattedAvatars = avatars.map((avatar) => {
         const id = formattedGroups.filter((group) => {
             return group.slug === avatar.group
@@ -85,14 +83,28 @@ app.listen(PORT, async () => {
         }
     })
     await Avatar.bulkCreate(formattedAvatars)
-    // try {
-    //     // Проверка подключения к базе данных
-    //     await sequelize.authenticate()  // Попытка подключения
-    //     console.log('Connection to the database has been established successfully.')
-    //
-    //     console.log(`Server is running on port ${PORT}`)
-    // } catch (error) {
-    //     console.error('Unable to connect to the database:', error)
-    // }
+    /**
+     * Создание вопросов и ответов
+     */
+    const createdQuestions = await Question.bulkCreate(
+        questions.map((question) => ({
+            author: question.author,
+            question: question.question,
+            city: question.city,
+            avatar: "",
+        }))
+    )
+
+    questions.forEach((question, index) => {
+        const { answers } = question
+
+        Answer.bulkCreate(answers.map((answer) => {
+            return {
+                ...answer,
+                question: createdQuestions[index].dataValues.id
+            }
+        }))
+    })
+
     console.log(`Server is running on port ${PORT}`)
 })

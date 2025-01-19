@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Menu.scss'
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { getStyles } from "src/utils/styles"
+import { useProfile } from "src/hooks"
 
 const Menu = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false)

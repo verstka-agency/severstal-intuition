@@ -1,17 +1,19 @@
 import React from 'react'
 import './Header.scss'
 import Menu from "src/components/Menu/Menu"
-import { useLocation } from "react-router-dom"
+import { useProfile } from "src/hooks"
 
 const Header = () => {
-    const location = useLocation()
+    const { profile } = useProfile()
 
     return (
         <header className="header">
-            {location.pathname === "/onboarding"
-                ? null
-                :
-                <Menu/>
+            {
+                profile?.isGameRulesConfirmed && profile?.isPrivacyPolicyConfirmed
+                    ?
+                    <Menu/>
+                    :
+                    null
             }
         </header>
     )

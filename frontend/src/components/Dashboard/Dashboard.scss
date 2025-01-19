@@ -1,5 +1,33 @@
 @import 'src/scss/variables';
 
 .dashboard {
+  background-color: $blue;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  padding: 1rem 1.5rem;
+  width: 497px;
 
+  &__personal-name {
+    margin-bottom: .5rem;
+  }
+
+  &__personal-stats {
+    display: grid;
+    grid-template-columns: auto repeat(3, 1fr);
+    grid-gap: .5rem;
+  }
+
+  &__personal-indicator {
+    background-color: $light-blue;
+    border-radius: 12px;
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-gap: 2px;
+
+    p {
+      text-align: center;
+    }
+  }
 }

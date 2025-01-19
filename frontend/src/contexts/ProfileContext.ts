@@ -1,36 +1,53 @@
 import { createContext } from "react"
-import { AvatarProps, GroupProps, UserProps } from "src/types"
+import { AvatarProps, GameProviderProps, GroupProps, UserProps } from "src/types"
 
 interface ProfileContextProps {
     profile: UserProps | undefined,
+    refetchProfile: any,
     isProfileLoading: boolean,
     updateProfile: any,
     isProfileUpdating: boolean
     avatar: AvatarProps | undefined
     isAvatarLoading: boolean
     groups: GroupProps[] | undefined,
-    isLoadingGroups: boolean
+    isLoadingGroups: boolean,
+    updateAvatar: any,
+    isAvatarUploading: boolean
 }
 
 export const profileInitials: UserProps = {
-    avatar: "",
+    id: "",
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
+
     city: "",
-    currentRound: 0,
-    lives: 0,
-    money: 0,
+    avatar: "",
+
     isSeverstalEmployee: "Нет",
     subdivision: "",
     jobTitle: "",
+
     isPrivacyPolicyConfirmed: false,
     isGameRulesConfirmed: false,
+
+    game: {
+        currentRound: 1,
+        currentQuestion: 1,
+        question: "",
+        author: "",
+        city: "",
+        score: 0,
+        position: 0,
+        avatar: null
+    }
 }
 
 export const ProfileContext = createContext<ProfileContextProps>({
     profile: profileInitials,
+    refetchProfile: () => {
+    },
     isProfileLoading: true,
     updateProfile: () => {
     },
@@ -38,5 +55,8 @@ export const ProfileContext = createContext<ProfileContextProps>({
     avatar: undefined,
     isAvatarLoading: false,
     groups: undefined,
-    isLoadingGroups: false
+    isLoadingGroups: false,
+    updateAvatar: () => {
+    },
+    isAvatarUploading: false
 })

@@ -1,0 +1,18 @@
+@import 'src/scss/variables';
+
+.avatar-icon {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  &--small {
+    width: 60px;
+    height: 60px;
+  }
+
+  &--big {
+    width: 80px;
+    height: 80px;
+  }
+}

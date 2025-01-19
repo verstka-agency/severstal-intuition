@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { Group } from "../models/Group"
+import { Group } from "../models/Avatar/Group"
 
 export const groupsContoller = {
     getGroups: async (req: Request, res: Response) => {

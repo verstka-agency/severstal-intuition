@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AuthenticationContext } from "src/contexts/AuthenticationContext"
 import { apiProvider } from "src/api"
 import { LocalStorageEnum } from "src/types"
+import { useNavigate } from "react-router-dom"
 
 interface AuthenticationProviderProps extends React.HTMLAttributes<HTMLDivElement> {
 }
@@ -21,28 +22,11 @@ const AuthenticationProvider: React.FC<AuthenticationProviderProps> = (props) =>
         }
     })
 
-    useEffect(() => {
-        const eventHandler = (event: StorageEvent) => {
-            const token = localStorage.getItem(LocalStorageEnum.SEVERSTAL_TOKEN)
-            if (token) {
-                setIsAuthenticated(true)
-                apiProvider.interceptors.request.use(async (config) => {
-                    config.headers.Authorization = `Bearer ${token}`
-                    return config
-                })
-            } else {
-                setIsAuthenticated(false)
-            }
-        }
-        window.addEventListener("storage", eventHandler)
-
-        return () => window.removeEventListener("storage", eventHandler)
-    }, [])
-
     return (
         <AuthenticationContext.Provider
             value={{
-                isAuthenticated: isAuthenticated
+                isAuthenticated: isAuthenticated,
+                setIsAuthenticated: setIsAuthenticated
             }}
         >
             {children}
