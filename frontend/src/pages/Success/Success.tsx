@@ -7,13 +7,14 @@ import { useProfile } from "src/hooks"
 
 const Success = () => {
     const { type } = useParams()
+    console.log('type', type)
     const { refetchProfile } = useProfile()
     const navigate = useNavigate()
 
     const { mutate: endRound, isLoading: isEndingRound } = useMutation({
         mutationFn: async () => {
             try {
-                const response = apiProvider.post("/private/game/end-round")
+                const response = await apiProvider.post("/private/game/end-round")
                 await refetchProfile()
                 navigate("/game")
             } catch (error) {
@@ -22,9 +23,9 @@ const Success = () => {
         }
     })
 
-    if (!type) {
-        return <Navigate to={"/"}/>
-    }
+    // if (!type) {
+    //     return <Navigate to={"/"}/>
+    // }
 
     return (
         <div>
@@ -39,8 +40,8 @@ const Success = () => {
                 Продолжить
             </Button>
             <Button
-                onClick={() => {
-
+                onClick={async () => {
+                    endRound()
                 }}
             >
                 Завершить раунд

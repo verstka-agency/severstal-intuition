@@ -27,26 +27,33 @@ const Index = () => {
                 }
             </div>
             <RoundProgressBar/>
-            <Button
-                onClick={() => {
-                    if (profile?.game.currentRound === 1 && profile?.game.currentQuestion === 1) {
-                        navigate("/onboarding")
-                    } else {
-                        navigate("/game")
-                    }
-                }}
-                className={"index__button"}
-            >
-                Играть
-            </Button>
+            {/*TODO тут надо сделать некий флаг о том, пройдена ли не игра*/}
+            {profile?.game.currentRound === 5 && profile?.game.currentQuestion === 10 ?
+                <Button
+                    onClick={() => {
+                        //     TODO открыть модалку
+                    }}
+                >Забрать призы</Button>
+                :
+                <Button
+                    onClick={() => {
+                        if (profile?.game.currentRound === 1 && profile?.game.currentQuestion === 1) {
+                            navigate("/onboarding")
+                        } else {
+                            navigate("/game")
+                        }
+                    }}
+                    className={"index__button"}
+                >
+                    Играть
+                </Button>
+            }
             {
                 profile?.game.currentRound === 1 ?
                     <SeverstalSlider/>
                     :
                     <Dashboard/>
             }
-            {/* TODO потом вынести отсюда */}
-            <Dashboard/>
         </div>
     )
 }

@@ -41,7 +41,7 @@ const Memory = () => {
                 const response = await apiProvider.post("/private/game/additional-games", {
                     type: "memory"
                 })
-                await refetchProfile()
+                refetchProfile()
                 navigate("/success?type=memory")
             } catch (error) {
                 console.error(error)
@@ -92,9 +92,9 @@ const Memory = () => {
         }
     }
 
-    if (profile?.game.isMemoryPassed && !isAddedScore) {
-        return <Navigate to={"/"}/>
-    }
+    // if (profile?.game.isMemoryPassed && !isAddedScore) {
+    //     return <Navigate to={"/"}/>
+    // }
 
     if (!isLoading && !memoryCards) {
         return (

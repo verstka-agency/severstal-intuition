@@ -68,9 +68,9 @@ const Postcards = () => {
     }
 
 
-    if (profile?.game.isPostcardsPassed && !isAddedScore) {
-        return <Navigate to={"/"}/>
-    }
+    // if (profile?.game.isPostcardsPassed && !isAddedScore) {
+    //     return <Navigate to={"/"}/>
+    // }
 
     return (
         <div className="postcards">
