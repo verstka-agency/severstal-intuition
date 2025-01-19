@@ -4,9 +4,23 @@ import { useProfile } from "src/hooks"
 import AvatarIcon from "src/components/AvatarIcon/AvatarIcon"
 import { AvatarIconSizeEnum } from "src/types"
 import DashboardTable from "src/components/DashboardTable/DashboardTable"
+import { useQuery } from "@tanstack/react-query"
+import { apiProvider } from "src/api"
 
 const Dashboard = () => {
     const { profile } = useProfile()
+
+    const { data: currentPosition, isLoading: isPositionLoading } = useQuery({
+        queryKey: ["currentPosition"],
+        queryFn: async () => {
+            try {
+                const response = await apiProvider('/private/game/current-position')
+                return response.data
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    })
 
     return (
         <div className={"dashboard"}>
@@ -15,12 +29,12 @@ const Dashboard = () => {
                 <AvatarIcon size={AvatarIconSizeEnum.SMALL}/>
                 <div className={"dashboard__personal-indicator"}>
                     <p className={"int-2 white"}>Место</p>
-                    <p className={"int-2 white"}>{profile?.game.position}</p>
+                    <p className={"int-2 white"}>{currentPosition?.position}</p>
                 </div>
                 <div className={"dashboard__personal-indicator"}>
                     <p className={"int-2 white"}>Раунд</p>
                     <p className={"int-2 white"}>{profile?.game.currentRound}/5</p>
-                </div>/
+                </div>
                 <div className={"dashboard__personal-indicator"}>
                     <p className={"int-2 white"}>Баллы</p>
                     <p className={"int-2 white"}>{profile?.game.score}</p>

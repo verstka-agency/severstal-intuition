@@ -1,5 +1,6 @@
 import { createContext } from "react"
 import { AvatarProps, GameProviderProps, GroupProps, UserProps } from "src/types"
+import { number } from "yup"
 
 interface ProfileContextProps {
     profile: UserProps | undefined,
@@ -35,12 +36,9 @@ export const profileInitials: UserProps = {
     game: {
         currentRound: 1,
         currentQuestion: 1,
-        question: "",
-        author: "",
-        city: "",
         score: 0,
-        position: 0,
-        avatar: null
+        isPostcardsPassed: false,
+        isMemoryPassed: false
     }
 }
 

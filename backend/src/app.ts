@@ -22,6 +22,7 @@ import gameRoutes from './routes/gameRoutes'
 import { avatars } from './utils/avatars'
 import avatarsRoutes from "./routes/avatarsRoutes"
 import { Avatar } from './models/avatar/Avatar'
+import { Game } from './models/Game/Game'
 
 config()
 
@@ -29,7 +30,7 @@ const PORT = process.env.PORT || 8080
 const app = express()
 
 app.use(express.json())
-app.use('/api/private',authMiddleware,  citiesRoutes)
+app.use('/api/private', authMiddleware, citiesRoutes)
 app.use('/api/public', authRoutes)
 app.use('/api/private', authMiddleware, avatarsRoutes)
 app.use('/api/private', authMiddleware, groupsRoutes)

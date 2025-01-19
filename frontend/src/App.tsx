@@ -1,12 +1,13 @@
 import React, { lazy } from 'react'
 import { Navigate, Route, Routes } from "react-router-dom"
-import Index from './pages/Index/Index'
 import './scss/general.scss'
-import Verification from "src/pages/Verification/Verification"
-import Profile from "src/pages/Profile/Profile"
-import Game from "src/pages/Game/Game"
 import Layout from "src/Layouts/Layout/Layout"
 
+const Index = lazy(() => import("./pages/Index/Index"))
+const Verification = lazy(() => import("./pages/Verification/Verification"))
+const Profile = lazy(() => import("./pages/Profile/Profile"))
+const Game = lazy(() => import("./pages/Game/Game"))
+const Success = lazy(() => import("./pages/Success/Success"))
 const Onboarding = lazy(() => import("./pages/Onboarding/Onboarding"))
 const BasicLayout = lazy(() => import("./Layouts/BasicLayout/BasicLayout"))
 const Memory = lazy(() => import("./pages/Memory/Memory"))
@@ -31,6 +32,7 @@ const App = () => {
                     <Route path={'/memory'} element={<Memory/>}/>
                     <Route path={'/postcards'} element={<Postcards/>}/>
                     <Route path={'/profile'} element={<Profile/>}/>
+                    <Route path={'/success'} element={<Success/>}/>
                     <Route path={"profile/avatar"} element={<ChooseAvatar/>}/>
                 </Route>
                 <Route element={<PublicRoute/>}>

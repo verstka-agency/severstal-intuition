@@ -1,8 +1,10 @@
 import { Request, Response } from "express"
+import { sequelize } from "../config/db"
 import { Answer } from "../models/Game/Answer"
 import { Game } from "../models/Game/Game"
 import { Question } from "../models/Game/Question"
 import { User } from "../models/User"
+import { Op } from "sequelize"
 
 export const gameController = {
     getCurrentQuestion: async (req: Request, res: Response) => {
@@ -150,11 +152,185 @@ export const gameController = {
             await game.update({
                 score: newScore,
                 currentRound: nextRound,
-                currentQuestion: nextQuestion
+                currentQuestion: nextQuestion,
+                isMemoryPassed: nextRound !== game.dataValues.currentRound,
+                isPostcardsPassed: nextRound !== game.dataValues.currentRound
             })
 
             res.status(200).json(answers)
 
+        } catch (error) {
+            console.error(error)
+        }
+    },
+    additionalGames: async (req: Request, res: Response) => {
+        const { userId } = res.locals
+        const { type } = req.body
+
+        if (!type) {
+            res.status(400).json({
+                "message": "Params error. Params should be \"memory\" or \"postcards\""
+            })
+        }
+
+        try {
+            const game = await Game.findOne({
+                where: {
+                    userId: userId
+                }
+            })
+
+            if (!game) {
+                res.status(400).json({
+                    "message": "Game error"
+                })
+                return
+            }
+
+            let newScore = game.dataValues.score + 200
+
+            if (type === "memory" && !game.dataValues.isMemoryPassed) {
+                await game.update({
+                    score: newScore,
+                    isMemoryPassed: true
+                })
+                res.status(200).json({
+                    "status": "ok"
+                })
+                return
+            }
+            if (type === "memory" && !game.dataValues.isPostcardsPassed) {
+                await game.update({
+                    score: newScore,
+                    isPostcardsPassed: true
+                })
+                res.status(200).json({
+                    "status": "ok"
+                })
+                return
+            }
+
+        } catch (error) {
+            console.error(error)
+        }
+    },
+    endRound: async (req: Request, res: Response) => {
+        const { userId } = res.locals
+
+        try {
+            const game = await Game.findOne({
+                where: {
+                    userId: userId
+                }
+            })
+
+            if (!game) {
+                res.status(400).json({
+                    "message": "Game error"
+                })
+                return
+            }
+
+            const round = game?.dataValues.currentRound
+            if (round >= 5) {
+                res.status(400).json({
+                    "message": "Вы и так на последнем раунде"
+                })
+                return
+            }
+            game.update({
+                currentRound: round + 1,
+                currentQuestion: 1,
+                isMemoryPassed: false,
+                isPostcardsPassed: false
+            })
+            res.status(200).json({
+                "status": "ok"
+            })
+
+        } catch (error) {
+            console.error(error)
+        }
+    },
+    dashboard: async (req: Request, res: Response) => {
+        try {
+            // Получаем 15 самых высоких уникальных значений score
+            // Шаг 1: Получаем все записи с отсортированными значениями score
+            const uniqueScores = await Game.findAll({
+                attributes: [[sequelize.fn('DISTINCT', sequelize.col('score')), 'score']], // Получаем только уникальные значения score
+                order: [['score', 'DESC']], // Сортируем по убыванию
+                limit: 15, // Ограничиваем до 15 значений
+                raw: true, // Получаем данные как обычные объекты
+            })
+
+            // @ts-ignore
+            const contestantsScores = uniqueScores.map((item) => item.score)
+            const contestantsGames = await Game.findAll({
+                where: {
+                    score: contestantsScores
+                }
+            })
+
+            const users = await User.findAll({
+                where: {
+                    id: contestantsGames.map((contestantsGame) => {
+                        return contestantsGame.dataValues.userId
+                    })
+                }
+            })
+
+            res.json(users.map((user) => {
+                    const score = contestantsGames.filter((contestantsGame) => {
+                        return contestantsGame.dataValues.userId === user.dataValues.id
+                    })[0].dataValues.score
+
+                    return {
+                        firstName: user.dataValues.firstName,
+                        lastName: user.dataValues.lastName,
+                        score: score,
+                        position: uniqueScores.findIndex((uniqueScore) => {
+                            // @ts-ignore
+                            if (uniqueScore.score === score) {
+                                return true
+                            }
+                        }) + 1
+                    }
+                }).sort((a, b) => {
+                    return a.position - b.position
+                })
+            )
+
+        } catch (error) {
+            console.error(error)
+            res.status(500).json({ message: 'Ошибка при обработке запроса' })
+        }
+    },
+    currentPosition: async (req: Request, res: Response) => {
+        const { userId } = res.locals
+
+        try {
+            const currentGame = await Game.findOne({
+                where: {
+                    userId: userId
+                }
+            })
+
+            const allScores = await Game.findAll({
+                attributes: [[sequelize.fn('DISTINCT', sequelize.col('score')), 'score']], // Получаем только уникальные значения score
+                order: [['score', 'DESC']], // Сортируем по убыванию
+                raw: true, // Получаем данные как обычные объекты
+            })
+
+            const currentIndex = allScores.findIndex((uniqueScore) => {
+                // @ts-ignore
+                if (uniqueScore.score === currentGame.dataValues.score) {
+                    return true
+                }
+            }) + 1
+
+            res.json({
+                position: currentIndex
+            })
         } catch (error) {
             console.error(error)
         }

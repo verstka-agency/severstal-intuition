@@ -29,7 +29,11 @@ const Index = () => {
             <RoundProgressBar/>
             <Button
                 onClick={() => {
-                    navigate("/onboarding")
+                    if (profile?.game.currentRound === 1 && profile?.game.currentQuestion === 1) {
+                        navigate("/onboarding")
+                    } else {
+                        navigate("/game")
+                    }
                 }}
                 className={"index__button"}
             >
@@ -42,6 +46,7 @@ const Index = () => {
                     <Dashboard/>
             }
             {/* TODO потом вынести отсюда */}
+            <Dashboard/>
         </div>
     )
 }

@@ -20,7 +20,7 @@ const RoundProgressBar = () => {
                     return (
                         <React.Fragment key={index}>
                             <div
-                                className={`round-progress-bar__dot round-progress-bar__dot--${index + 1 < (!!profile && profile?.game.currentRound) ? "active" : "not-active"}`}
+                                className={`round-progress-bar__dot round-progress-bar__dot--${index < (!!profile && profile?.game.currentRound) ? "active" : "not-active"}`}
                             ></div>
                             {
                                 index < 4 ?

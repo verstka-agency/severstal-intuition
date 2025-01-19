@@ -89,10 +89,7 @@ export enum AvatarIconSizeEnum {
 export interface GameProviderProps {
     currentRound: number
     currentQuestion: number
-    question: string
-    author: string
-    city: string
     score: number
-    position: number
-    avatar: string | null
+    isMemoryPassed: boolean
+    isPostcardsPassed: boolean
 }

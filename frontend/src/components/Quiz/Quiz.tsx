@@ -6,6 +6,7 @@ import './Quiz.scss'
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { apiProvider } from "src/api"
 import { useProfile } from "src/hooks"
+import { useNavigate } from "react-router-dom"
 
 interface IQuiz {
     answers: Array<{
@@ -17,8 +18,9 @@ interface IQuiz {
 
 const Quiz: React.FC<IQuiz> = (props) => {
     const { answers, question } = props
-    const { refetchProfile } = useProfile()
+    const { profile, refetchProfile } = useProfile()
     const [answerId, setAnswerId] = useState<string>("")
+    const navigate = useNavigate()
 
     const { data, isLoading: isSendingAnswer } = useQuery({
         queryKey: ["answers", {
@@ -37,6 +39,7 @@ const Quiz: React.FC<IQuiz> = (props) => {
         },
         enabled: !!answerId
     })
+
 
     return (
         <div className={"quiz"}>
@@ -64,8 +67,18 @@ const Quiz: React.FC<IQuiz> = (props) => {
                         ?
                         <Button
                             variant={ButtonVariantsEnum.PRIMARY_NEXT}
-                            onClick={() => {
-                                refetchProfile()
+                            onClick={async () => {
+                                await refetchProfile()
+                                if (profile?.game.currentQuestion === 5) {
+                                    const games = ["memory", "postcards"].sort((a, b) => {
+                                        const random = Number((Math.random() * 2).toFixed(0))
+                                        return random
+                                    })[0]
+                                    navigate(`/${games}`)
+                                }
+                                if (profile?.game.currentQuestion === 10) {
+                                    navigate("/")
+                                }
                             }}
                         >
                             Далее

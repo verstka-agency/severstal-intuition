@@ -1,12 +1,5 @@
 export const users = [
     {
-        id: "54163575-a6b1-4684-8e4e-88c3309f962a",
-        email: "hello@verstka.agency",
-        // money: 2649,
-        firstName: "Карен",
-        lastName: "Мартиросян"
-    },
-    {
         id: 'b3b825d2-5e32-4f60-b1d6-bfd7f7adbf6d',
         firstName: 'Alice',
         lastName: 'Peterson',

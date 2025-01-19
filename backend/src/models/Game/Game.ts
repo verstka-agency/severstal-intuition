@@ -50,6 +50,14 @@ export const Game = sequelize.define("Game", {
         type: DataTypes.UUID,
         allowNull: false,
     },
+    isMemoryPassed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
+    isPostcardsPassed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    }
 })
 
 /**

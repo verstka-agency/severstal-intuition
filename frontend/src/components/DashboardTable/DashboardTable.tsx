@@ -2,13 +2,15 @@ import React from 'react'
 import './DashboardTable.scss'
 import { useQuery } from "@tanstack/react-query"
 import { apiProvider } from "src/api"
+import axios from "axios"
 
 const DashboardTable = () => {
     const { data: dashboard, isLoading: isDashboardLoading } = useQuery({
         queryKey: ["dashboard"],
         queryFn: async () => {
             try {
-                const response = await apiProvider("/private/dashboard")
+                // const response = await apiProvider("/private/game/dashboard")
+                const response = await apiProvider.get("/private/game/dashboard")
                 return response.data
             } catch (error) {
                 console.error(error)
@@ -36,7 +38,7 @@ const DashboardTable = () => {
                                         {contestant.firstName} {contestant.lastName}
                                     </span>
                             </div>
-                            <div className={"int-2 white"}>{contestant.money}</div>
+                            <div className={"int-2 white"}>{contestant.score}</div>
                         </div>
                     )
                 })}
