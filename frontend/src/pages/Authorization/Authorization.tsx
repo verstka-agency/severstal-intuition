@@ -6,14 +6,15 @@ import { ButtonVariantsEnum, CornersPosition } from "src/types"
 import Button from "src/components/Button/Button"
 import { useNavigate } from "react-router-dom"
 import './Authorization.scss'
+import VkAuth from 'src/components/VkAuth/VkAuth'
 
 const Authorization = () => {
     const navigate = useNavigate()
 
     return (
         <Paper>
-            <Logo/>
-            <Corners position={CornersPosition.OUTSIDE}/>
+            <Logo />
+            <Corners position={CornersPosition.OUTSIDE} />
             <div className={"authorization"}>
                 <div>
 
@@ -29,7 +30,7 @@ const Authorization = () => {
                     </Button>
                     <div className={"authorization__otp"}>
                         <p className={"int-2 blue"}>Или с помощью:</p>
-                        <div>vk</div>
+                        <VkAuth />
                     </div>
                 </div>
                 <img
