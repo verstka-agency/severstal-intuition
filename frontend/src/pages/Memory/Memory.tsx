@@ -16,21 +16,20 @@ const Memory = () => {
     const { profile, refetchProfile } = useProfile()
     const navigate = useNavigate()
 
-    // Загружаем карточки
     const { data: memoryCards, isLoading } = useQuery<string[]>({
         queryKey: ["memory-cards"],
         queryFn: async () => {
-            // Мокаем загрузку карточек
-            const memoryCards = [
-                "/memory/1.png",
-                "/memory/2.png",
-                "/memory/3.png",
-                "/memory/4.png",
-            ]
+            const allCards = Array.from({ length: 32 }, (_, i) => `/memory/illustration-${i}.png`);
 
-            const doubledCards = [...memoryCards, ...memoryCards]
+            const selectedCards = [];
+            for (let i = 0; i < 4; i++) {
+                const randomIndex = Math.floor(Math.random() * allCards.length);
+                selectedCards.push(allCards[randomIndex]);
+                allCards.splice(randomIndex, 1);
+            }
 
-            // Функция для случайного перемешивания массива (используем алгоритм Фишера-Йетса)
+            const doubledCards = [...selectedCards, ...selectedCards];
+
             return shuffleArray(doubledCards)
         }
     })
@@ -98,7 +97,7 @@ const Memory = () => {
 
     if (!isLoading && !memoryCards) {
         return (
-            <ErrorMessage/>
+            <ErrorMessage />
         )
     }
 
@@ -106,10 +105,10 @@ const Memory = () => {
         <div className={"memory"}>
             <div className="memory__background__image memory__background__image__left"></div>
             <div className="memory__background__image memory__background__image__right"></div>
-            <div className={"memory__heading"}>Найди пары карточкам<br/> с интересами твоих коллег</div>
+            <div className={"memory__heading"}>Найди пары карточкам<br /> с интересами твоих коллег</div>
             {
                 isLoading ?
-                    <Loader/>
+                    <Loader />
                     :
                     <div className={"memory__cards"}>
                         {memoryCards && memoryCards.map((card, index) => {
