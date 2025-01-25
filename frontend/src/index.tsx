@@ -32,10 +32,10 @@ root.render(
                 <AuthenticationProvider>
                     <ProfileProvider>
                         <CitiesProvider>
-                            <button onClick={() => {
-                                localStorage.removeItem(LocalStorageEnum.SEVERSTAL_TOKEN)
-                            }}>reset
-                            </button>
+                            {/*<button onClick={() => {*/}
+                            {/*    localStorage.removeItem(LocalStorageEnum.SEVERSTAL_TOKEN)*/}
+                            {/*}}>reset*/}
+                            {/*</button>*/}
                             <App/>
                         </CitiesProvider>
                     </ProfileProvider>

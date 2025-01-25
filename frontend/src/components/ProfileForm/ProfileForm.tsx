@@ -51,9 +51,6 @@ const ProfileForm = () => {
             })}
         >
             {({ values, errors, isValid, setFieldValue }) => {
-                console.log('values', values)
-                console.log('errors', errors)
-                console.log('isValid', isValid)
                 return (
                     <Form className={"profile-form"}>
                         <div className={"profile-form__left-side"}>
@@ -72,14 +69,14 @@ const ProfileForm = () => {
                                     name={FormFieldEnum.FIRST_NAME}
                                     label={formSchemas[FormFieldEnum.FIRST_NAME].label}
                                     required={true}
-                                    disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
+                                    disabled={isProfileUpdating || isProfileLoading}
                                 />
                             </div>
                             <Input
                                 name={FormFieldEnum.LAST_NAME}
                                 label={formSchemas[FormFieldEnum.LAST_NAME].label}
                                 required={true}
-                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
+                                disabled={isProfileUpdating || isProfileLoading}
                             />
                             <Input
                                 name={FormFieldEnum.EMAIL}
@@ -91,7 +88,7 @@ const ProfileForm = () => {
                                 name={FormFieldEnum.PHONE}
                                 label={formSchemas[FormFieldEnum.PHONE].label}
                                 required={true}
-                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
+                                disabled={isProfileUpdating || isProfileLoading}
                             />
                         </div>
                         <div className={"profile-form__right-side"}>
@@ -101,7 +98,7 @@ const ProfileForm = () => {
                                 name={FormFieldEnum.CITY}
                                 label={formSchemas[FormFieldEnum.CITY].label}
                                 required={true}
-                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
+                                disabled={isProfileUpdating || isProfileLoading}
                             />
                             <p className={"int-3"}>Главные призы разыгрываются только среди сотрудников «Северстали»</p>
                             <div className={"profile-form__chipfield-container"}>
@@ -142,16 +139,22 @@ const ProfileForm = () => {
                                 :
                                 null
                             }
-                            <Checkbox
-                                name={FormFieldEnum.IS_PRIVACY_POLICY_CONFIRMED}
-                                label={formSchemas[FormFieldEnum.IS_PRIVACY_POLICY_CONFIRMED].label}
-                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
-                            />
-                            <Checkbox
-                                name={FormFieldEnum.IS_GAME_RULES_CONFIRMED}
-                                label={formSchemas[FormFieldEnum.IS_GAME_RULES_CONFIRMED].label}
-                                disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
-                            />
+                            {
+                                !profile?.isGameRulesConfirmed && !profile?.isPrivacyPolicyConfirmed ?
+                                    <>
+                                        <Checkbox
+                                            name={FormFieldEnum.IS_PRIVACY_POLICY_CONFIRMED}
+                                            label={formSchemas[FormFieldEnum.IS_PRIVACY_POLICY_CONFIRMED].label}
+                                            disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
+                                        />
+                                        <Checkbox
+                                            name={FormFieldEnum.IS_GAME_RULES_CONFIRMED}
+                                            label={formSchemas[FormFieldEnum.IS_GAME_RULES_CONFIRMED].label}
+                                            disabled={isProfileUpdating || isProfileLoading || profile?.isGameRulesConfirmed || profile?.isPrivacyPolicyConfirmed}
+                                        />
+                                    </>
+                                    : null
+                            }
                             <Button
                                 variant={ButtonVariantsEnum.PRIMARY_NEXT}
                                 type={ButtonTypeEnum.SUBMIT}

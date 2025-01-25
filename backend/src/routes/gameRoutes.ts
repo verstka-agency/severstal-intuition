@@ -9,5 +9,6 @@ router.post("/game/additional-games", gameController.additionalGames)
 router.post("/game/end-round", gameController.endRound)
 router.get('/game/dashboard', gameController.dashboard)
 router.get('/game/current-position', gameController.currentPosition)
+router.get('/game/round-preview', gameController.roundPreview)
 
 export default router

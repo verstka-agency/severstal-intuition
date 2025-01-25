@@ -55,7 +55,7 @@ app.use(
 
 // TODO логирование и отправка уведомлений об ошибках в телегу
 app.listen(PORT, async () => {
-    await sequelize.sync({ force: true })  // { force: true } удаляет и пересоздает таблицу
+    await sequelize.sync({ force: false })  // { force: true } удаляет и пересоздает таблицу
 
     /**
      * Cоздание и заполнение таблицы городов

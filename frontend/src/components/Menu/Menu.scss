@@ -6,12 +6,16 @@
   user-select: none;
 
   &--not-active {
-    top: 60%;
-    transform: translateY(-50%);
-    right: 40px;
+    right: 1.5rem;
 
     @media all and (hover) {
       cursor: pointer;
+    }
+
+    @media all and (min-width: $desktop) {
+      top: 60%;
+      transform: translateY(-50%);
+      right: 40px;
     }
   }
 
@@ -29,10 +33,15 @@
   }
 
   &__container {
-    padding: 24px 40px 40px 24px;
+    padding: 24px 24px 32px 24px;
+
     display: flex;
     flex-direction: column;
     grid-gap: 1.5rem;
+
+    @media all and (min-width: $desktop) {
+      padding: 24px 40px 40px 24px;
+    }
 
     picture {
       @media all and (hover) {

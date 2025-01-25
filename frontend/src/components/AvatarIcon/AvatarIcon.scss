@@ -9,10 +9,14 @@
   &--small {
     width: 60px;
     height: 60px;
+    border-radius: 1rem;
+    overflow: hidden;
   }
 
   &--big {
     width: 80px;
     height: 80px;
+    border-radius: 1rem;
+    overflow: hidden;
   }
 }

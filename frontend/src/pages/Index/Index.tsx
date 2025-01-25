@@ -40,7 +40,7 @@ const Index = () => {
                         if (profile?.game.currentRound === 1 && profile?.game.currentQuestion === 1) {
                             navigate("/onboarding")
                         } else {
-                            navigate("/game")
+                            navigate("/round-preview")
                         }
                     }}
                     className={"index__button"}

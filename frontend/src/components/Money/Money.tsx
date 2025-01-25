@@ -2,6 +2,9 @@ import React from 'react'
 import './Money.scss'
 import { useProfile } from "src/hooks"
 
+/**
+ * TODO при изменении баллов, необходимо сделать анимацию счетчика
+ */
 const Money = () => {
     const { profile } = useProfile()
 

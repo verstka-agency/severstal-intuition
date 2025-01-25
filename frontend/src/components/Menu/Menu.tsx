@@ -27,8 +27,8 @@ const Menu = () => {
                     <picture
                         onClick={() => setIsOpen(false)}
                     >
-                        <source srcSet={"/menu/cross-desktop.svg"} media={"(min-width: 1280px)"}/>
-                        <img src="/menu/cross-mobile.svg" alt=""/>
+                        {/*<source srcSet={"/menu/cross-desktop.svg"} media={"(min-width: 1280px)"}/>*/}
+                        <img src="/menu/cross-desktop.svg" alt=""/>
                     </picture>
                     <ul className={"menu__list"}>
                         <li>
@@ -41,7 +41,7 @@ const Menu = () => {
                                         }])
                                     return linkStyles
                                 }}
-                                to={"/main"}
+                                to={"/"}
                             >
                                 Главная
                             </NavLink>
@@ -90,6 +90,15 @@ const Menu = () => {
                             >
                                 Об игре
                             </NavLink>
+                        </li>
+                        <li className={"int-3 white"}>
+                            Возникли вопросы? Напишите нам{" "}
+                            <a
+                                href="mailto:info@severstal.com"
+                                className={"white"}
+                            >
+                                info@severstal.com
+                            </a>
                         </li>
                     </ul>
                 </div>

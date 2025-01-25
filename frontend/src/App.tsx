@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import './scss/general.scss'
 import Layout from "src/Layouts/Layout/Layout"
 
+const RoundPreview = lazy(() => import("./pages/RoundPreview/RoundPreview"))
 const Index = lazy(() => import("./pages/Index/Index"))
 const Verification = lazy(() => import("./pages/Verification/Verification"))
 const Profile = lazy(() => import("./pages/Profile/Profile"))
@@ -47,6 +48,7 @@ const App = () => {
             <Route element={<Layout/>}>
                 <Route element={<PrivateRoute/>}>
                     <Route path={'/game'} element={<Game/>}/>
+                    <Route path={'/round-preview'} element={<RoundPreview/>}/>
                 </Route>
             </Route>
         </Routes>

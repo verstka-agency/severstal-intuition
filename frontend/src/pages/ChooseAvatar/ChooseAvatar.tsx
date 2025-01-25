@@ -18,7 +18,9 @@ const ChooseAvatar = () => {
     const { isProfileLoading, updateAvatar, isAvatarUploading, groups } = useProfile()
 
     const { data: avatars, isLoading: isAvatarsLoading } = useQuery({
-        queryKey: ["avatars"],
+        queryKey: ["avatars", {
+            currentGroup: currentGroup
+        }],
         queryFn: async () => {
             try {
                 const response = await apiProvider.get(`/private/avatars`)
@@ -79,8 +81,7 @@ const ChooseAvatar = () => {
                                     <div className={"choose-avatar__grid"}>
                                         {
                                             !!currentGroup ?
-                                                avatars?.map((avatar, index) => {
-                                                    console.log('avatar', avatar)
+                                                avatars?.filter((avatar) => avatar.groupId === currentGroup).map((avatar, index) => {
                                                     const styles = getStyles("choose-avatar__icon", [{
                                                         decision: values.avatar === avatar?.id,
                                                         name: "active"
@@ -96,7 +97,8 @@ const ChooseAvatar = () => {
                                                             }}
                                                         >
                                                             <img
-                                                                src={`/avatars/women/${avatar?.slug}.png`}
+                                                                className={"choose-avatar__avatar"}
+                                                                src={`/avatars/${groups?.filter((group) => group.id === currentGroup)[0].slug}/${avatar?.slug}.png`}
                                                                 alt=""
                                                             />
                                                             <span className={"h4 blue"}>
@@ -116,6 +118,7 @@ const ChooseAvatar = () => {
                                                             }}
                                                         >
                                                             <img
+                                                                className={"choose-avatar__group"}
                                                                 src={`/avatars/${group.slug}/scientist.png`}
                                                                 alt=""
                                                             />

@@ -1,13 +1,17 @@
 @import 'src/scss/variables';
 
 .header {
-  height: $headerHeightMobile;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $headerHeightDesktop;
+  padding: 1rem 1.5rem 0 1rem;
+  background: $very-light-blue;
 
   @media all and (min-width: $desktop) {
-    position: relative;
+    padding: 0;
     height: $headerHeightDesktop;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: none;
   }
 }

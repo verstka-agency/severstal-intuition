@@ -72,8 +72,7 @@ export const useGetOnboardingSlides = (): {
 
     let currentSlides: OnboardingSlide[] = []
 
-
-    if (location.pathname === "about") {
+    if (location.pathname === "/about") {
         currentSlides = slides
     } else if (!isAuthenticated) {
         currentSlides = slides.filter((_, index) => index < 3)

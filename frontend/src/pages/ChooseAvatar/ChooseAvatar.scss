@@ -74,4 +74,16 @@
       cursor: not-allowed;
     }
   }
+
+  &__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  &__group {
+    border-radius: 2rem;
+    overflow: hidden;
+  }
 }

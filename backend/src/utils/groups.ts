@@ -1,18 +1,18 @@
 export const groups = [
     {
-        slug: "animals",
-        label: "Животные"
+        slug: "women",
+        label: "Женщины"
     },
     {
         slug: "men",
         label: "Мужчины"
     },
     {
-        slug: "minimalism",
-        label: "Минимализм"
+        slug: "emoji",
+        label: "Эмодзи"
     },
     {
-        slug: "women",
-        label: "Женщины"
+        slug: "animals",
+        label: "Животные"
     },
 ]

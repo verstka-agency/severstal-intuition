@@ -334,5 +334,40 @@ export const gameController = {
         } catch (error) {
             console.error(error)
         }
-    }
+    },
+    roundPreview: async (req: Request, res: Response) => {
+        const { userId } = res.locals
+        console.log("userId", userId)
+
+        try {
+            const game = await Game.findOne({
+                where: {
+                    userId: userId
+                }
+            })
+
+            const questions = await Question.findAll({
+                where: {
+                    id: game?.dataValues.questions
+                }
+            })
+
+            const questionsPerRound = 10 // Количество вопросов в раунде
+            const currentRound = game?.dataValues.currentRound // Текущий раунд
+
+            // Вычисляем индексы начала и конца для текущего раунда
+            const startIndex = (currentRound - 1) * questionsPerRound
+            const endIndex = startIndex + questionsPerRound
+
+            // Извлекаем вопросы для текущего раунда
+            const currentRoundQuestions = questions?.slice(startIndex, endIndex)
+
+            // console.log(`Вопросы для раунда ${currentRound}:`, currentRoundQuestions)
+            // console.log('questions', questions)
+
+            res.status(200).json(currentRoundQuestions)
+        } catch (error) {
+            console.error(error)
+        }
+    },
 }

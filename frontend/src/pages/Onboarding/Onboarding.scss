@@ -1,15 +1,13 @@
 @import 'src/scss/variables';
 
 .onboarding {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "progress-bar"
-    "text"
-    "image"
-    "button";
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1.5rem;
+  position: relative;
 
   @media all and (min-width: $desktop) {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto 1fr auto;
     grid-gap: 1.5rem;
@@ -20,18 +18,31 @@
   }
 
   &__progress-bar {
-    grid-area: progress-bar;
+    //margin-bottom: 1.5rem;
+
+    @media all and (min-width: $desktop) {
+      grid-area: progress-bar;
+      //margin: 0;
+    }
   }
 
   &__button {
+    position: sticky;
+    bottom: 1rem;
+    left: 0;
+    //margin-bottom: 1rem;
     grid-area: button;
   }
 
   &__image {
     grid-area: image;
-    width: 343px;
-    height: 343px;
+
     border-radius: 12px;
+
+    @media all and (min-width: $desktop) {
+      width: 343px;
+      height: 343px;
+    }
   }
 
   &__text {
@@ -43,5 +54,11 @@
     @media all and (min-width: $desktop) {
       text-align: left;
     }
+  }
+
+  &__back {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
 }

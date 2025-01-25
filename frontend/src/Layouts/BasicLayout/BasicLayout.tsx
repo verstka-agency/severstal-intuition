@@ -12,7 +12,7 @@ const BasicLayout = () => {
             <div className={"basic-layout"}>
                 <Outlet/>
             </div>
-            <Footer/>
+            {/*<Footer/>*/}
         </Container>
     )
 }
