@@ -72,4 +72,23 @@ export const authController = {
             res.status(500).json({ error: "Ошибка при отправке письма, обратитесь в поддержку" })
         }
     },
+    vkAuth: async (req: Request, res: Response) => {
+
+        const { email } = req.body
+
+        if (!email) {
+            res.status(400).json({ "error": "Отсутствует VK user_id" })
+            return
+        }
+
+        const [data, isCreated] = await User.findOrCreate({
+            where: { email: email },
+        })
+
+        const token = jwt.sign({ id: data.dataValues.id }, process.env.JWT_SECRET ?? "", { expiresIn: "30d" })
+        const link: string = `http://${process.env.DEBUG_URL}/authorization/verification?token=${token}`
+        
+        res.status(200).json(link)
+
+    }
 }

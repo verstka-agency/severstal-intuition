@@ -5,5 +5,6 @@ const router = express.Router()
 
 // Отправить magic link
 router.post('/send-magic-link', authController.sendMagicLink)
+router.post('/vk-auth', authController.vkAuth)
 
 export default router
