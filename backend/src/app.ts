@@ -57,55 +57,57 @@ app.use(
 app.listen(PORT, async () => {
     await sequelize.sync({ force: false })  // { force: true } удаляет и пересоздает таблицу
 
-    /**
-     * Cоздание и заполнение таблицы городов
-     */
-    await City.bulkCreate(cities)
-    /**
-     * Создание групп аватарок и аватарок
-     */
-    const createdGroups = await Group.bulkCreate(groups)
-    const formattedGroups = createdGroups
-        .map((createdGroup) => {
-            return {
-                slug: createdGroup.dataValues.slug,
-                id: createdGroup.dataValues.id
-            }
-        })
-
-    const formattedAvatars = avatars.map((avatar) => {
-        const id = formattedGroups.filter((group) => {
-            return group.slug === avatar.group
-        })[0].id
-        return {
-            label: avatar.label,
-            slug: avatar.slug,
-            groupId: id
-        }
-    })
-    await Avatar.bulkCreate(formattedAvatars)
-    /**
-     * Создание вопросов и ответов
-     */
-    const createdQuestions = await Question.bulkCreate(
-        questions.map((question) => ({
-            author: question.author,
-            question: question.question,
-            city: question.city,
-            avatar: "",
-        }))
-    )
-
-    questions.forEach((question, index) => {
-        const { answers } = question
-
-        Answer.bulkCreate(answers.map((answer) => {
-            return {
-                ...answer,
-                question: createdQuestions[index].dataValues.id
-            }
-        }))
-    })
+    // /**
+    //  * Cоздание и заполнение таблицы городов
+    //  */
+    // await City.bulkCreate(cities)
+    // /**
+    //  * Создание групп аватарок и аватарок
+    //  */
+    // const createdGroups = await Group.bulkCreate(groups)
+    // const formattedGroups = createdGroups
+    //     .map((createdGroup) => {
+    //         return {
+    //             slug: createdGroup.dataValues.slug,
+    //             id: createdGroup.dataValues.id
+    //         }
+    //     })
+    //
+    // const formattedAvatars = avatars.map((avatar) => {
+    //     const id = formattedGroups.filter((group) => {
+    //         return group.slug === avatar.group
+    //     })[0].id
+    //     return {
+    //         label: avatar.label,
+    //         slug: avatar.slug,
+    //         groupId: id
+    //     }
+    // })
+    //
+    // await Avatar.bulkCreate(formattedAvatars)
+    // /**
+    //  * Создание вопросов и ответов
+    //  */
+    //
+    // const createdQuestions = await Question.bulkCreate(
+    //     questions.map((question) => ({
+    //         author: question.author,
+    //         question: question.question,
+    //         city: question.city,
+    //         avatar: question.avatar,
+    //     }))
+    // )
+    //
+    // questions.forEach((question, index) => {
+    //     const { answers } = question
+    //
+    //     Answer.bulkCreate(answers.map((answer) => {
+    //         return {
+    //             ...answer,
+    //             question: createdQuestions[index].dataValues.id
+    //         }
+    //     }))
+    // })
 
     console.log(`Server is running on port ${PORT}`)
 })

@@ -1,6 +1,7 @@
 // TODO нужно переписать author, потому что нужны склонения
 export const questions: Array<{
     author: string,
+    avatar: string,
     question: string,
     city: string,
     answers: Array<{
@@ -11,6 +12,7 @@ export const questions: Array<{
     // 1)
     {
         "author": "Елена Вотчинова",
+        "avatar": "votchinova.png",
         "question": "Елена увлекается занятием экзотического происхождения. Как думаете, какое хобби у Елены?",
         "city": "из Нижнего Новгорода",
         "answers": [
@@ -23,6 +25,7 @@ export const questions: Array<{
     // 2)
     {
         "author": "Артём Полтавец",
+        "avatar": "poltavec.png",
         "question": "В хобби Артёма живёт настоящий дух молодости. Угадаете, чем Артём занимается вечерами?",
         "city": "из Москвы",
         "answers": [
@@ -35,6 +38,7 @@ export const questions: Array<{
     // 3)
     {
         "author": "Антон Югай",
+        "avatar": "yugai.png",
         "question": "У самурая нет цели, только путь. А у Антона…",
         "city": "из Москвы",
         "answers": [
@@ -47,6 +51,7 @@ export const questions: Array<{
     // 4)
     {
         "author": "Евгений Бобров",
+        "avatar": "bobrov.png",
         "question": "Евгений живёт эту жизнь на 100%. Но есть одна вещь, которую он сделал только наполовину. Какая?",
         "city": "из Москвы",
         "answers": [
@@ -59,6 +64,7 @@ export const questions: Array<{
     // 5)
     {
         "author": "Специальный вопрос о сотрудниках «Северстали»",
+        "avatar": "severstal.png",
         "question": "На вопрос о лучшем дне в жизни 90% участников опроса ответили именно так. Догадаетесь?",
         "city": "",
         "answers": [
@@ -71,6 +77,7 @@ export const questions: Array<{
     // 6)
     {
         "author": "Алена Павлова",
+        "avatar": "pavlova.png",
         "question": "Алёна часто занимается добрыми делами после работы. Угадаете в какой сфере?",
         "city": "из Череповца",
         "answers": [
@@ -83,6 +90,7 @@ export const questions: Array<{
     // 7)
     {
         "author": "Сергей Ливкоев",
+        "avatar": "livkoev.png",
         "question": "У Сергея есть кот, которого он назвал в честь героя популярного мультфильма. Как?",
         "city": "из Череповца",
         "answers": [
@@ -95,6 +103,7 @@ export const questions: Array<{
     // 8)
     {
         "author": "Татьяна Кузерова",
+        "avatar": "kuzerova.png",
         "question": "Самое необычное событие, на котором Татьяна была в 2024 — это концерт…",
         "city": "из Волгограда",
         "answers": [
@@ -107,6 +116,7 @@ export const questions: Array<{
     // 9)
     {
         "author": "Специальный вопрос о сотрудниках «Северстали»",
+        "avatar": "severstal.png",
         "question": "В Северстали любят анекдоты. Угадаете, как звучит самый популярный?",
         "city": "",
         "answers": [
@@ -119,6 +129,7 @@ export const questions: Array<{
     // 10)
     {
         "author": "Иван Герасимов",
+        "avatar": "gerasimov.png",
         "question": "Иван живёт в самом культурном городе России, но в глубине души хотел бы жить…",
         "city": "из Санкт-Петербурга",
         "answers": [
@@ -131,6 +142,7 @@ export const questions: Array<{
     // 11)
     {
         "author": "Игорь Доев",
+        "avatar": "doev.png",
         "question": "Помимо крутой работы, у Игоря одно время было очень крутое хобби. Какое?",
         "city": "из Москвы",
         "answers": [
@@ -143,6 +155,7 @@ export const questions: Array<{
     // 12)
     {
         "author": "Специальный вопрос о сотрудниках «Северстали»",
+        "avatar": "severstal.png",
         "question": "Какое домашнее животное чаще всего можно встретить у наших сотрудников?",
         "city": "",
         "answers": [
@@ -155,6 +168,8 @@ export const questions: Array<{
     // 13)
     {
         "author": "Елена Кукушкина",
+        // TODO добавить
+        "avatar": "",
         "question": "Лучшее путешествие в жизни Елены было на Чукотку. В какой стране мечтает побывать Елена?",
         "city": "из Ярославля",
         "answers": [
@@ -167,6 +182,7 @@ export const questions: Array<{
     // 14)
     {
         "author": "Ирина Соломенко",
+        "avatar": "solomenko.png",
         "question": "Ирина ОЧЕНЬ любит гулять. Как думаете, сколько километров она прошла за лето 2024 года?",
         "city": "из Череповца",
         "answers": [
@@ -179,6 +195,7 @@ export const questions: Array<{
     // 15)
     {
         "author": "Георгий Стерляжников",
+        "avatar": "sterlyazhnikov.png",
         "question": "Что Георгий мечтает сделать в этой жизни своими руками?",
         "city": "из Костомукши",
         "answers": [
@@ -191,6 +208,8 @@ export const questions: Array<{
     // 16)
     {
         "author": "Екатерина Фадеева",
+        "avatar": "fadeeva.png",
+
         "question": "Екатерина умеет выполнять один практически цирковой трюк. Угадаете, какой?",
         "city": "из Череповца",
         "answers": [
@@ -203,6 +222,7 @@ export const questions: Array<{
     // 17)
     {
         "author": "Оксана Селиверстова",
+        "avatar": "selivestrova.png",
         "question": "Оксана мечтает увидеть кое-каких необычных животных в необычном месте. Каких и где?",
         "city": "из Нижнего Новгорода",
         "answers": [
@@ -215,6 +235,8 @@ export const questions: Array<{
     // 18)
     {
         "author": "Антон Юзов",
+        // TODO ДОБАВИТЬ
+        "avatar": "",
         "question": "Лучший день в жизни Антона — это…",
         "city": "из Череповца",
         "answers": [
@@ -227,6 +249,8 @@ export const questions: Array<{
     // 19)
     {
         "author": "Вера Куницына",
+        // TODO ДОБАВИТЬ
+        "avatar": "",
         "question": "Сколько воздушных шариков Вера может надуть за раз?",
         "city": "из Колпино",
         "answers": [
@@ -239,6 +263,8 @@ export const questions: Array<{
     // 20)
     {
         "author": "Анастасия Савёлова",
+        // TODO ДОБАВИТЬ
+        "avatar": "savelova.png",
         "question": "О каком навыке обращения с животными Анастасия знает не понаслышке?",
         "city": "из Череповца",
         "answers": [
@@ -251,6 +277,7 @@ export const questions: Array<{
     // 21)
     {
         "author": "Александр Ким",
+        "avatar": "kim.png",
         "question": "Александр увлекается юмором. Как думаете, в каком формате?",
         "city": "из Череповца",
         "answers": [
@@ -263,6 +290,8 @@ export const questions: Array<{
     // 22)
     {
         "author": "Екатерина Петухова",
+        // TODO добавить
+        "avatar": "",
         "question": "Какие необычные животные живут дома у Екатерины?",
         "city": "из Череповца",
         "answers": [
@@ -275,6 +304,7 @@ export const questions: Array<{
     // 23)
     {
         "author": "Екатерина Пелевина",
+        "avatar": "pelevina.png",
         "question": "Екатерина — желанный гость на любом празднике, потому что она умеет…",
         "city": "из Нижнего Новгорода",
         "answers": [
@@ -287,6 +317,8 @@ export const questions: Array<{
     // 24)
     {
         "author": "Ирина Шанаева",
+        // TODO добавить
+        "avatar": "",
         "question": "Во сколько лет Ирина впервые попала в металлургию?",
         "city": "из Череповца",
         "answers": [
@@ -299,6 +331,7 @@ export const questions: Array<{
     // 25)
     {
         "author": "Ольга Тычкова",
+        "avatar": "tichkova.png",
         "question": "Как называется благотворительный фонд, в котором Ольга поддерживает любимых животных?",
         "city": "из Москвы",
         "answers": [
@@ -311,6 +344,7 @@ export const questions: Array<{
     // 26)
     {
         "author": "Виктория Баранова",
+        "avatar": "baranova.png",
         "question": "Виктория увлекается реконструкцией. Угадаете, реконструкцией чего?",
         "city": "из Волгограда",
         "answers": [
@@ -323,6 +357,8 @@ export const questions: Array<{
     // 27)
     {
         "author": "Богдан Гнусин",
+        // TODO добавить
+        "avatar": "",
         "question": "Богдан обожает настольные игры. Сколькичасовую партию однажды он сыграл, не выходя из-за стола?",
         "city": "из Москвы",
         "answers": [
@@ -335,6 +371,8 @@ export const questions: Array<{
     // 28)
     {
         "author": "Анна Ушакова",
+        // TODO добавить
+        "avatar": "",
         "question": "В среднем у людей их четыре, а у Анны целых 22. Догадаетесь, о чём речь?",
         "city": "из Череповца",
         "answers": [
@@ -347,6 +385,7 @@ export const questions: Array<{
     // 29)
     {
         "author": "Алёна Павлова",
+        "avatar": "pavlova.png",
         "question": "Алёну все друзья зовут Алёной. Но в паспорте её имя написано иначе. Как?",
         "city": "из Череповца",
         "answers": [
@@ -359,6 +398,7 @@ export const questions: Array<{
     // 30)
     {
         "author": "Дмитрий Масалыкин",
+        "avatar": "masalikin.png",
         "question": "Домашнее животное Дмитрия зовут очень вкусным именем. Отгадайте правильный вариант!",
         "city": "из Воронежа",
         "answers": [
@@ -371,6 +411,8 @@ export const questions: Array<{
     // 31)
     {
         "author": "Алла Соловей",
+        // TODO добавить
+        "avatar": "",
         "question": "До начала карьеры в металлургии Алла подрабатывала в магической индустрии. Кем?",
         "city": "из Севастополя",
         "answers": [
@@ -383,6 +425,8 @@ export const questions: Array<{
     // 32)
     {
         "author": "Никита Карев",
+        // TODO добавить
+        "avatar": "",
         "question": "Никита любитель экстремальных гастрономических впечатлений. Что в жизни пробовал Никита?",
         "city": "из Череповца",
         "answers": [
@@ -395,6 +439,7 @@ export const questions: Array<{
     // 33)
     {
         "author": "Денис Мартынов",
+        "avatar": "martinov.png",
         "question": "Хорошие вещи нужны не только людям, но и животным. Что и для каких животных мастерит Денис?",
         "city": "из Череповца",
         "answers": [
@@ -407,6 +452,8 @@ export const questions: Array<{
     // 34)
     {
         "author": "Татьяна Громова",
+        // TODO добавить
+        "avatar": "",
         "question": "У Татьяны дома есть триста…",
         "city": "из Череповца",
         "answers": [
@@ -419,6 +466,7 @@ export const questions: Array<{
     // 35)
     {
         "author": "Анна Павлова",
+        "avatar": "pavlova-anna.png",
         "question": "Анна боится высоты. Угадаете любимое хобби Анны?",
         "city": "из Череповца",
         "answers": [
@@ -431,6 +479,7 @@ export const questions: Array<{
     // 36)
     {
         "author": "Галина Ковина",
+        "avatar": "kovina.png",
         "question": "Галина работала внештатным корреспондентом в газете с удивительным названием. Каким?",
         "city": "из Череповца",
         "answers": [
@@ -443,6 +492,8 @@ export const questions: Array<{
     // 37)
     {
         "author": "Оксана Самсонова",
+        // TODO добавить
+        "avatar": "",
         "question": "Однажды Оксана написала биографию…",
         "city": "из Череповца",
         "answers": [
@@ -455,6 +506,7 @@ export const questions: Array<{
     // 38)
     {
         "author": "Ксения Величко",
+        "avatar": "velichko.png",
         "question": "Однажды Ксения 3 недели прожила с компанией очень необычных соседей. Кто это был?",
         "city": "из Нижнего Новгорода",
         "answers": [
@@ -467,6 +519,7 @@ export const questions: Array<{
     // 39)
     {
         "author": "Антон Евсеев",
+        "avatar": "evseev.png",
         "question": "Антон — заядлый футбольный фанат. Угадаете, какой лучший день в жизни Антона?",
         "city": "из Костомукши",
         "answers": [
@@ -479,6 +532,8 @@ export const questions: Array<{
     // 40)
     {
         "author": "Ольга Тихомирова",
+        // TODO добавить
+        "avatar": "",
         "question": "Ольга занимается коллекционированием кое-чего очень яркого. Чего же именно?",
         "city": "из Череповца",
         "answers": [
@@ -491,6 +546,7 @@ export const questions: Array<{
     // 41)
     {
         "author": "Галина Верещагина",
+        "avatar": "vereschagina.png",
         "question": "Зачем Галина хочет научиться водить автомобиль?",
         "city": "из Москвы",
         "answers": [
@@ -503,6 +559,8 @@ export const questions: Array<{
     // 42)
     {
         "author": "Ольга Потапова",
+        // TODO добавить
+        "avatar": "",
         "question": "Ольга пишет стихи в былинном стиле. В каком необычном месте ей удалось их однажды почитать?",
         "city": "из Москвы",
         "answers": [
@@ -515,6 +573,7 @@ export const questions: Array<{
     // 43)
     {
         "author": "Сергей Протасов",
+        "avatar": "protasov.png",
         "question": "Однажды, Сергей был с товарищами на рыбалке и…",
         "city": "из Санкт-Петербурга",
         "answers": [
@@ -527,6 +586,7 @@ export const questions: Array<{
     // 44)
     {
         "author": "Надежда Ладынская",
+        "avatar": "ladinskaya.png",
         "question": "За 20 лет Надежда не пропустила ни одной…",
         "city": "из Липецка",
         "answers": [
@@ -539,6 +599,7 @@ export const questions: Array<{
     // 45)
     {
         "author": "Анастасия Маковозова",
+        "avatar": "makovozova.png",
         "question": "Шесть месяцев в году Анастасия добирается на работу необычным способом. Каким?",
         "city": "из Волгограда",
         "answers": [
@@ -551,6 +612,8 @@ export const questions: Array<{
     // 46)
     {
         "author": "Артём Данилин",
+        // TODO добавить
+        "avatar": "",
         "question": "Артём мечтает однажды взять отпуск для того, чтобы месяц поработать…",
         "city": "из Череповца",
         "answers": [
@@ -563,6 +626,7 @@ export const questions: Array<{
     // 47)
     {
         "author": "Ольга Сбродова",
+        "avatar": "sbrodova.png",
         "question": "Что Ольге нравится больше всего делать в любой непонятной ситуации?",
         "city": "из Санкт-Петербурга",
         "answers": [
@@ -575,6 +639,7 @@ export const questions: Array<{
     // 48)
     {
         "author": "Елена Черняева",
+        "avatar": "chernyaeva.png",
         "question": "Во время студенчества Елена каждый день ездила…",
         "city": "из Москвы",
         "answers": [
@@ -587,6 +652,8 @@ export const questions: Array<{
     // 49)
     {
         "author": "Амур, кот Дарьи Шнитко",
+        // TODO добавить
+        "avatar": "",
         "question": "Меня назвали в честь римского бога любви. Но как меня зовут дома?",
         "city": "из Костомукши",
         "answers": [
@@ -599,6 +666,7 @@ export const questions: Array<{
     // 50)
     {
         "author": "Игорь Пискунов",
+        "avatar": "piskunov.png",
         "question": "У кого в гостях мечтает когда-нибудь побывать Игорь?",
         "city": "из Череповца",
         "answers": [

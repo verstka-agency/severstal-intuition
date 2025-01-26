@@ -24,7 +24,7 @@ export type ModificatorObject = {
     name: string
 }
 
-export type Modificators = Array<string | number | boolean | ModificatorObject>
+export type Modificators = Array<string | number | boolean | undefined | ModificatorObject>
 
 export enum CornersPosition {
     INSIDE = "inside",

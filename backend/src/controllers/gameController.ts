@@ -35,7 +35,7 @@ export const gameController = {
 
             if (!answers) {
                 res.status(400).json({
-                    "message": "Answer error"
+                    "message": "Answer.tsx error"
                 })
                 return
             }
@@ -104,7 +104,7 @@ export const gameController = {
 
             if (!answers) {
                 res.status(400).json({
-                    message: "Answer error"
+                    message: "Answer.tsx error"
                 })
             }
 
@@ -252,6 +252,45 @@ export const gameController = {
             console.error(error)
         }
     },
+    endQuestion: async (req: Request, res: Response) => {
+        const { userId } = res.locals
+
+        try {
+            const game = await Game.findOne({
+                where: {
+                    userId: userId
+                }
+            })
+
+            if (!game) {
+                res.status(400).json({
+                    "message": "Game error"
+                })
+                return
+            }
+
+            // Если currentQuestion < 10
+            const round = game?.dataValues.currentRound
+            if (round >= 5) {
+                res.status(400).json({
+                    "message": "Вы и так на последнем раунде"
+                })
+                return
+            }
+            game.update({
+                currentRound: round + 1,
+                currentQuestion: 1,
+                isMemoryPassed: false,
+                isPostcardsPassed: false
+            })
+            res.status(200).json({
+                "status": "ok"
+            })
+
+        } catch (error) {
+            console.error(error)
+        }
+    },
     dashboard: async (req: Request, res: Response) => {
         try {
             // Получаем 15 самых высоких уникальных значений score
@@ -348,7 +387,9 @@ export const gameController = {
 
             const questions = await Question.findAll({
                 where: {
-                    id: game?.dataValues.questions
+                    id: {
+                        [Op.in]: game?.dataValues.questions
+                    }
                 }
             })
 

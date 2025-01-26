@@ -1,11 +1,11 @@
 import { createContext, useContext } from 'react'
 
 interface NetworkContextProps {
-    isConnected: boolean
+    isOnline: boolean
 }
 
 const initialValues: NetworkContextProps = {
-    isConnected: false
+    isOnline: true
 }
 
 export const NetworkContext = createContext<NetworkContextProps>(initialValues)

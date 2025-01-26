@@ -15,15 +15,26 @@ const Index = () => {
 
     return (
         <div className="index">
+            <img
+                src="/index-left.png"
+                alt=""
+                className={"index__img index__img--left"}
+            />
+            <img
+                src="/index-right.png"
+                alt=""
+                className={"index__img index__img--right"}
+            />
             <div className={"index__header"}>
                 <Corners position={CornersPosition.INSIDE}/>
                 <h2 className={"h2 blue"}>стальная</h2>
                 <h1 className={"h1 blue"}>ИНТУИЦИЯ</h1>
                 {
                     profile?.game.currentRound === 1 ?
-                        <p className={"h3 blue"}>Первый раунд уже ждет тебя!</p>
+                        <p className={"h3 blue "}>Первый раунд уже ждет тебя!</p>
                         :
-                        <p>Вы прошли {profile?.game.currentRound} раунд из 5. Успейте пройти все раунды до X января</p>
+                        <p className={"h3 blue"}>Вы прошли {profile?.game.currentRound} раунд из 5. Успейте пройти все
+                            раунды до X января</p>
                 }
             </div>
             <RoundProgressBar/>
