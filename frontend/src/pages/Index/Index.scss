@@ -52,6 +52,8 @@
 
   &__button {
     width: 343px;
+    display: flex;
+    justify-content: center;
     //margin-bottom: 3rem;
     //margin-top: 1rem;
     margin: 1rem 0;

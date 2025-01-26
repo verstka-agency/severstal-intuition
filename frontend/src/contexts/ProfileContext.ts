@@ -14,6 +14,8 @@ interface ProfileContextProps {
     isLoadingGroups: boolean,
     updateAvatar: any,
     isAvatarUploading: boolean
+    setNextQuestion: any,
+    isNextQuestionLoading: boolean
 }
 
 export const profileInitials: UserProps = {
@@ -38,7 +40,8 @@ export const profileInitials: UserProps = {
         currentQuestion: 1,
         score: 0,
         isPostcardsPassed: false,
-        isMemoryPassed: false
+        isMemoryPassed: false,
+        isGamePassed: false
     }
 }
 
@@ -56,5 +59,8 @@ export const ProfileContext = createContext<ProfileContextProps>({
     isLoadingGroups: false,
     updateAvatar: () => {
     },
-    isAvatarUploading: false
+    isAvatarUploading: false,
+    setNextQuestion: () => {
+    },
+    isNextQuestionLoading: false
 })

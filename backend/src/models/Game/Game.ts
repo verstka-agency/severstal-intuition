@@ -57,6 +57,10 @@ export const Game = sequelize.define("Game", {
     isPostcardsPassed: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+    },
+    isGamePassed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     }
 })
 

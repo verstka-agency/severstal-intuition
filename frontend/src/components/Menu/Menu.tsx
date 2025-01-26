@@ -71,21 +71,6 @@ const Menu = () => {
                                         }])
                                     return linkStyles
                                 }}
-                                to={"support"}
-                            >
-                                Поддержка
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                className={(props) => {
-                                    const linkStyles = getStyles("menu__link",
-                                        [{
-                                            decision: props.isActive,
-                                            name: "active"
-                                        }])
-                                    return linkStyles
-                                }}
                                 to={"about"}
                             >
                                 Об игре

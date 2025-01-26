@@ -13,10 +13,7 @@ const AvatarIcon: React.FC<IAvatarIcon> = (props) => {
     const { size, className } = props
     const { avatar, groups } = useProfile()
 
-    console.log('avatar', avatar)
-
     const avatarExists = !!avatar
-
     const styles = getStyles("avatar-icon", [size], className)
 
     return (

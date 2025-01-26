@@ -92,4 +92,5 @@ export interface GameProviderProps {
     score: number
     isMemoryPassed: boolean
     isPostcardsPassed: boolean
+    isGamePassed: boolean
 }

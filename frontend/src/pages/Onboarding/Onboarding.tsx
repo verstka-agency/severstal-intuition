@@ -14,9 +14,6 @@ const Onboarding = () => {
     const { currentSlides, amount, currentBar, setCurrentBar } = useGetOnboardingSlides()
     const navigate = useNavigate()
 
-    useEffect(() => {
-    }, [])
-
     return (
         <Paper>
             <MediaQuery minWidth={1280}>
@@ -64,7 +61,7 @@ const Onboarding = () => {
                             setCurrentBar((prev) => prev + 1)
                         } else {
                             if (amount === 2) {
-                                navigate("/game")
+                                navigate("/round-preview")
                             } else if (amount === 3) {
                                 navigate("/authorization")
                             } else {

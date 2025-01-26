@@ -21,7 +21,7 @@ import { users } from './utils/user'
 import gameRoutes from './routes/gameRoutes'
 import { avatars } from './utils/avatars'
 import avatarsRoutes from "./routes/avatarsRoutes"
-import { Avatar } from './models/avatar/Avatar'
+import { Avatar } from './models/Avatar/Avatar'
 import { Game } from './models/Game/Game'
 
 config()

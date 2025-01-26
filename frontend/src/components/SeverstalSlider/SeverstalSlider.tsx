@@ -7,9 +7,7 @@ import './SeverstalSlider.scss'
 const SeverstalSlider = () => {
 
     return (
-        <div
-            className={"severstal-slider"}
-        >
+        <div className={"severstal-slider"}>
             <Swiper
                 slidesPerView={3}
                 spaceBetween={16}
