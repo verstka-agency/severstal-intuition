@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './Game.scss'
 import Person from "src/components/Person/Person"
 import GameIndicators from "src/components/GameIndicators/GameIndicators"
@@ -40,6 +40,12 @@ const Game = () => {
         }
     })
 
+    useEffect(() => {
+        if (profile?.game.score === 0) {
+            setShowInvite(true)
+        }
+    }, [profile])
+
     const getGame = useCallback(() => {
         const games = ["memory", "postcards"]
         const texts = ["Выиграйте больше баллов с помощью своей железной памяти!", "Время добрых дел! Отправьте открытку любому коллеге и получите +200 баллов"]
@@ -52,6 +58,8 @@ const Game = () => {
     if (isQuestionLoading) {
         return null
     }
+
+    // TODO изменить булевые значения двух игр на одну, так как на каждом раунде предлагаем только одну игру
 
     if (question === undefined) {
         return <Navigate to={"/"}/>
@@ -74,9 +82,10 @@ const Game = () => {
                 </>
                 : null}
             <div className={"game__container"}>
-                <GameIndicators showTimer={!showInvite}/>
+                <GameIndicators showTimer={!showInvite} className={"additional-game__indicator"}/>
                 {showInvite
                     ?
+                    // TODO вот это еще показывать, если 0
                     <div className={"additional-game"}>
                         <img
                             className={"additional-game__img"}

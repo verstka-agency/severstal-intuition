@@ -11,16 +11,17 @@
   }
 
   &__ring {
-    display: none;
+    //display: none;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    max-width: 662px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 
     @media all and (min-width: $desktop) {
-      display: unset;
-      position: absolute;
       top: 52%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 662px;
-      z-index: 1;
+      display: unset;
     }
   }
 
@@ -33,6 +34,12 @@
     align-items: center;
     margin-bottom: 3rem;
     z-index: 2;
+
+    padding-top: 5rem;
+
+    @media all and (min-width: $desktop) {
+      padding: unset;
+    }
   }
 
   &__heading {
@@ -40,6 +47,15 @@
     max-width: 420px;
     display: flex;
     justify-content: center;
+  }
+
+  &__button {
+    width: calc(100% - 2rem);
+
+
+    @media all and (min-width: $desktop) {
+      width: auto;
+    }
   }
 
   &__slide {

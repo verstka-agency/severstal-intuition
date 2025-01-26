@@ -17,15 +17,9 @@ const Onboarding = () => {
 
     useEffect(() => {
         if (amount === 2) {
-            setShow(true)
+            setShow(false)
         }
     }, [amount])
-
-    console.table([
-        ["currentSlides", currentSlides],
-        ["amount", amount],
-        ["currentBar", currentBar],
-    ])
 
     return (
         <Paper>

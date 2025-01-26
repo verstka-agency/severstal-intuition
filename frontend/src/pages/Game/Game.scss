@@ -3,10 +3,14 @@
 .game {
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
+  padding: 1rem;
   justify-content: center;
   align-items: center;
   position: relative;
+
+  @media all and (min-width: $desktop) {
+    padding-top: 40px;
+  }
 
   &__container {
     text-align: center;
@@ -51,6 +55,10 @@
     flex-direction: column;
     align-items: center;
     max-width: 450px;
+
+    &__indicator {
+
+    }
 
     &__img {
       width: 190px;

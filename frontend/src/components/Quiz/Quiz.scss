@@ -6,6 +6,14 @@
   grid-gap: 1rem;
   margin-top: 0.5rem;
 
+  &__question {
+    padding: 0 1rem;
+
+    @media all and (min-width: $desktop) {
+      padding: 0;
+    }
+  }
+
   &__questions {
     display: flex;
     flex-direction: column;

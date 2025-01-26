@@ -1,5 +1,8 @@
 import React from 'react'
 import './Person.scss'
+import Corners from "src/components/Corners/Corners"
+import { CornersPosition } from "src/types"
+import MediaQuery from 'react-responsive'
 
 interface IPerson {
     author: string
@@ -12,6 +15,9 @@ const Person: React.FC<IPerson> = (props) => {
 
     return (
         <div className={"person"}>
+            <MediaQuery maxWidth={1279.98}>
+                <Corners position={CornersPosition.INSIDE}/>
+            </MediaQuery>
             <img
                 src={`/game/authors/${avatar}`}
                 alt=""

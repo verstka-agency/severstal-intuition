@@ -3,6 +3,7 @@ import { slides } from "src/components/SeverstalSlider/constants"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css'
 import './SeverstalSlider.scss'
+import { useMediaQuery } from "src/hooks"
 
 const SeverstalSlider = () => {
 

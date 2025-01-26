@@ -2,13 +2,21 @@
 
 .game-indicators {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   @media all and (min-width: $desktop) {
+    display: flex;
     flex-direction: column;
     grid-gap: 1rem;
+
+    padding: 1rem;
+
     position: absolute;
     top: 40px;
     right: 40px;
-    padding: 1rem;
+
+    width: unset;
+    height: auto;
   }
 }
