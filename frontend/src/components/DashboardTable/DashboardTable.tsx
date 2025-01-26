@@ -20,6 +20,9 @@ const DashboardTable = () => {
 
     return (
         <div className={"dashboard-table"}>
+            <div className={"dashboard-table__description"}>
+                <p className={"int-2 white"}>Топ-15 игроков сотрудников «Северстали»</p>
+            </div>
             <div className={"dashboard-table__heading"}>
                 <div className={"int-2 white"}>Место</div>
                 <div className={"int-2 white"}>Имя</div>

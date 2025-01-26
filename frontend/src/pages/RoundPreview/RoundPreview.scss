@@ -1,5 +1,67 @@
 @import "src/scss/variables";
 
 .round-preview {
+  position: relative;
+  padding-top: 7rem;
 
+  &__avatar {
+    height: 90px;
+    width: 90px;
+    border-radius: 1rem;
+  }
+
+  &__ring {
+    display: none;
+
+    @media all and (min-width: $desktop) {
+      display: unset;
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 662px;
+      z-index: 1;
+    }
+  }
+
+  &__header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    z-index: 2;
+  }
+
+  &__heading {
+    text-align: center;
+    max-width: 420px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__slide {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    //grid-gap: 1.5rem;
+    height: 256px;
+    background-color: $very-light-blue;
+    border-radius: 1rem;
+    padding: 1rem;
+    align-items: center;
+    z-index: 2;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    grid-gap: .5rem;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    text-align: center;
+  }
 }

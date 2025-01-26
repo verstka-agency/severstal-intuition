@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Index.scss'
 import { useProfile } from "src/hooks"
 import { CornersPosition } from "src/types"
@@ -8,13 +8,17 @@ import { useNavigate } from "react-router-dom"
 import SeverstalSlider from "src/components/SeverstalSlider/SeverstalSlider"
 import RoundProgressBar from "src/components/RoundProgressBar/RoundProgressBar"
 import Dashboard from "src/components/Dashboard/Dashboard"
+import Modal from 'src/components/Modal/Modal'
 
 const Index = () => {
     const { profile } = useProfile()
     const navigate = useNavigate()
 
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
     return (
         <div className="index">
+
             <img
                 src="/index-left.png"
                 alt=""
@@ -39,26 +43,37 @@ const Index = () => {
             </div>
             <RoundProgressBar/>
             {/*TODO тут надо сделать некий флаг о том, пройдена ли не игра*/}
-            {profile?.game.currentRound === 5 && profile?.game.currentQuestion === 10 ?
-                <Button
-                    onClick={() => {
-                        //     TODO открыть модалку
-                    }}
-                >Забрать призы</Button>
-                :
-                <Button
-                    onClick={() => {
-                        if (profile?.game.currentRound === 1 && profile?.game.currentQuestion === 1) {
-                            navigate("/onboarding")
-                        } else {
-                            navigate("/round-preview")
-                        }
-                    }}
-                    className={"index__button"}
-                >
-                    Играть
-                </Button>
-            }
+            <div className={"index__button"}>
+                {profile?.game.currentRound === 5 && profile?.game.currentQuestion === 10 ?
+                    <>
+                        <Button
+                            onClick={() => {
+                                setIsModalOpen(true)
+                            }}
+                        >
+                            Забрать призы
+                        </Button>
+                        <Modal
+                            isOpen={isModalOpen}
+                            onRequestClose={() => setIsModalOpen(false)}
+                        >
+                            MODAL
+                        </Modal>
+                    </>
+                    :
+                    <Button
+                        onClick={() => {
+                            if (profile?.game.currentRound === 1 && profile?.game.currentQuestion === 1) {
+                                navigate("/onboarding")
+                            } else {
+                                navigate("/round-preview")
+                            }
+                        }}
+                    >
+                        Играть
+                    </Button>
+                }
+            </div>
             {
                 profile?.game.currentRound === 1 ?
                     <SeverstalSlider/>

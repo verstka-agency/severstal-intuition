@@ -23,30 +23,30 @@ const App = () => {
 
     return (
         <Routes>
-            <Route element={<BasicLayout />}>
-                <Route path={'/onboarding'} element={<Onboarding />} />
-                <Route element={<PrivateRoute />}>
-                    <Route path={'*'} element={<Navigate to="/" />} />
-                    <Route path={'/'} element={<Index />} />
-                    <Route path={'/about'} element={<Onboarding />} />
-                    <Route path={'/memory'} element={<Memory />} />
-                    <Route path={'/postcards'} element={<Postcards />} />
-                    <Route path={'/profile'} element={<Profile />} />
-                    <Route path={'/success'} element={<Success />} />
-                    <Route path={"profile/avatar"} element={<ChooseAvatar />} />
+            <Route element={<BasicLayout/>}>
+                <Route path={'/onboarding'} element={<Onboarding/>}/>
+                <Route element={<PrivateRoute/>}>
+                    <Route path={'*'} element={<Navigate to="/"/>}/>
+                    <Route path={'/'} element={<Index/>}/>
+                    <Route path={'/about'} element={<Onboarding/>}/>
+                    <Route path={'/memory'} element={<Memory/>}/>
+                    <Route path={'/postcards'} element={<Postcards/>}/>
+                    <Route path={'/profile'} element={<Profile/>}/>
+                    <Route path={'/success'} element={<Success/>}/>
+                    <Route path={"profile/avatar"} element={<ChooseAvatar/>}/>
+                    <Route path={'/round-preview'} element={<RoundPreview/>}/>
                 </Route>
-                <Route element={<PublicRoute />}>
+                <Route element={<PublicRoute/>}>
                     <Route path={"/authorization"}>
-                        <Route index={true} element={<Authorization />} />
-                        <Route path={"email-otp"} element={<EmailOtp />} />
-                        <Route path={"verification"} element={<Verification />} />
+                        <Route index={true} element={<Authorization/>}/>
+                        <Route path={"email-otp"} element={<EmailOtp/>}/>
+                        <Route path={"verification"} element={<Verification/>}/>
                     </Route>
                 </Route>
             </Route>
             <Route element={<Layout/>}>
                 <Route element={<PrivateRoute/>}>
                     <Route path={'/game'} element={<Game/>}/>
-                    <Route path={'/round-preview'} element={<RoundPreview/>}/>
                 </Route>
             </Route>
         </Routes>

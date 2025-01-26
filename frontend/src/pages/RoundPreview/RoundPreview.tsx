@@ -8,6 +8,7 @@ import "swiper/css/autoplay"
 import { Autoplay } from 'swiper/modules'
 import { useQuery } from "@tanstack/react-query"
 import { apiProvider } from "src/api"
+import './RoundPreview.scss'
 
 const RoundPreview = () => {
 
@@ -38,16 +39,23 @@ const RoundPreview = () => {
     }
 
     return (
-        <div>
-            <h1 className={"h1"}>Сегодня ты будешь угадывать</h1>
-            <Button
-                variant={ButtonVariantsEnum.PRIMARY_NEXT}
-                onClick={() => {
-                    navigate("/game")
-                }}
-            >
-                Приступить
-            </Button>
+        <div className={"round-preview"}>
+            <img
+                src="/ring.png"
+                alt=""
+                className={"round-preview__ring"}
+            />
+            <div className={"round-preview__header"}>
+                <h1 className={"h1 white round-preview__heading"}>Сегодня ты будешь угадывать</h1>
+                <Button
+                    variant={ButtonVariantsEnum.PRIMARY}
+                    onClick={() => {
+                        navigate("/game")
+                    }}
+                >
+                    Приступить
+                </Button>
+            </div>
             {/* preview slider */}
             <div>
                 <Swiper
@@ -62,13 +70,24 @@ const RoundPreview = () => {
                     modules={[Autoplay]} // Подключаем модуль автопрокрутки
                 >
                     {data?.map((question) => {
-                        return (
-                            <SwiperSlide key={question.id}>
-                                <div>{question.avatar}</div>
-                                <div>{question.author}</div>
-                                <div>{question.city}</div>
-                            </SwiperSlide>
-                        )
+                        if (question.city) {
+                            return (
+                                <SwiperSlide key={question.id}>
+                                    <div className={"round-preview__slide"}>
+                                        <img
+                                            src={`/game/authors/${question.avatar}`}
+                                            alt=""
+                                            className={"round-preview__avatar"}
+                                        />
+                                        <div className={"round-preview__description"}>
+                                            <h3 className={"h3 blue"}>{question.author}</h3>
+                                            <p className={"int-3 blue"}>{question.city}</p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            )
+                        }
+                        return null
                     })}
                 </Swiper>
             </div>

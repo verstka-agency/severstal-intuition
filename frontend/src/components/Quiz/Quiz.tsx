@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { SetStateAction, useState } from 'react'
 import Button from "src/components/Button/Button"
 import { ButtonVariantsEnum } from "src/types"
 import './Quiz.scss'
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 import Answer, { AnswerVariantsEnum } from "src/components/Answer/Answer"
 
 interface IQuiz {
+    setShowInvite: React.Dispatch<SetStateAction<boolean>>
     answers: Array<{
         id: string
         text: string
@@ -17,7 +18,7 @@ interface IQuiz {
 }
 
 const Quiz: React.FC<IQuiz> = (props) => {
-    const { answers, question } = props
+    const { answers, question, setShowInvite } = props
     const { profile, refetchProfile } = useProfile()
     const [answerId, setAnswerId] = useState<string>("")
     const navigate = useNavigate()
@@ -89,15 +90,12 @@ const Quiz: React.FC<IQuiz> = (props) => {
                 {answerId
                     ?
                     <Button
+                        className={"quiz__button"}
                         variant={ButtonVariantsEnum.PRIMARY_NEXT}
                         onClick={async () => {
                             await refetchProfile()
                             if (profile?.game.currentQuestion === 5) {
-                                const games = ["memory", "postcards"].sort((a, b) => {
-                                    const random = Number((Math.random() * 2).toFixed(0))
-                                    return random
-                                })[0]
-                                navigate(`/${games}`)
+                                setShowInvite(true)
                             }
                             if (profile?.game.currentQuestion === 10) {
                                 navigate("/")

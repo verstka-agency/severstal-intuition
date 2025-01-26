@@ -6,9 +6,13 @@
     display: flex;
     flex-direction: column;
     grid-gap: 4px;
-    height: 218px;
+    max-height: 256px;
     overflow: auto;
     position: relative;
+  }
+
+  &__description {
+    margin-top: 1rem;
   }
 
   &__heading {

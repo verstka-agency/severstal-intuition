@@ -6,6 +6,7 @@
   padding-top: 40px;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   &__container {
     text-align: center;
@@ -15,7 +16,59 @@
     }
   }
 
+  &__img {
+    display: none;
+
+    @media all and (min-width: $desktop) {
+      display: unset;
+      position: absolute;
+    }
+
+    &--left {
+      top: 40px;
+      left: 0;
+      height: 638px;
+    }
+
+    &--right {
+      top: 358px;
+      right: 0;
+      height: 418px;
+    }
+  }
+
   &__question {
     margin-bottom: 1.5rem;
+  }
+
+  .additional-game {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 450px;
+
+    &__img {
+      width: 190px;
+      margin-bottom: 2rem;
+    }
+
+    &__heading {
+      margin-bottom: 1rem;
+    }
+
+    &__description {
+      margin-bottom: 2rem;
+    }
+
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 2rem;
+    }
   }
 }
