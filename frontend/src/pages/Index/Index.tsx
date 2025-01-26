@@ -9,11 +9,11 @@ import SeverstalSlider from "src/components/SeverstalSlider/SeverstalSlider"
 import RoundProgressBar from "src/components/RoundProgressBar/RoundProgressBar"
 import Dashboard from "src/components/Dashboard/Dashboard"
 import Modal from 'src/components/Modal/Modal'
+import MediaQuery from "react-responsive"
 
 const Index = () => {
     const { profile } = useProfile()
     const navigate = useNavigate()
-
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
     return (

@@ -6,14 +6,39 @@
   grid-gap: 1.5rem;
 
   &__grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
+    width: 100%;
+
+    @media all and (min-width: $desktop) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      grid-gap: 1rem;
 
 
-    & > * {
-      width: calc((100% - 3rem) / 4);
+      & > label {
+        width: calc((100% - 3rem) / 4);
+      }
+
+      &--group {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(2, 1fr);
+
+        & > label {
+          width: 162px;
+        }
+
+        & > label:nth-child(even) {
+          justify-self: flex-start;
+        }
+
+        & > label:nth-child(odd) {
+          justify-self: flex-end;
+        }
+      }
     }
   }
 
@@ -28,10 +53,32 @@
     }
   }
 
+  &__logo {
+    display: none;
+
+    @media all and (min-width: $desktop) {
+      display: flex;
+    }
+  }
+
+  &__paper {
+    padding-top: 4px;
+
+    @media all and (min-width: $desktop) {
+      padding-top: 1.5rem;
+    }
+  }
+
   &__navigation {
+    cursor: pointer;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 30px;
+    left: 1rem;
+
+    @media all and (min-width: $desktop) {
+      top: 0;
+      left: 0;
+    }
   }
 
   &__container {
@@ -43,7 +90,13 @@
   }
 
   &__button {
+    width: 100%;
+    position: sticky;
+    bottom: 1rem;
+    top: 0;
+
     @media all and (min-width: $desktop) {
+      position: static;
       width: 343px;
     }
   }

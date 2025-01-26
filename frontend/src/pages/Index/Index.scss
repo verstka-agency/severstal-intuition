@@ -34,15 +34,26 @@
 
   &__header {
     position: relative;
-    width: 497px;
-    height: 226px;
+
+    max-width: 343px;
+    height: 238px;
+
     display: flex;
+    grid-gap: 0.5rem;
     align-items: center;
     flex-direction: column;
-    grid-gap: 0.5rem;
-    padding-top: 3rem;
+    justify-content: center;
+
+    padding: 0 1rem;
     margin-bottom: 1.5rem;
     z-index: 2;
+
+    @media all and (min-width: $desktop) {
+      max-width: 497px;
+      height: 226px;
+      padding-top: 3rem;
+      justify-content: unset;
+    }
 
     p {
       max-width: 371px;

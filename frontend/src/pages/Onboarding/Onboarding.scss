@@ -61,5 +61,13 @@
     align-items: center;
     cursor: pointer;
     user-select: none;
+
+    position: fixed;
+    top: 1.5rem;
+    left: 1rem;
+
+    @media all and (min-width: $desktop) {
+      position: static;
+    }
   }
 }
