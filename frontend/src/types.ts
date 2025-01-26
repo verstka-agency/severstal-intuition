@@ -90,7 +90,6 @@ export interface GameProviderProps {
     currentRound: number
     currentQuestion: number
     score: number
-    isMemoryPassed: boolean
-    isPostcardsPassed: boolean
+    isAdditionalGamePassed: boolean
     isGamePassed: boolean
 }

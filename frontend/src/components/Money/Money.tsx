@@ -3,15 +3,19 @@ import './Money.scss'
 import { useProfile } from "src/hooks"
 import CountUp from "react-countup"
 
-/**
- * TODO при изменении баллов, необходимо сделать анимацию счетчика
- */
-const Money = () => {
+interface MoneyProps extends React.HTMLAttributes<HTMLDivElement> {
+
+}
+
+const Money: React.FC<MoneyProps> = (props) => {
+    const { className } = props
     const { profile } = useProfile()
     const [end, setEnd] = useState<number>(profile?.game.score ?? 0)
 
+    const styles = ["money", className]
+
     return (
-        <div className={"money"}>
+        <div className={styles.filter(Boolean).join(" ")}>
             <div className={"money__container"}>
                 <img src="/game/money.svg" alt=""/>
                 <CountUp

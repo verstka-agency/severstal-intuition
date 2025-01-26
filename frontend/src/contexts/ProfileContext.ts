@@ -39,8 +39,7 @@ export const profileInitials: UserProps = {
         currentRound: 1,
         currentQuestion: 1,
         score: 0,
-        isPostcardsPassed: false,
-        isMemoryPassed: false,
+        isAdditionalGamePassed: false,
         isGamePassed: false
     }
 }

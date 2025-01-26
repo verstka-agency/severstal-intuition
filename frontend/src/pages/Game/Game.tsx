@@ -14,6 +14,15 @@ const Game = () => {
     const { profile } = useProfile()
     const [showInvite, setShowInvite] = useState<boolean>(false)
     const navigate = useNavigate()
+    const [randomGame,] = useState(() => {
+        const games = ["memory", "postcards"]
+        const texts = ["Выиграйте больше баллов с помощью своей железной памяти!", "Время добрых дел! Отправьте открытку любому коллеге и получите +200 баллов"]
+        const randomIndex = Math.floor(Math.random() * games.length)
+        console.log(randomIndex)
+        const randomGame = games[randomIndex]
+        const randomText = texts[randomIndex]
+        return [randomGame, randomText]
+    })
 
     const { data: question, isLoading: isQuestionLoading, isFetched } = useQuery<{
         id: string
@@ -37,31 +46,21 @@ const Game = () => {
             } catch (error) {
                 console.error(error)
             }
-        }
+        },
+        enabled: !profile?.game.isGamePassed && !!profile
     })
 
     useEffect(() => {
-        if (profile?.game.score === 0) {
+        if (profile?.game.score === 0 && !profile?.game.isAdditionalGamePassed) {
             setShowInvite(true)
         }
     }, [profile])
-
-    const getGame = useCallback(() => {
-        const games = ["memory", "postcards"]
-        const texts = ["Выиграйте больше баллов с помощью своей железной памяти!", "Время добрых дел! Отправьте открытку любому коллеге и получите +200 баллов"]
-        const randomIndex = Math.floor(Math.random() * games.length)
-        const randomGame = games[randomIndex]
-        const randomText = texts[randomIndex]
-        return [randomGame, randomText]
-    }, [])
 
     if (isQuestionLoading) {
         return null
     }
 
-    // TODO изменить булевые значения двух игр на одну, так как на каждом раунде предлагаем только одну игру
-
-    if (question === undefined) {
+    if (question === undefined || profile?.game.isGamePassed) {
         return <Navigate to={"/"}/>
     }
 
@@ -85,7 +84,6 @@ const Game = () => {
                 <GameIndicators showTimer={!showInvite} className={"additional-game__indicator"}/>
                 {showInvite
                     ?
-                    // TODO вот это еще показывать, если 0
                     <div className={"additional-game"}>
                         <img
                             className={"additional-game__img"}
@@ -94,13 +92,13 @@ const Game = () => {
                         />
                         <h2 className="h2 white additional-game__heading">Получите дополнительные баллы</h2>
                         <p className="int-2 white additional-game__description">
-                            {getGame()[1]}
+                            {randomGame[1]}
                         </p>
                         <div className={"additional-game__buttons"}>
                             <Button
                                 variant={ButtonVariantsEnum.PRIMARY}
                                 onClick={() => {
-                                    navigate(`/${getGame()[0]}`)
+                                    navigate(`/${randomGame[0]}`)
                                 }}
                             >
                                 Сыграть
