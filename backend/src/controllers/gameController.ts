@@ -147,6 +147,12 @@ export const gameController = {
                 if (nextRound < 5) {
                     nextRound += 1
                     nextQuestion = 1
+                } else {
+                    game.update({
+                        isGamePassed: true,
+                        isMemoryPassed: true,
+                        isPostcardsPassed: true
+                    })
                 }
             }
             await game.update({
@@ -214,7 +220,7 @@ export const gameController = {
             console.error(error)
         }
     },
-    endRound: async (req: Request, res: Response) => {
+    nextQuestion: async (req: Request, res: Response) => {
         const { userId } = res.locals
 
         try {
@@ -231,58 +237,28 @@ export const gameController = {
                 return
             }
 
-            const round = game?.dataValues.currentRound
-            if (round >= 5) {
-                res.status(400).json({
-                    "message": "Вы и так на последнем раунде"
+            const currentRound = game?.dataValues.currentRound
+            const currentQuestion = game?.dataValues.currentQuestion
+
+            if (currentQuestion < 10) {
+                game.update({
+                    currentQuestion: currentQuestion + 1,
                 })
-                return
-            }
-            game.update({
-                currentRound: round + 1,
-                currentQuestion: 1,
-                isMemoryPassed: false,
-                isPostcardsPassed: false
-            })
-            res.status(200).json({
-                "status": "ok"
-            })
-
-        } catch (error) {
-            console.error(error)
-        }
-    },
-    endQuestion: async (req: Request, res: Response) => {
-        const { userId } = res.locals
-
-        try {
-            const game = await Game.findOne({
-                where: {
-                    userId: userId
+            } else {
+                if (currentRound < 5) {
+                    game.update({
+                        currentRound: currentRound + 1,
+                        currentQuestion: 1,
+                    })
+                } else {
+                    game.update({
+                        isGamePassed: true,
+                        isMemoryPassed: true,
+                        isPostcardsPassed: true
+                    })
                 }
-            })
-
-            if (!game) {
-                res.status(400).json({
-                    "message": "Game error"
-                })
-                return
             }
 
-            // Если currentQuestion < 10
-            const round = game?.dataValues.currentRound
-            if (round >= 5) {
-                res.status(400).json({
-                    "message": "Вы и так на последнем раунде"
-                })
-                return
-            }
-            game.update({
-                currentRound: round + 1,
-                currentQuestion: 1,
-                isMemoryPassed: false,
-                isPostcardsPassed: false
-            })
             res.status(200).json({
                 "status": "ok"
             })

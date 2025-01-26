@@ -76,6 +76,18 @@ const ProfileProvider: React.FC<ProfileProviderProps> = (props) => {
         }
     })
 
+    const { mutate: setNextQuestion, isLoading: isNextQuestionLoading } = useMutation({
+        mutationFn: async () => {
+            try {
+                const response = await apiProvider.post('/private/game/next-question')
+                await refetchProfile()
+                return response.data
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    })
+
     return (
         <ProfileContext.Provider
             value={{
@@ -89,7 +101,9 @@ const ProfileProvider: React.FC<ProfileProviderProps> = (props) => {
                 groups: groups,
                 isLoadingGroups: isLoadingGroups,
                 updateAvatar: updateAvatar,
-                isAvatarUploading: isAvatarUploading
+                isAvatarUploading: isAvatarUploading,
+                setNextQuestion: setNextQuestion,
+                isNextQuestionLoading: isNextQuestionLoading
             }}
         >
             {children}

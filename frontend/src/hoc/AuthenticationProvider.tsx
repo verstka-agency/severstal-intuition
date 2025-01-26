@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AuthenticationContext } from "src/contexts/AuthenticationContext"
 import { apiProvider } from "src/api"
 import { LocalStorageEnum } from "src/types"
-import { useNavigate } from "react-router-dom"
 
 interface AuthenticationProviderProps extends React.HTMLAttributes<HTMLDivElement> {
 }

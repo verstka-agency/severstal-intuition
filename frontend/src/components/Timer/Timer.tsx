@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import './Timer.scss'
+import { useProfile } from "src/hooks"
 
 const Timer = () => {
     const [countdown, setCountdown] = useState(60)
+    const { setNextQuestion } = useProfile()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -11,6 +13,7 @@ const Timer = () => {
             setCountdown((prevCount) => {
                 if (prevCount <= 0) {
                     clearInterval(timer)
+                    setNextQuestion()
                     navigate("/")
                     return 0
                 }
