@@ -51,6 +51,19 @@ const Postcards = () => {
                 "/postcards/5.png",
                 "/postcards/6.png",
                 "/postcards/7.png",
+                "/postcards/8.png",
+                "/postcards/9.png",
+                "/postcards/10.png",
+                "/postcards/11.png",
+                "/postcards/12.png",
+                "/postcards/13.png",
+                "/postcards/14.png",
+                "/postcards/15.png",
+                "/postcards/16.png",
+                "/postcards/17.png",
+                "/postcards/18.png",
+                "/postcards/19.png",
+                "/postcards/20.png",
             ]
 
             return postCards
@@ -76,14 +89,14 @@ const Postcards = () => {
         <div className="postcards">
             <div className="postcards__top">
                 <h2 className="postcards__top__heading">Открытка любимому коллеге</h2>
-                <h3 className="postcards__top__description">Выберите открытку — и мы отправим её,<br/> кому скажете!
+                <h3 className="postcards__top__description">Выберите открытку — и мы отправим её,<br /> кому скажете!
                 </h3>
                 <Button variant="primary" className="postcards__top__button" onClick={handleShare}>
                     Отправить
                 </Button>
             </div>
             {isLoading ? (
-                <Loader/>
+                <Loader />
             ) : postCards ? (
                 <Swiper
                     modules={[Navigation]}
@@ -101,7 +114,7 @@ const Postcards = () => {
                     breakpoints={{
                         320: {
                             slidesPerView: 2,
-                            spaceBetween: 200,
+                            spaceBetween: 220,
                         },
                         768: {
                             slidesPerView: 3,
@@ -115,7 +128,7 @@ const Postcards = () => {
                                     <div
                                         className={!isActive ? 'postcard__slide_hidden' : 'postcard__slide__index'}>{`${currentSlideIndex}/${postCards.length}`}</div>
                                     <div className={isActive ? 'active' : ''}>
-                                        <img src={url} alt="severstal" className="postcard__slide__image"/>
+                                        <img src={url} alt="severstal" className="postcard__slide__image" />
                                     </div>
                                 </>
 
@@ -124,7 +137,7 @@ const Postcards = () => {
                     ))}
                 </Swiper>
             ) : (
-                <ErrorMessage/>
+                <ErrorMessage />
             )}
 
         </div>

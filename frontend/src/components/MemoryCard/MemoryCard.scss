@@ -12,6 +12,10 @@
   user-select: none;
   border-radius: 16px;
 
+  img {
+    max-width: 80px;
+  }
+
   &--flipped {
     transform: rotateY(180deg);
   }
@@ -34,6 +38,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url('~/public/memory/back-card.png');
+  background-size: contain;
 }
 
 .front-face {
