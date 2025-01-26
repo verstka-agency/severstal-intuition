@@ -76,5 +76,5 @@
     "timers-browserify": "^2.0.12",
     "webpack": "^5.95.0"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://38.242.144.153:9090"
 }
