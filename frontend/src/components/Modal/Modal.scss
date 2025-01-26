@@ -1,0 +1,24 @@
+.modal {
+  display: flex;
+  gap: 24px;
+  max-width: 758px;
+  padding: 24px;
+  background: rgba(218, 226, 239, 1);
+  border-radius: 16px;
+  position: relative;
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  &__button {
+    margin-top: auto;
+  }
+
+  &__right img {
+    max-width: 343px
+  }
+
+}
