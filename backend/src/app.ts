@@ -21,12 +21,12 @@ import { users } from './utils/user'
 import gameRoutes from './routes/gameRoutes'
 import { avatars } from './utils/avatars'
 import avatarsRoutes from "./routes/avatarsRoutes"
-import { Avatar } from './models/avatar/Avatar'
+import { Avatar } from './models/Avatar/Avatar'
 import { Game } from './models/Game/Game'
 
 config()
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 9090
 const app = express()
 
 app.use(express.json())
@@ -72,7 +72,7 @@ app.listen(PORT, async () => {
     //             id: createdGroup.dataValues.id
     //         }
     //     })
-    //
+    
     // const formattedAvatars = avatars.map((avatar) => {
     //     const id = formattedGroups.filter((group) => {
     //         return group.slug === avatar.group
@@ -83,12 +83,12 @@ app.listen(PORT, async () => {
     //         groupId: id
     //     }
     // })
-    //
+    
     // await Avatar.bulkCreate(formattedAvatars)
     // /**
     //  * Создание вопросов и ответов
     //  */
-    //
+    
     // const createdQuestions = await Question.bulkCreate(
     //     questions.map((question) => ({
     //         author: question.author,
@@ -97,10 +97,10 @@ app.listen(PORT, async () => {
     //         avatar: question.avatar,
     //     }))
     // )
-    //
+    
     // questions.forEach((question, index) => {
     //     const { answers } = question
-    //
+    
     //     Answer.bulkCreate(answers.map((answer) => {
     //         return {
     //             ...answer,
