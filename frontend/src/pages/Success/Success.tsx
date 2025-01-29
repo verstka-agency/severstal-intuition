@@ -1,52 +1,56 @@
 import React from "react"
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom"
 import Button from "src/components/Button/Button"
-import { useMutation } from "@tanstack/react-query"
-import { apiProvider } from "src/api"
-import { useProfile } from "src/hooks"
+import GameIndicators from "src/components/GameIndicators/GameIndicators"
+import Money from "src/components/Money/Money"
 
 const Success = () => {
-    const { type } = useParams()
-    console.log('type', type)
-    const { refetchProfile } = useProfile()
+    const location = useLocation()
+    const serachParams = new URLSearchParams(location.search)
+    const type = serachParams.get("type")
     const navigate = useNavigate()
 
-    const { mutate: endRound, isLoading: isEndingRound } = useMutation({
-        mutationFn: async () => {
-            try {
-                const response = await apiProvider.post("/private/game/end-round")
-                await refetchProfile()
-                navigate("/game")
-            } catch (error) {
-                console.error(error)
-            }
-        }
-    })
+    if (!type) {
+        return <Navigate to={"/"}/>
+    }
 
-    // if (!type) {
-    //     return <Navigate to={"/"}/>
-    // }
+    const configuration: Record<string, any> = {
+        memory: {
+            heading: "Супер! Все пары найдены, можете продолжить игру!",
+            description: "+ 100 баллов! Потому что у нас работают только самые внимательные"
+        },
+        postcards: {
+            heading: "Ваш получатель уже улыбается!",
+            description: "А вы получили дополнительные +100 баллов"
+        }
+    }
 
     return (
-        <div>
-            <div>
-                {type}
+        <>
+            <Money className={"additional-game__money"}/>
+            <div className={"additional-game"}>
+                <img
+                    className={"additional-game__img"}
+                    src="/game/heart.png"
+                    alt=""
+                />
+                <h2 className={'h2 white additional-game__heading'}>
+                    {configuration[type].heading}
+                </h2>
+                <p className={"int-2 white additional-game__description"}>
+                    {configuration[type].description}
+                </p>
+                <div className={"additional-game__buttons"}>
+                    <Button
+                        onClick={() => {
+                            navigate("/game")
+                        }}
+                    >
+                        Вернуться к «Интуиции»
+                    </Button>
+                </div>
             </div>
-            <Button
-                onClick={() => {
-                    navigate("/game")
-                }}
-            >
-                Продолжить
-            </Button>
-            <Button
-                onClick={async () => {
-                    endRound()
-                }}
-            >
-                Завершить раунд
-            </Button>
-        </div>
+        </>
     )
 }
 

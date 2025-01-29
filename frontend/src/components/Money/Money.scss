@@ -15,12 +15,11 @@
     border: 2px solid transparent;
     border-radius: 16px;
 
-    width: 111px;
-    height: 60px;
     background-color: $blue;
     color: white;
 
     @include mixins.int-1;
+
 
     @media all and (min-width: $desktop) {
       grid-gap: 12px;

@@ -9,11 +9,11 @@ import SeverstalSlider from "src/components/SeverstalSlider/SeverstalSlider"
 import RoundProgressBar from "src/components/RoundProgressBar/RoundProgressBar"
 import Dashboard from "src/components/Dashboard/Dashboard"
 import Modal from 'src/components/Modal/Modal'
+import MediaQuery from "react-responsive"
 
 const Index = () => {
     const { profile } = useProfile()
     const navigate = useNavigate()
-
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
     return (
@@ -38,9 +38,11 @@ const Index = () => {
                 {profile?.game.isGamePassed ?
                     <p className={"h3 blue"}>Супер, вы прошли все раунды! X января состоится розыгрыш призов</p>
                     :
-                    <p className={"h3 blue"}>Вы прошли {profile?.game.currentRound} раунд из 5. Успейте пройти все
-                        раунды до X января
-                    </p>
+                    !!profile?.game.currentRound && profile?.game.currentRound > 1 ?
+                        <p className={"h3 blue"}>Вы прошли {profile?.game.currentRound} раунд из 5. Успейте пройти все
+                            раунды до X января
+                        </p>
+                        : null
                 }
             </div>
             <RoundProgressBar/>
@@ -79,7 +81,7 @@ const Index = () => {
             </div>
             {
                 profile?.game.currentRound === 1 ?
-                    <SeverstalSlider/>
+                    <SeverstalSlider className={"index__slider"}/>
                     :
                     <Dashboard/>
             }

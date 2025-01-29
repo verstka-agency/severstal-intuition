@@ -150,8 +150,7 @@ export const gameController = {
                 } else {
                     game.update({
                         isGamePassed: true,
-                        isMemoryPassed: true,
-                        isPostcardsPassed: true
+                        isAdditionalGamePassed: true,
                     })
                 }
             }
@@ -159,8 +158,7 @@ export const gameController = {
                 score: newScore,
                 currentRound: nextRound,
                 currentQuestion: nextQuestion,
-                isMemoryPassed: nextRound !== game.dataValues.currentRound,
-                isPostcardsPassed: nextRound !== game.dataValues.currentRound
+                isAdditionalGamePassed: nextRound !== game.dataValues.currentRound,
             })
 
             res.status(200).json(answers)
@@ -193,22 +191,19 @@ export const gameController = {
                 return
             }
 
-            let newScore = game.dataValues.score + 200
-
-            if (type === "memory" && !game.dataValues.isMemoryPassed) {
-                await game.update({
-                    score: newScore,
-                    isMemoryPassed: true
-                })
-                res.status(200).json({
-                    "status": "ok"
+            if (game.dataValues.isGamePassed) {
+                res.status(400).json({
+                    "message": "Game error"
                 })
                 return
             }
-            if (type === "memory" && !game.dataValues.isPostcardsPassed) {
+
+            let newScore = game.dataValues.score + 200
+
+            if (type === "memory" && !game.dataValues.isAdditionalGamePassed) {
                 await game.update({
                     score: newScore,
-                    isPostcardsPassed: true
+                    isAdditionalGamePassed: true
                 })
                 res.status(200).json({
                     "status": "ok"
@@ -253,8 +248,7 @@ export const gameController = {
                 } else {
                     game.update({
                         isGamePassed: true,
-                        isMemoryPassed: true,
-                        isPostcardsPassed: true
+                        isAdditionalGamePassed: true,
                     })
                 }
             }

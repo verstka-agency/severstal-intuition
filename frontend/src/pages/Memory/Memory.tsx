@@ -19,16 +19,16 @@ const Memory = () => {
     const { data: memoryCards, isLoading } = useQuery<string[]>({
         queryKey: ["memory-cards"],
         queryFn: async () => {
-            const allCards = Array.from({ length: 32 }, (_, i) => `/memory/illustration-${i}.png`);
+            const allCards = Array.from({ length: 32 }, (_, i) => `/memory/illustration-${i}.png`)
 
-            const selectedCards = [];
+            const selectedCards = []
             for (let i = 0; i < 4; i++) {
-                const randomIndex = Math.floor(Math.random() * allCards.length);
-                selectedCards.push(allCards[randomIndex]);
-                allCards.splice(randomIndex, 1);
+                const randomIndex = Math.floor(Math.random() * allCards.length)
+                selectedCards.push(allCards[randomIndex])
+                allCards.splice(randomIndex, 1)
             }
 
-            const doubledCards = [...selectedCards, ...selectedCards];
+            const doubledCards = [...selectedCards, ...selectedCards]
 
             return shuffleArray(doubledCards)
         }
@@ -91,13 +91,13 @@ const Memory = () => {
         }
     }
 
-    // if (profile?.game.isMemoryPassed && !isAddedScore) {
-    //     return <Navigate to={"/"}/>
-    // }
+    if (profile?.game.isAdditionalGamePassed) {
+        return <Navigate to={"/"} replace={true}/>
+    }
 
     if (!isLoading && !memoryCards) {
         return (
-            <ErrorMessage />
+            <ErrorMessage/>
         )
     }
 
@@ -105,10 +105,10 @@ const Memory = () => {
         <div className={"memory"}>
             <div className="memory__background__image memory__background__image__left"></div>
             <div className="memory__background__image memory__background__image__right"></div>
-            <div className={"memory__heading"}>Найди пары карточкам<br /> с интересами твоих коллег</div>
+            <div className={"memory__heading"}>Найди пары карточкам<br/> с интересами твоих коллег</div>
             {
                 isLoading ?
-                    <Loader />
+                    <Loader/>
                     :
                     <div className={"memory__cards"}>
                         {memoryCards && memoryCards.map((card, index) => {

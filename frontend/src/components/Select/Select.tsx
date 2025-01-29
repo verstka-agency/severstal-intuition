@@ -33,9 +33,14 @@ const Select: React.FC<SelectProps> = (props) => {
 
     const isFilled = Boolean(field.value)
 
+    // console.table([
+    //     ["isActive", isActive],
+    //     ["isFilled", isFilled]
+    // ])
+
     const labelStyles = useCallback(() => getStyles("select", [
         {
-            decision: isFilled || (isActive && isFilled),
+            decision: isFilled || isActive,
             name: "filled"
         },
         {
@@ -46,14 +51,14 @@ const Select: React.FC<SelectProps> = (props) => {
             decision: Boolean(disabled),
             name: "disabled"
         }
-    ]), [isActive, field.value, meta, disabled])
+    ]), [isActive, meta, disabled, isFilled])
 
     const spanStyles = useCallback(() => getStyles("select__label",
         [
-            { decision: isFilled || (isActive && isFilled), name: "active" },
-            { decision: isFilled || (isActive && isFilled), name: "h2" },
+            { decision: isFilled || isActive, name: "active" },
+            { decision: isFilled || isActive, name: "h2" },
             { decision: Boolean(required), name: "required" },
-        ]), [isActive, field.value, required])
+        ]), [isActive, isFilled, required])
 
     const fieldStyles = useCallback(() => getStyles("select__field", []), [])
 
