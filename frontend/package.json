@@ -76,6 +76,5 @@
     "storybook": "^8.3.6",
     "timers-browserify": "^2.0.12",
     "webpack": "^5.95.0"
-  },
-  "proxy": "http://localhost:3000"
+  }
 }
