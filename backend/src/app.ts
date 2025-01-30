@@ -26,8 +26,14 @@ import { Game } from './models/Game/Game'
 
 config()
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 9000
 const app = express()
+
+app.use(cors({
+    origin: 'https://severstal.mybrunch.ru', // Allow requests from this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+}));
 
 app.use(express.json())
 app.use('/api/private', authMiddleware, citiesRoutes)
@@ -42,14 +48,15 @@ app.use('/api/private', authMiddleware, gameRoutes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // Разрешить запросы с localhost:3000
-app.use(
-    cors({
-        origin: 'http://localhost:3000', // Разрешённый источник (React)
-        methods: ['GET', 'POST', 'PUT', 'DELETE'], // Разрешённые HTTP-методы
-        allowedHeaders: ['Content-Type', 'Authorization'], // Разрешённые заголовки
-        credentials: true, // Если требуется отправка куков или токенов
-    })
-)
+
+// app.use(
+//     cors({
+//         origin: '*', // Разрешённый источник (React)
+//         methods: ['GET', 'POST', 'PUT', 'DELETE'], // Разрешённые HTTP-методы
+//         // allowedHeaders: ['Content-Type', 'Authorization'], // Разрешённые заголовки
+//         credentials: true, // Если требуется отправка куков или токенов
+//     })
+// )
 
 // Отправка данных формы надо через HMAC?
 
@@ -72,7 +79,7 @@ app.listen(PORT, async () => {
     //             id: createdGroup.dataValues.id
     //         }
     //     })
-    //
+    
     // const formattedAvatars = avatars.map((avatar) => {
     //     const id = formattedGroups.filter((group) => {
     //         return group.slug === avatar.group
@@ -83,12 +90,12 @@ app.listen(PORT, async () => {
     //         groupId: id
     //     }
     // })
-    //
+    
     // await Avatar.bulkCreate(formattedAvatars)
     // /**
     //  * Создание вопросов и ответов
     //  */
-    //
+    
     // const createdQuestions = await Question.bulkCreate(
     //     questions.map((question) => ({
     //         author: question.author,
@@ -97,10 +104,10 @@ app.listen(PORT, async () => {
     //         avatar: question.avatar,
     //     }))
     // )
-    //
+    
     // questions.forEach((question, index) => {
     //     const { answers } = question
-    //
+    
     //     Answer.bulkCreate(answers.map((answer) => {
     //         return {
     //             ...answer,
