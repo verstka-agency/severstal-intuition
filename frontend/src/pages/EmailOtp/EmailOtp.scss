@@ -1,9 +1,16 @@
 @import "src/scss/variables";
 
 .email-otp {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column-reverse;
   grid-gap: 1.5rem;
+  padding-top: 2rem;
+
+  @media all and (min-width: $desktop) {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   &__heading {
     text-align: center;
@@ -34,6 +41,13 @@
 
   &__button {
     width: 100%;
+
+    &--sticky {
+      position: sticky;
+      bottom: 1rem;
+      left: 0;
+      order: -1;
+    }
   }
 
   &__otp {
@@ -45,8 +59,19 @@
   }
 
   &__image {
-    width: 343px;
-    height: 343px;
-    border-radius: 12px;
+
+    @media all and (min-width: $desktop) {
+      width: 343px;
+      height: 343px;
+      border-radius: 12px;
+    }
+  }
+
+  &__corners {
+    display: none;
+
+    @media all and (min-width: $desktop) {
+      display: unset;
+    }
   }
 }

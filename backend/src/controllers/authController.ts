@@ -3,10 +3,11 @@ import jwt from "jsonwebtoken"
 import { Resend } from "resend"
 import { User } from "../models/User"
 import { config } from 'dotenv'
-// import { Question } from "src/models/Game/Question"
 import { sequelize } from "../config/db"
 import { Question } from "../models/Game/Question"
 import { Game } from "../models/Game/Game"
+import * as path from "path"
+import * as fs from "fs"
 
 config()
 
@@ -18,6 +19,14 @@ export const authController = {
 
         if (!email) {
             res.status(400).json({ error: "Отсутствует email" })
+            return
+        }
+
+        const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/
+        if (!emailRegex.test(email)) {
+            res.status(400).json({
+                error: "Укажите email в правильном формате"
+            })
             return
         }
 
@@ -49,23 +58,32 @@ export const authController = {
 
             } catch (error) {
                 console.error("Ошибка при дополнении полей пользователя:", error)
-                res.status(500).json({ error: "Ошибка при создании пользователя" })
+                res.status(400).json({ error: "Ошибка при создании пользователя" })
                 return
             }
         }
 
         // Генерация токена
         const token = jwt.sign({ id: data.dataValues.id }, process.env.JWT_SECRET ?? "", { expiresIn: "30d" })
-        const link: string = `http://${process.env.BASE_URL}/authorization/verification?token=${token}`
+        const link: string = `${process.env.BASE_URL}/authorization/verification?token=${token}`
+
+        // Загружаем шаблон
+        let emailTemplate = fs.readFileSync(path.join(__dirname, '../views', 'email_template.html'), 'utf8')
+
+        // Подставляем переменную link в HTML
+        emailTemplate = emailTemplate.replace('href="#"', `href="${link}"`)
 
         // Отправка письма
         try {
             const { data: letter, error } = await resend.emails.send({
-                from: "Acme <onboarding@resend.dev>",
+                from: "Стальная Интуиция <onboarding@resend.dev>",
                 to: [email],
                 subject: "Поздравляем с регистрацией!",
-                html: `<p>${link}</p>`,
+                html: emailTemplate
             })
+            if (error) {
+                res.status(400).json({ message: "Ошибка при отправке письма" })
+            }
             res.status(200).json({ message: "Письмо отправлено! Проверьте спам" })
         } catch (error) {
             console.error("Ошибка при отправке письма:", error)
@@ -87,7 +105,7 @@ export const authController = {
 
         const token = jwt.sign({ id: data.dataValues.id }, process.env.JWT_SECRET ?? "", { expiresIn: "30d" })
         const link: string = `http://${process.env.DEBUG_URL}/authorization/verification?token=${token}`
-        
+
         res.status(200).json(link)
 
     }

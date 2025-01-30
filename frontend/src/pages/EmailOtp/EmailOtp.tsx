@@ -12,6 +12,7 @@ import Button from "src/components/Button/Button"
 import { FormFieldEnum, formSchemas } from "src/validation/schemas"
 import { formatTimer } from "src/utils/formatTimer"
 import './EmailOtp.scss'
+import MediaQuery from "react-responsive"
 
 const EmailOtp = () => {
     const [email, setEmail] = useState<string>("")
@@ -49,36 +50,38 @@ const EmailOtp = () => {
     return (
         <Paper>
             <Logo/>
-            <Corners position={CornersPosition.OUTSIDE}/>
+            <Corners
+                position={CornersPosition.OUTSIDE}
+                className={"email-otp__corners"}
+            />
             <div className={"email-otp"}>
                 {Boolean(email) ?
                     <>
-
                         <div className={"email-otp__form"}>
                             <h2 className={"h2 blue email-otp__heading"}>Подтвердите регистрацию</h2>
                             <p className={"int-2 blue email-otp__description"}>Мы отправили ссылку на почту {email} -
                                 переходи по ней, чтобы
                                 попасть в игру!</p>
-                            {
-                                !isRequestingEmail && isSuccess && timer ?
-                                    <p className={"int-3 blue email-otp__timer"}>Отправить повторно через: <span
-                                        className={"light-red"}>{formatTimer(timer)}</span>
-                                    </p>
-                                    : null
-                            }
-                            <div className={"email-otp__button-container"}>
-                                <Button
-                                    onClick={() => {
-                                        if (timer) return
-                                        requestEmail({ email: email })
-                                    }}
-                                    disabled={timer !== 0 || isRequestingEmail}
-                                    variant={ButtonVariantsEnum.PRIMARY_NEXT}
-                                    className={"email-otp__button"}
-                                >
-                                    Отправить
-                                </Button>
-                            </div>
+                            {!isRequestingEmail && isSuccess && timer ?
+                                <p className={"int-3 blue email-otp__timer"}>Отправить повторно через: <span
+                                    className={"light-red"}>{formatTimer(timer)}</span>
+                                </p>
+                                : null}
+                            <MediaQuery minWidth={1280}>
+                                <div className={"email-otp__button-container"}>
+                                    <Button
+                                        onClick={() => {
+                                            if (timer) return
+                                            requestEmail({ email: email })
+                                        }}
+                                        disabled={timer !== 0 || isRequestingEmail}
+                                        variant={ButtonVariantsEnum.PRIMARY_NEXT}
+                                        className={"email-otp__button"}
+                                    >
+                                        Отправить
+                                    </Button>
+                                </div>
+                            </MediaQuery>
                         </div>
                         <img
                             src={"/authorization/3.png"}
@@ -93,6 +96,9 @@ const EmailOtp = () => {
                                 setEmail(values.email as string)
                                 requestEmail({ email: values.email as string })
                             }}
+                            validateOnMount={false}
+                            validateOnChange={false}
+                            validateOnBlur={true}
                             initialValues={{
                                 email: formSchemas[FormFieldEnum.EMAIL].initialValue
                             }}
@@ -114,15 +120,16 @@ const EmailOtp = () => {
                                             required={true}
                                         />
                                         <div className={"email-otp__button-container"}>
-
-                                            <Button
-                                                type={ButtonTypeEnum.SUBMIT}
-                                                disabled={isRequestingEmail}
-                                                variant={ButtonVariantsEnum.PRIMARY_NEXT}
-                                                className={"email-otp__button"}
-                                            >
-                                                Отправить
-                                            </Button>
+                                            <MediaQuery minWidth={1280}>
+                                                <Button
+                                                    type={ButtonTypeEnum.SUBMIT}
+                                                    disabled={isRequestingEmail}
+                                                    variant={ButtonVariantsEnum.PRIMARY_NEXT}
+                                                    className={"email-otp__button"}
+                                                >
+                                                    Отправить
+                                                </Button>
+                                            </MediaQuery>
                                         </div>
                                     </Form>
                                 )
@@ -135,6 +142,31 @@ const EmailOtp = () => {
                         />
                     </>
                 }
+
+                <MediaQuery maxWidth={1279.98}>
+                    {!!email ?
+                        <Button
+                            onClick={() => {
+                                if (timer) return
+                                requestEmail({ email: email })
+                            }}
+                            disabled={timer !== 0 || isRequestingEmail}
+                            variant={ButtonVariantsEnum.PRIMARY_NEXT}
+                            className={"email-otp__button email-otp__button--sticky"}
+                        >
+                            Отправить
+                        </Button>
+                        :
+                        <Button
+                            type={ButtonTypeEnum.SUBMIT}
+                            disabled={isRequestingEmail}
+                            variant={ButtonVariantsEnum.PRIMARY_NEXT}
+                            className={"email-otp__button email-otp__button--sticky"}
+                        >
+                            Отправить
+                        </Button>
+                    }
+                </MediaQuery>
             </div>
         </Paper>
     )

@@ -12,6 +12,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vkid/sdk": "^2.4.1",
+    "animate.css": "^4.1.1",
     "axios": "^1.7.7",
     "formik": "^2.4.6",
     "lodash": "^4.17.21",
@@ -75,5 +76,6 @@
     "storybook": "^8.3.6",
     "timers-browserify": "^2.0.12",
     "webpack": "^5.95.0"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }

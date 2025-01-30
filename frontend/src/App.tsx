@@ -45,7 +45,6 @@ const App = () => {
                         <Route path={"verification"} element={<Verification/>}/>
                     </Route>
                 </Route>
-
             </Route>
 
             <Route element={<Layout/>}>

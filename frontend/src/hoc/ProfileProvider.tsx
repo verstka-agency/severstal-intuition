@@ -22,7 +22,7 @@ const ProfileProvider: React.FC<ProfileProviderProps> = (props) => {
                 console.error(error)
             }
         },
-        enabled: !!isAuthenticated
+        enabled: isAuthenticated
     })
 
     const { data: avatar, isLoading: isAvatarLoading } = useQuery({
@@ -42,6 +42,7 @@ const ProfileProvider: React.FC<ProfileProviderProps> = (props) => {
 
     const { data: groups, isLoading: isLoadingGroups } = useQuery({
         queryKey: ["groups"],
+        enabled: isAuthenticated,
         queryFn: async () => {
             try {
                 const response = await apiProvider.get("/private/groups")
