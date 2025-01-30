@@ -2,6 +2,7 @@ import React, { lazy } from 'react'
 import { Navigate, Route, Routes } from "react-router-dom"
 import './scss/general.scss'
 import Layout from "src/Layouts/Layout/Layout"
+import Postcard from "src/pages/Postcard/Postcard"
 
 const RoundPreview = lazy(() => import("./pages/RoundPreview/RoundPreview"))
 const Index = lazy(() => import("./pages/Index/Index"))
@@ -30,15 +31,19 @@ const App = () => {
                     <Route path={'*'} element={<Navigate to="/"/>}/>
                     <Route path={'/'} element={<Index/>}/>
                     <Route path={'/about'} element={<Onboarding/>}/>
-                    <Route path={'/memory'} element={<Memory/>}/>
-                    <Route path={'/postcards'} element={<Postcards/>}/>
-                    <Route path={'/profile'} element={<Profile/>}/>
+                    {/*<Route path={'/memory'} element={<Memory/>}/>*/}
+                    {/*<Route path={'/postcards'} element={<Postcards/>}/>*/}
+                    {/*<Route path={'/profile'} element={<Profile/>}/>*/}
                     <Route path={'/success'} element={<Success/>}/>
                     <Route path={"profile/avatar"} element={<ChooseAvatar/>}/>
                     <Route path={'/round-preview'} element={<RoundPreview/>}/>
                 </Route>
 
                 <Route element={<PublicRoute/>}>
+                    <Route path={'/about'} element={<Onboarding/>}/>
+                    <Route path={'/memory'} element={<Memory/>}/>
+                    <Route path={'/postcards'} element={<Postcards/>}/>
+                    <Route path={'/profile'} element={<Profile/>}/>
                     <Route path={"/authorization"}>
                         <Route index={true} element={<Authorization/>}/>
                         <Route path={"email-otp"} element={<EmailOtp/>}/>
@@ -52,6 +57,8 @@ const App = () => {
                     <Route path={'/game'} element={<Game/>}/>
                 </Route>
             </Route>
+
+            <Route path={"postcard/:id"} element={<Postcard/>}/>
         </Routes>
     )
 }
