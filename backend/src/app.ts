@@ -26,8 +26,14 @@ import { Game } from './models/Game/Game'
 
 config()
 
-const PORT = process.env.PORT || 9090
+const PORT = process.env.PORT || 9000
 const app = express()
+
+app.use(cors({
+    origin: 'https://severstal.mybrunch.ru', // Allow requests from this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+}));
 
 app.use(express.json())
 app.use('/api/private', authMiddleware, citiesRoutes)
@@ -42,14 +48,15 @@ app.use('/api/private', authMiddleware, gameRoutes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // Разрешить запросы с localhost:3000
-app.use(
-    cors({
-        origin: 'http://localhost:3000', // Разрешённый источник (React)
-        methods: ['GET', 'POST', 'PUT', 'DELETE'], // Разрешённые HTTP-методы
-        allowedHeaders: ['Content-Type', 'Authorization'], // Разрешённые заголовки
-        credentials: true, // Если требуется отправка куков или токенов
-    })
-)
+
+// app.use(
+//     cors({
+//         origin: '*', // Разрешённый источник (React)
+//         methods: ['GET', 'POST', 'PUT', 'DELETE'], // Разрешённые HTTP-методы
+//         // allowedHeaders: ['Content-Type', 'Authorization'], // Разрешённые заголовки
+//         credentials: true, // Если требуется отправка куков или токенов
+//     })
+// )
 
 // Отправка данных формы надо через HMAC?
 

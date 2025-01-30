@@ -3,7 +3,7 @@ module.exports = {
       {
         name: 'my-express-app',
         script: './src/app.ts',
-        interpreter: 'ts-node', // Если вы используете ts-node для запуска TypeScript
+        interpreter: 'ts-node',
         env: {
           NODE_ENV: 'development',
           PG_USER: process.env.PG_USER,
