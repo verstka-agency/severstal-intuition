@@ -104,7 +104,7 @@ export const authController = {
         })
 
         const token = jwt.sign({ id: data.dataValues.id }, process.env.JWT_SECRET ?? "", { expiresIn: "30d" })
-        const link: string = `http://${process.env.DEBUG_URL}/authorization/verification?token=${token}`
+        const link: string = `${process.env.DEBUG_URL}/authorization/verification?token=${token}`
 
         res.status(200).json(link)
 
