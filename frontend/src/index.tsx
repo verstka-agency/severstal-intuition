@@ -8,6 +8,7 @@ import ProfileProvider from "src/hoc/ProfileProvider"
 import { BrowserRouter } from "react-router-dom"
 import NetworkProvider from "src/hoc/NetworkProvider/NetworkProvider"
 import Modal from 'react-modal'
+import HeaderProvider from './hoc/HeaderProvider'
 
 Modal.setAppElement('#root')
 
@@ -28,13 +29,15 @@ root.render(
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <NetworkProvider>
-                    <AuthenticationProvider>
-                        <ProfileProvider>
-                            <CitiesProvider>
-                                <App/>
-                            </CitiesProvider>
-                        </ProfileProvider>
-                    </AuthenticationProvider>
+                    <HeaderProvider>
+                        <AuthenticationProvider>
+                            <ProfileProvider>
+                                <CitiesProvider>
+                                    <App/>
+                                </CitiesProvider>
+                            </ProfileProvider>
+                        </AuthenticationProvider>
+                    </HeaderProvider>
                 </NetworkProvider>
             </BrowserRouter>
         </QueryClientProvider>

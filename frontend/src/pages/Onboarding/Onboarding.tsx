@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import ProgressBar from '../../components/ProgressBar/ProgressBar'
 import './Onboarding.scss'
 import Button from "../../components/Button/Button"
-import { useGetOnboardingSlides } from "src/hooks"
+import { useGetOnboardingSlides, useHeader } from "src/hooks"
 import Paper from "src/components/Paper/Paper"
 import { ButtonVariantsEnum, CornersPosition } from "src/types"
 import Corners from "src/components/Corners/Corners"
@@ -12,10 +12,14 @@ import MediaQuery from "react-responsive"
 
 const Onboarding = () => {
     const { currentSlides, amount, currentBar, setCurrentBar } = useGetOnboardingSlides()
+    const { setShow } = useHeader()
     const navigate = useNavigate()
 
     useEffect(() => {
-    }, [])
+        if (amount === 2) {
+            setShow(false)
+        }
+    }, [amount])
 
     return (
         <Paper>
@@ -64,7 +68,7 @@ const Onboarding = () => {
                             setCurrentBar((prev) => prev + 1)
                         } else {
                             if (amount === 2) {
-                                navigate("/game")
+                                navigate("/round-preview")
                             } else if (amount === 3) {
                                 navigate("/authorization")
                             } else {

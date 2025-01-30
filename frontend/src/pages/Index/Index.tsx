@@ -9,16 +9,15 @@ import SeverstalSlider from "src/components/SeverstalSlider/SeverstalSlider"
 import RoundProgressBar from "src/components/RoundProgressBar/RoundProgressBar"
 import Dashboard from "src/components/Dashboard/Dashboard"
 import Modal from 'src/components/Modal/Modal'
+import MediaQuery from "react-responsive"
 
 const Index = () => {
     const { profile } = useProfile()
     const navigate = useNavigate()
-
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
     return (
         <div className="index">
-
             <img
                 src="/index-left.png"
                 alt=""
@@ -33,25 +32,29 @@ const Index = () => {
                 <Corners position={CornersPosition.INSIDE}/>
                 <h2 className={"h2 blue"}>стальная</h2>
                 <h1 className={"h1 blue"}>ИНТУИЦИЯ</h1>
-                {
-                    profile?.game.currentRound === 1 ?
-                        <p className={"h3 blue "}>Первый раунд уже ждет тебя!</p>
-                        :
+                {profile?.game.currentRound === 1 ?
+                    <p className={"h3 blue "}>Первый раунд уже ждет тебя!</p>
+                    : null}
+                {profile?.game.isGamePassed ?
+                    <p className={"h3 blue"}>Супер, вы прошли все раунды! X января состоится розыгрыш призов</p>
+                    :
+                    !!profile?.game.currentRound && profile?.game.currentRound > 1 ?
                         <p className={"h3 blue"}>Вы прошли {profile?.game.currentRound} раунд из 5. Успейте пройти все
-                            раунды до X января</p>
+                            раунды до X января
+                        </p>
+                        : null
                 }
             </div>
             <RoundProgressBar/>
-            {/*TODO тут надо сделать некий флаг о том, пройдена ли не игра*/}
             <div className={"index__button"}>
-                {profile?.game.currentRound === 5 && profile?.game.currentQuestion === 10 ?
+                {profile?.game.isGamePassed ?
                     <>
                         <Button
                             onClick={() => {
                                 setIsModalOpen(true)
                             }}
                         >
-                            Забрать призы
+                            Забрать подарок
                         </Button>
                         <Modal
                             isOpen={isModalOpen}
@@ -65,8 +68,10 @@ const Index = () => {
                         onClick={() => {
                             if (profile?.game.currentRound === 1 && profile?.game.currentQuestion === 1) {
                                 navigate("/onboarding")
-                            } else {
+                            } else if (profile?.game.currentQuestion === 1) {
                                 navigate("/round-preview")
+                            } else {
+                                navigate("/game")
                             }
                         }}
                     >
@@ -76,7 +81,7 @@ const Index = () => {
             </div>
             {
                 profile?.game.currentRound === 1 ?
-                    <SeverstalSlider/>
+                    <SeverstalSlider className={"index__slider"}/>
                     :
                     <Dashboard/>
             }

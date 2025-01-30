@@ -47,10 +47,7 @@ const Quiz: React.FC<IQuiz> = (props) => {
 
     return (
         <div className={"quiz"}>
-            <div>
-
-            </div>
-            <h3 className={"h3 white"}>{question}</h3>
+            <h3 className={"h3 white quiz__question"}>{question}</h3>
             <div className={"quiz__questions"}>
                 {answers.map((answer) => {
 

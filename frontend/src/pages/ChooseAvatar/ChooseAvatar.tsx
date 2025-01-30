@@ -11,6 +11,7 @@ import { useProfile } from "src/hooks"
 import { apiProvider } from "src/api"
 import { useQuery } from "@tanstack/react-query"
 import { getStyles } from "src/utils/styles"
+import MediaQuery from "react-responsive"
 
 const ChooseAvatar = () => {
     const navigate = useNavigate()
@@ -41,44 +42,48 @@ const ChooseAvatar = () => {
     }, [navigate, currentGroup])
 
     return (
-        <Paper>
-            <Logo/>
-            <Corners position={CornersPosition.OUTSIDE}/>
-            <div className={"choose-avatar"}>
-                <div className={"choose-avatar__heading"}>
-                    <div
-                        className="choose-avatar__navigation int-3 blue"
-                        onClick={handleNavigation}
-                    >
-                        {"< Назад"}
-                    </div>
-                    <h2 className={"h2 blue"}>Выбери аватар</h2>
-                    <p className={"int-2 blue"}>
-                        {
-                            !!currentGroup ?
-                                groups && groups?.filter((group) => {
-                                    return group.id === currentGroup
-                                })[0].label
-                                :
-                                "Добавьте красок своему профилю"
-                        }
-                    </p>
-                </div>
-                <Formik
-                    initialValues={{
-                        avatar: ""
-                    }}
-                    enableReinitialize={true}
-                    onSubmit={async (values) => {
-                        await updateAvatar(values)
-                        navigate(-1)
-                    }}
-                >
-                    {({ values, setFieldValue }) => {
-                        return (
+
+        <Formik
+            initialValues={{
+                avatar: ""
+            }}
+            enableReinitialize={true}
+            onSubmit={async (values) => {
+                await updateAvatar(values)
+                navigate(-1)
+            }}
+        >
+            {({ values, setFieldValue }) => {
+                return (
+                    <Paper className={"choose-avatar__paper"}>
+                        <Logo className={"choose-avatar__logo"}/>
+                        <MediaQuery minWidth={1280}>
+                            <Corners position={CornersPosition.OUTSIDE}/>
+                        </MediaQuery>
+                        <div className={"choose-avatar"}>
+                            <div className={"choose-avatar__heading"}>
+                                <div
+                                    className="choose-avatar__navigation int-3 blue"
+                                    onClick={handleNavigation}
+                                >
+                                    {"< Назад"}
+                                </div>
+                                <h2 className={"h2 blue"}>Выбери аватар</h2>
+                                <p className={"int-2 blue"}>
+                                    {
+                                        !!currentGroup ?
+                                            groups && groups?.filter((group) => {
+                                                return group.id === currentGroup
+                                            })[0].label
+                                            :
+                                            "Добавьте красок своему профилю"
+                                    }
+                                </p>
+                            </div>
                             <Form>
                                 <div className={"choose-avatar__container"}>
-                                    <div className={"choose-avatar__grid"}>
+                                    <div
+                                        className={`choose-avatar__grid ${!currentGroup ? "choose-avatar__grid--group" : ""}`}>
                                         {
                                             !!currentGroup ?
                                                 avatars?.filter((avatar) => avatar.groupId === currentGroup).map((avatar, index) => {
@@ -103,6 +108,7 @@ const ChooseAvatar = () => {
                                                             />
                                                             <span className={"h4 blue"}>
                                                         {avatar?.label}
+                                                                {/*TODO здесь надо стрелочку добавить*/}
                                                     </span>
                                                         </label>
                                                     )
@@ -111,6 +117,7 @@ const ChooseAvatar = () => {
                                                 groups?.map((group) => {
                                                     return (
                                                         <label
+                                                            className={"choose-avatar__icon choose-avatar__icon--not-active"}
                                                             key={group.id}
                                                             onClick={async () => {
                                                                 if (isProfileLoading || isProfileLoading) return
@@ -118,7 +125,7 @@ const ChooseAvatar = () => {
                                                             }}
                                                         >
                                                             <img
-                                                                className={"choose-avatar__group"}
+                                                                className={"choose-avatar__avatar"}
                                                                 src={`/avatars/${group.slug}/scientist.png`}
                                                                 alt=""
                                                             />
@@ -130,22 +137,26 @@ const ChooseAvatar = () => {
                                                 })
                                         }
                                     </div>
-                                    <Button
-                                        variant={ButtonVariantsEnum.PRIMARY_NEXT}
-                                        type={ButtonTypeEnum.SUBMIT}
-                                        className={"choose-avatar__button"}
-                                        disabled={isAvatarUploading || isProfileLoading}
-                                    >
-                                        Сохранить
-                                    </Button>
+                                    {
+                                        !!currentGroup ?
+                                            <Button
+                                                variant={ButtonVariantsEnum.PRIMARY_NEXT}
+                                                type={ButtonTypeEnum.SUBMIT}
+                                                className={"choose-avatar__button"}
+                                                disabled={isAvatarUploading || isProfileLoading}
+                                            >
+                                                Сохранить
+                                            </Button>
+                                            : null
+                                    }
                                 </div>
                             </Form>
-                        )
-                    }}
-                </Formik>
+                        </div>
+                    </Paper>
+                )
+            }}
+        </Formik>
 
-            </div>
-        </Paper>
     )
 }
 

@@ -3,9 +3,10 @@
 .paper {
   padding: 1rem;
   background-color: $very-light-blue;
-  //min-height: calc(100dvh - $headerHeightDesktop);
+  min-height: calc(100dvh - $headerHeightDesktop);
 
   @media all and (min-width: $desktop) {
+    min-height: unset;
     margin: 3rem auto 0;
     position: relative;
     border-radius: 1rem;

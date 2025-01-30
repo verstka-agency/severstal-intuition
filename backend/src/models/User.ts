@@ -2,6 +2,7 @@
 import { sequelize } from '../config/db'
 import { DataTypes } from 'sequelize'
 
+// TODO внедрить поле gift и логику
 export const User = sequelize.define('User', {
     id: {
         type: DataTypes.UUID,
@@ -60,4 +61,8 @@ export const User = sequelize.define('User', {
         defaultValue: false,
         allowNull: false
     },
+    gift: {
+        type: DataTypes.STRING,
+        defaultValue: null
+    }
 })

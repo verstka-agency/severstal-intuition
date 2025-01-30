@@ -6,6 +6,7 @@ import { slides } from "src/pages/Onboarding/constants"
 import { useLocation } from "react-router-dom"
 import { CitiesContext } from "src/contexts/CitiesContext"
 import { ProfileContext } from "src/contexts/ProfileContext"
+import { HeaderContext } from "src/contexts/HeaderContext"
 
 export const useAuthentication = () => {
     const context = useContext(AuthenticationContext)
@@ -39,6 +40,14 @@ export const useProfile = () => {
     return context
 }
 
+export const useHeader = () => {
+    const context = useContext(HeaderContext)
+    if (!context) {
+        throw new Error("You should use hook in HeaderContext.Provider descendant")
+    }
+    return context
+}
+
 export const useMediaQuery = () => {
     const [isMobile, setIsMobile] = useState<boolean>(false)
 
@@ -67,6 +76,7 @@ export const useGetOnboardingSlides = (): {
 } => {
     const [currentBar, setCurrentBar] = useState<number>(0)
     const { isAuthenticated } = useAuthentication()
+    console.log('isAuthenticated', isAuthenticated)
     const { profile } = useProfile()
     const location = useLocation()
 

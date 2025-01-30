@@ -3,13 +3,18 @@ import { slides } from "src/components/SeverstalSlider/constants"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css'
 import './SeverstalSlider.scss'
+import { useMediaQuery } from "src/hooks"
 
-const SeverstalSlider = () => {
+interface SeverstalSliderProps extends React.HTMLAttributes<HTMLDivElement> {
+}
+
+const SeverstalSlider: React.FC<SeverstalSliderProps> = (props) => {
+    const { className } = props
+
+    const styles = ["severstal-slider", className]
 
     return (
-        <div
-            className={"severstal-slider"}
-        >
+        <div className={styles.filter(Boolean).join(" ")}>
             <Swiper
                 slidesPerView={3}
                 spaceBetween={16}

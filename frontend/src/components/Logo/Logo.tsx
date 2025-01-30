@@ -1,9 +1,16 @@
 import React from 'react'
 import './Logo.scss'
 
-const Logo = () => {
+interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
+}
+
+const Logo: React.FC<LogoProps> = (props) => {
+    const { className } = props
+
+    const styles = ['logo', className]
+
     return (
-        <picture className={"logo"}>
+        <picture className={styles.filter(Boolean).join(" ")}>
             <source srcSet="/logo/logo-desktop.svg" media="(min-width: 1280px)"/>
             <img src="/logo/logo-mobile.svg" alt=""/>
         </picture>

@@ -9,8 +9,10 @@ import { Autoplay } from 'swiper/modules'
 import { useQuery } from "@tanstack/react-query"
 import { apiProvider } from "src/api"
 import './RoundPreview.scss'
+import { useMediaQuery } from "src/hooks"
 
 const RoundPreview = () => {
+    const { isMobile } = useMediaQuery()
 
     type TQuestion = {
         "id": string
@@ -48,6 +50,7 @@ const RoundPreview = () => {
             <div className={"round-preview__header"}>
                 <h1 className={"h1 white round-preview__heading"}>Сегодня ты будешь угадывать</h1>
                 <Button
+                    className={"round-preview__button"}
                     variant={ButtonVariantsEnum.PRIMARY}
                     onClick={() => {
                         navigate("/game")
@@ -59,7 +62,6 @@ const RoundPreview = () => {
             {/* preview slider */}
             <div>
                 <Swiper
-                    slidesPerView={7}
                     spaceBetween={16} // Пробелы между слайдами
                     autoplay={{
                         delay: 0, // Задержка в миллисекундах (3 секунды)
@@ -68,6 +70,19 @@ const RoundPreview = () => {
                     speed={5000} // Скорость перехода (2 секунды)
                     loop={true} // Бесконечный цикл
                     modules={[Autoplay]} // Подключаем модуль автопрокрутки
+                    breakpoints={{
+                        // when window width is >= 320px
+                        320: {
+                            slidesPerView: 2,
+                            centeredSlides: true
+                        },
+                        // when window width is >= 768px
+                        1280: {
+                            slidesPerView: 7,
+                            centeredSlides: false
+                        }
+                    }}
+                    touchEventsTarget="container"
                 >
                     {data?.map((question) => {
                         if (question.city) {

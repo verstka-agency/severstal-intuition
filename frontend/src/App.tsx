@@ -24,6 +24,7 @@ const App = () => {
     return (
         <Routes>
             <Route element={<BasicLayout/>}>
+
                 <Route path={'/onboarding'} element={<Onboarding/>}/>
                 <Route element={<PrivateRoute/>}>
                     <Route path={'*'} element={<Navigate to="/"/>}/>
@@ -36,6 +37,7 @@ const App = () => {
                     <Route path={"profile/avatar"} element={<ChooseAvatar/>}/>
                     <Route path={'/round-preview'} element={<RoundPreview/>}/>
                 </Route>
+
                 <Route element={<PublicRoute/>}>
                     <Route path={"/authorization"}>
                         <Route index={true} element={<Authorization/>}/>
@@ -43,7 +45,9 @@ const App = () => {
                         <Route path={"verification"} element={<Verification/>}/>
                     </Route>
                 </Route>
+
             </Route>
+
             <Route element={<Layout/>}>
                 <Route element={<PrivateRoute/>}>
                     <Route path={'/game'} element={<Game/>}/>

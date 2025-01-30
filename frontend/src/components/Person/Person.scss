@@ -4,6 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  min-height: 245px;
+
+  padding-top: 1.5rem;
+  @media all and (min-width: $desktop) {
+    padding: 0;
+  }
 
   &__avatar {
     width: 120px;
