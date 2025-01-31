@@ -31,7 +31,7 @@ const app = express()
 
 app.use(cors({
     origin: 'https://severstal.mybrunch.ru', // Allow requests from this origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Allowed HTTP methods
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }));
 
