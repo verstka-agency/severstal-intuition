@@ -92,12 +92,12 @@ const Memory = () => {
     }
 
     if (profile?.game.isAdditionalGamePassed) {
-        return <Navigate to={"/"} replace={true}/>
+        return <Navigate to={"/"} replace={true} />
     }
 
     if (!isLoading && !memoryCards) {
         return (
-            <ErrorMessage/>
+            <ErrorMessage />
         )
     }
 
@@ -105,10 +105,10 @@ const Memory = () => {
         <div className={"memory"}>
             <div className="memory__background__image memory__background__image__left"></div>
             <div className="memory__background__image memory__background__image__right"></div>
-            <div className={"memory__heading"}>Найди пары карточкам<br/> с интересами твоих коллег</div>
+            <div className={"memory__heading"}>Найди пары карточкам<br /> с интересами твоих коллег</div>
             {
                 isLoading ?
-                    <Loader/>
+                    <Loader />
                     :
                     <div className={"memory__cards"}>
                         {memoryCards && memoryCards.map((card, index) => {

@@ -83,14 +83,14 @@ const Postcards = () => {
 
 
     if (profile?.game.isAdditionalGamePassed || profile?.game.isGamePassed) {
-        return <Navigate to={"/"} replace={true}/>
+        return <Navigate to={"/"} replace={true} />
     }
 
     return (
         <div className="postcards">
             <div className="postcards__top">
                 <h2 className="postcards__top__heading">Открытка любимому коллеге</h2>
-                <h3 className="postcards__top__description">Выберите открытку — и мы отправим её,<br/> кому скажете!
+                <h3 className="postcards__top__description">Выберите открытку — и мы отправим её,<br /> кому скажете!
                 </h3>
                 {/*TODO не работает на компе*/}
                 <Button variant="primary" className="postcards__top__button" onClick={handleShare}>
@@ -98,7 +98,7 @@ const Postcards = () => {
                 </Button>
             </div>
             {isLoading ? (
-                <Loader/>
+                <Loader />
             ) : postCards ? (
                 <Swiper
                     modules={[Navigation]}
@@ -130,7 +130,7 @@ const Postcards = () => {
                                     <div
                                         className={!isActive ? 'postcard__slide_hidden' : 'postcard__slide__index'}>{`${currentSlideIndex}/${postCards.length}`}</div>
                                     <div className={isActive ? 'active' : ''}>
-                                        <img src={url} alt="severstal" className="postcard__slide__image"/>
+                                        <img src={url} alt="severstal" className="postcard__slide__image" />
                                     </div>
                                 </>
 
@@ -139,7 +139,7 @@ const Postcards = () => {
                     ))}
                 </Swiper>
             ) : (
-                <ErrorMessage/>
+                <ErrorMessage />
             )}
 
         </div>
