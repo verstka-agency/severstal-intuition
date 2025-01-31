@@ -17,14 +17,12 @@ const Postcards = () => {
     const { profile, refetchProfile } = useProfile()
     const navigate = useNavigate()
 
-    // TODO: replace with actual data
     const shareData = {
         title: "Стальная Интуиция",
         text: "Приглашаю тебя поиграть в Стальную Интуицию!",
-        url: "",
+        url: `${process.env.REACT_APP_FRONTEND_URL}/postcards/${currentSlideIndex}.html`,
     }
 
-    // TODO добавить вызов
     const { mutate: addScore, isLoading: isAddingScore, isSuccess: isAddedScore } = useMutation({
         mutationFn: async () => {
             try {
@@ -33,7 +31,16 @@ const Postcards = () => {
                 })
                 console.log("ПОБЕДА")
                 await refetchProfile()
-                navigate("/success?type=postcards")
+
+                if (navigator.share) {
+                    navigator.share(shareData)
+                        .then(() => {
+                            navigate("/success?type=postcards")
+                        })
+                        .catch((error) => console.log('Ошибка при попытке поделиться:', error))
+                } else {
+                    alert('Ваш браузер не поддерживает Web Share API.')
+                }
             } catch (error) {
                 console.error(error)
             }
@@ -71,17 +78,6 @@ const Postcards = () => {
         }
     })
 
-    const handleShare = () => {
-        if (navigator.share) {
-            navigator.share(shareData)
-                .then(() => console.log('Успешно поделились'))
-                .catch((error) => console.log('Ошибка при попытке поделиться:', error))
-        } else {
-            alert('Ваш браузер не поддерживает Web Share API.')
-        }
-    }
-
-
     if (profile?.game.isAdditionalGamePassed || profile?.game.isGamePassed) {
         return <Navigate to={"/"} replace={true} />
     }
@@ -93,7 +89,7 @@ const Postcards = () => {
                 <h3 className="postcards__top__description">Выберите открытку — и мы отправим её,<br /> кому скажете!
                 </h3>
                 {/*TODO не работает на компе*/}
-                <Button variant="primary" className="postcards__top__button" onClick={handleShare}>
+                <Button variant="primary" className="postcards__top__button" onClick={() => addScore()}>
                     Отправить
                 </Button>
             </div>
