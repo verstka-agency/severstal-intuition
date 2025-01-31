@@ -30,18 +30,15 @@ const App = () => {
                     <Route path={'*'} element={<Navigate to="/" />} />
                     <Route path={'/'} element={<Index />} />
                     <Route path={'/about'} element={<Onboarding />} />
-                    {/*<Route path={'/memory'} element={<Memory/>}/>*/}
-                    {/*<Route path={'/postcards'} element={<Postcards/>}/>*/}
-                    {/*<Route path={'/profile'} element={<Profile/>}/>*/}
+                    <Route path={'/memory'} element={<Memory />} />
+                    <Route path={'/postcards'} element={<Postcards />} />
+                    <Route path={'/profile'} element={<Profile />} />
                     <Route path={'/success'} element={<Success />} />
                     <Route path={"profile/avatar"} element={<ChooseAvatar />} />
                     <Route path={'/round-preview'} element={<RoundPreview />} />
                 </Route>
 
                 <Route element={<PublicRoute />}>
-                    <Route path={'/about'} element={<Onboarding />} />
-                    <Route path={'/memory'} element={<Memory />} />
-                    <Route path={'/postcards'} element={<Postcards />} />
                     <Route path={'/profile'} element={<Profile />} />
                     <Route path={"/authorization"}>
                         <Route index={true} element={<Authorization />} />
