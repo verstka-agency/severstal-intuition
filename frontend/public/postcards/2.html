@@ -16,15 +16,22 @@
         <meta property="og:description" content="Описание страницы" />
         <meta property="og:image" content="/postcards/1.png" />
         <meta property="og:type" content="website" />
+        <link rel="stylesheet" href="/postcards/style.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <h1>hello</h1>
-        <img src="/postcards/1.png" alt="">
-        <a href="/postcards/1.png" target="_blank">СКАЧАТЬ </a>
-        <a href="/">к игре </a>
+        <div class="container">
+            <div class="postcard__wrapper">
+                <img src="/logo/logo-mobile.svg" alt="" class="postcard__logo">
+                <img class="postcard__image" src="/postcards/1.png" alt="">
+                <div class="postcard__buttons">
+                    <a class="postcard__button" href="/">Перейти к игре </a>
+                    <a class="postcard__button" href="/postcards/1.png" target="_blank">Скачать открытку </a>
+                </div>
+            </div>
+        </div>
         <script src="" async defer></script>
     </body>
 </html>
