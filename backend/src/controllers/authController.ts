@@ -56,12 +56,12 @@ export const authController = {
 
         // Генерация токена
         const token = jwt.sign({ id: data.dataValues.id }, process.env.JWT_SECRET ?? "", { expiresIn: "30d" })
-        const link: string = `http://${process.env.BASE_URL}/authorization/verification?token=${token}`
+        const link: string = `${process.env.BASE_URL}/authorization/verification?token=${token}`
 
         // Отправка письма
         try {
             const { data: letter, error } = await resend.emails.send({
-                from: "Acme <onboarding@resend.dev>",
+                from: "Северсталь <hello@verstka.agency>",
                 to: [email],
                 subject: "Поздравляем с регистрацией!",
                 html: `<p>${link}</p>`,
@@ -86,7 +86,7 @@ export const authController = {
         })
 
         const token = jwt.sign({ id: data.dataValues.id }, process.env.JWT_SECRET ?? "", { expiresIn: "30d" })
-        const link: string = `http://${process.env.DEBUG_URL}/authorization/verification?token=${token}`
+        const link: string = `${process.env.BASE_URL}/authorization/verification?token=${token}`
         
         res.status(200).json(link)
 
