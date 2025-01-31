@@ -2,7 +2,6 @@ import React, { lazy } from 'react'
 import { Navigate, Route, Routes } from "react-router-dom"
 import './scss/general.scss'
 import Layout from "src/Layouts/Layout/Layout"
-import Postcard from "src/pages/Postcard/Postcard"
 
 const RoundPreview = lazy(() => import("./pages/RoundPreview/RoundPreview"))
 const Index = lazy(() => import("./pages/Index/Index"))
