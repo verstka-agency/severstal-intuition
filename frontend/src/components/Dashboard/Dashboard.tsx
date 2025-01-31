@@ -12,6 +12,8 @@ const Dashboard = () => {
 
     const { data: currentPosition, isLoading: isPositionLoading } = useQuery({
         queryKey: ["currentPosition"],
+        refetchOnMount: true,
+        refetchOnWindowFocus: true,
         queryFn: async () => {
             try {
                 const response = await apiProvider('/private/game/current-position')
@@ -26,7 +28,7 @@ const Dashboard = () => {
         <div className={"dashboard"}>
             <h3 className={"h3 white dashboard__personal-name"}>{`${profile?.firstName} ${profile?.lastName}`}</h3>
             <div className={"dashboard__personal-stats"}>
-                <AvatarIcon size={AvatarIconSizeEnum.SMALL}/>
+                <AvatarIcon size={AvatarIconSizeEnum.SMALL} />
                 <div className={"dashboard__personal-indicator"}>
                     <p className={"int-2 white"}>Место</p>
                     <p className={"int-2 white"}>{currentPosition?.position}</p>
@@ -40,7 +42,7 @@ const Dashboard = () => {
                     <p className={"int-2 white"}>{profile?.game.score}</p>
                 </div>
             </div>
-            <DashboardTable/>
+            <DashboardTable />
         </div>
     )
 }

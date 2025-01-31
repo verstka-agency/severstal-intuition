@@ -1,12 +1,13 @@
-import React from 'react'
 import './DashboardTable.scss'
 import { useQuery } from "@tanstack/react-query"
 import { apiProvider } from "src/api"
-import axios from "axios"
 
 const DashboardTable = () => {
+
     const { data: dashboard, isLoading: isDashboardLoading } = useQuery({
         queryKey: ["dashboard"],
+        refetchOnMount: true,
+        refetchOnWindowFocus: true,
         queryFn: async () => {
             try {
                 // const response = await apiProvider("/private/game/dashboard")
@@ -33,13 +34,13 @@ const DashboardTable = () => {
                     return (
                         <div className={"dashboard-table__item"} key={index}>
                             <div className={"int-2 blue dashboard-table__position"}>
-                                <img src="/dashboard/star.svg" alt=""/>
+                                <img src="/dashboard/star.svg" alt="" />
                                 <span className={"dashboard-table__position-number"}>{contestant.position}</span>
                             </div>
                             <div className={"int-2 white"}>
-                                    <span>
-                                        {contestant.firstName} {contestant.lastName}
-                                    </span>
+                                <span>
+                                    {contestant.firstName} {contestant.lastName}
+                                </span>
                             </div>
                             <div className={"int-2 white"}>{contestant.score}</div>
                         </div>
