@@ -3,12 +3,12 @@ import { CornersPosition } from "src/types"
 import './Corners.scss'
 import { getStyles } from "src/utils/styles"
 
-interface CornersProps {
+interface CornersProps extends React.HTMLAttributes<HTMLDivElement> {
     position: CornersPosition
 }
 
 const Corners: React.FC<CornersProps> = (props) => {
-    const { position = CornersPosition.OUTSIDE } = props
+    const { position = CornersPosition.OUTSIDE, className } = props
 
     const corners = ["lt", "rt", "rb", "lb"]
 
@@ -16,12 +16,14 @@ const Corners: React.FC<CornersProps> = (props) => {
         <>
             {corners.map((corner, index) => {
                 const styles = getStyles("corners", [
-                    corner,
-                    {
-                        decision: position === CornersPosition.OUTSIDE,
-                        name: `outside-${corner}`
-                    }
-                ])
+                        corner,
+                        {
+                            decision: position === CornersPosition.OUTSIDE,
+                            name: `outside-${corner}`
+                        },
+
+                    ],
+                    className)
                 return (
                     <div
                         className={styles}

@@ -31,7 +31,7 @@ export const formSchemas: Record<FormFieldEnum, {
     },
     [FormFieldEnum.EMAIL]: {
         label: "E-mail",
-        validationFunction: string().required("Введите e-mail"),
+        validationFunction: string().email("E-mail введен неправильно").required("Введите e-mail"),
         initialValue: null
     },
     [FormFieldEnum.PHONE]: {
