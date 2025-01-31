@@ -34,12 +34,13 @@
   position: absolute;
   border-radius: 5px;
   backface-visibility: hidden;
-  background: #30336b;
+  //background: #30336b;
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: url('~/public/memory/back-card.png');
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
 }
 
 .front-face {

@@ -23,23 +23,22 @@ const App = () => {
 
     return (
         <Routes>
-            <Route element={<BasicLayout />}>
+            <Route element={<BasicLayout/>}>
 
-                <Route path={'/onboarding'} element={<Onboarding />} />
-                <Route element={<PrivateRoute />}>
-                    <Route path={'*'} element={<Navigate to="/" />} />
-                    <Route path={'/'} element={<Index />} />
-                    <Route path={'/about'} element={<Onboarding />} />
-                    <Route path={'/memory'} element={<Memory />} />
-                    <Route path={'/postcards'} element={<Postcards />} />
-                    <Route path={'/profile'} element={<Profile />} />
-                    <Route path={'/success'} element={<Success />} />
-                    <Route path={"profile/avatar"} element={<ChooseAvatar />} />
-                    <Route path={'/round-preview'} element={<RoundPreview />} />
+                <Route path={'/onboarding'} element={<Onboarding/>}/>
+                <Route element={<PrivateRoute/>}>
+                    <Route path={'*'} element={<Navigate to="/"/>}/>
+                    <Route path={'/'} element={<Index/>}/>
+                    <Route path={'/about'} element={<Onboarding/>}/>
+                    <Route path={'/memory'} element={<Memory/>}/>
+                    <Route path={'/postcards'} element={<Postcards/>}/>
+                    <Route path={'/success'} element={<Success/>}/>
+                    <Route path={'/profile'} element={<Profile/>}/>
+                    <Route path={"profile/avatar"} element={<ChooseAvatar/>}/>
+                    <Route path={'/round-preview'} element={<RoundPreview/>}/>
                 </Route>
 
-                <Route element={<PublicRoute />}>
-                    <Route path={'/profile'} element={<Profile />} />
+                <Route element={<PublicRoute/>}>
                     <Route path={"/authorization"}>
                         <Route index={true} element={<Authorization />} />
                         <Route path={"email-otp"} element={<EmailOtp />} />

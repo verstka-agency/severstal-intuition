@@ -1,19 +1,63 @@
 import React, { useEffect, useState } from 'react'
 import './Menu.scss'
-import { Link, NavLink, useLocation } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import { getStyles } from "src/utils/styles"
-import { useProfile } from "src/hooks"
+import { useMediaQuery } from "src/hooks"
 
 const Menu = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const location = useLocation()
 
+    enum MenuVariantsEnum {
+        "DARK" = "dark",
+        "LIGHT" = "light"
+    }
+
+    const { isMobile } = useMediaQuery()
+
+    const [menuVariant, setMenuVariant] = useState<MenuVariantsEnum>(MenuVariantsEnum.LIGHT)
+
     const navStyles = getStyles("menu", [
         {
             decision: isOpen,
             name: "active"
-        }
+        },
     ])
+
+    useEffect(() => {
+            switch (location.pathname) {
+                case "/profile":
+                case "/profile/":
+                case "/about":
+                case "/about/":
+
+                    setMenuVariant(isMobile ? MenuVariantsEnum.DARK : MenuVariantsEnum.LIGHT)
+                    break
+                case "/":
+                    setMenuVariant(MenuVariantsEnum.DARK)
+                    break
+                case "/round-preview":
+                case "/round-preview/":
+                    setMenuVariant(MenuVariantsEnum.LIGHT)
+                    break
+                case "/memory":
+                case "/memory/":
+                case "/postcards":
+                case "/postcards/":
+                case "/success":
+                case "/success/":
+                case "/profile/avatar":
+                case "/profile/avatar/":
+                case "/authorization":
+                case "/authorization/":
+                case "/authorization/email-otp":
+                case "/authorization/email-otp/":
+                case "/authorization/verification":
+                case "/authorization/verification/":
+                    break
+            }
+        }, [location, setMenuVariant, MenuVariantsEnum, isMobile]
+    )
 
     useEffect(() => {
         setIsOpen(false)
@@ -92,8 +136,7 @@ const Menu = () => {
                 <picture
                     onClick={() => setIsOpen(true)}
                 >
-                    <source srcSet={"/menu/menu-desktop.svg"} media={"(min-width: 1280px)"}/>
-                    <img src="/menu/menu-mobile.svg" alt=""/>
+                    <img src={`/menu/menu-${menuVariant}.svg`} alt=""/>
                 </picture>
             }
         </nav>

@@ -42,8 +42,7 @@ const Index = () => {
                         <p className={"h3 blue"}>Вы прошли {profile?.game.currentRound} раунд из 5. Успейте пройти все
                             раунды до X января
                         </p>
-                        : null
-                }
+                        : null}
             </div>
             <RoundProgressBar/>
             <div className={"index__button"}>

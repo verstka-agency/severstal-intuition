@@ -9,7 +9,6 @@ import { BrowserRouter } from "react-router-dom"
 import NetworkProvider from "src/hoc/NetworkProvider/NetworkProvider"
 // import { ScoreProvider } from './contexts/ScoreContext'
 import Modal from 'react-modal'
-import HeaderProvider from './hoc/HeaderProvider'
 
 Modal.setAppElement('#root')
 
@@ -30,7 +29,6 @@ root.render(
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <NetworkProvider>
-                    <HeaderProvider>
                         <AuthenticationProvider>
                             <ProfileProvider>
                                 {/* <ScoreProvider> */}
@@ -40,7 +38,6 @@ root.render(
                                 {/* </ScoreProvider> */}
                             </ProfileProvider>
                         </AuthenticationProvider>
-                    </HeaderProvider>
                 </NetworkProvider>
             </BrowserRouter>
         </QueryClientProvider>

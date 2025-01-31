@@ -76,7 +76,6 @@ export const useGetOnboardingSlides = (): {
 } => {
     const [currentBar, setCurrentBar] = useState<number>(0)
     const { isAuthenticated } = useAuthentication()
-    console.log('isAuthenticated', isAuthenticated)
     const { profile } = useProfile()
     const location = useLocation()
 

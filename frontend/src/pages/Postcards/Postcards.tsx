@@ -12,18 +12,19 @@ import { apiProvider } from "src/api"
 import { Navigate, useNavigate } from "react-router-dom"
 import { useProfile } from "src/hooks"
 
-// TODO: replace with actual data
-const shareData = {
-    title: "Северсталь х БУДУ",
-    text: "Приглашаю тебя поиграть в классную игру!",
-    url: "https://ya.ru",
-}
-
 const Postcards = () => {
     const [currentSlideIndex, setCurrentSlideIndex] = useState(1)
     const { profile, refetchProfile } = useProfile()
     const navigate = useNavigate()
 
+    // TODO: replace with actual data
+    const shareData = {
+        title: "Стальная Интуиция",
+        text: "Приглашаю тебя поиграть в Стальную Интуицию!",
+        url: "",
+    }
+
+    // TODO добавить вызов
     const { mutate: addScore, isLoading: isAddingScore, isSuccess: isAddedScore } = useMutation({
         mutationFn: async () => {
             try {

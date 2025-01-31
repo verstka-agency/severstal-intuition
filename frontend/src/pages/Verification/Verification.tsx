@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Navigate, useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { LocalStorageEnum } from "src/types"
 import { apiProvider } from "src/api"
 import { useAuthentication } from "src/hooks"
@@ -21,7 +21,7 @@ const Verification = () => {
             })
             navigate("/profile")
         }
-    }, [])
+    }, [location, navigate, setIsAuthenticated])
 
     return null
 }

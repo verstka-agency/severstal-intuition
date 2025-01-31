@@ -65,7 +65,8 @@ export const authController = {
 
         // Генерация токена
         const token = jwt.sign({ id: data.dataValues.id }, process.env.JWT_SECRET ?? "", { expiresIn: "30d" })
-        const link: string = `${process.env.BASE_URL}/authorization/verification?token=${token}`
+        // TODO убрать на проде
+        const link: string = `https://${process.env.BASE_URL}/authorization/verification?token=${token}`
 
         // Загружаем шаблон
         let emailTemplate = fs.readFileSync(path.join(__dirname, '../views', 'email_template.html'), 'utf8')

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import ProgressBar from '../../components/ProgressBar/ProgressBar'
 import './Onboarding.scss'
 import Button from "../../components/Button/Button"
@@ -15,11 +15,13 @@ const Onboarding = () => {
     const { setShow } = useHeader()
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (amount === 2) {
-            setShow(false)
-        }
-    }, [amount])
+    // useEffect(() => {
+    //     if (amount === 2) {
+    //         setShow(false)
+    //     } else {
+    //         setShow(true)
+    //     }
+    // }, [setShow, amount])
 
     return (
         <Paper>
@@ -37,20 +39,18 @@ const Onboarding = () => {
                     <MediaQuery maxWidth={1279}>
                         <Logo/>
                     </MediaQuery>
-                    {
-                        amount === 5 && currentBar > 0 ?
-                            <div
-                                className={"onboarding__back int-3 blue"}
-                                onClick={() => {
-                                    if (currentBar > 0) {
-                                        setCurrentBar((prev) => prev - 1)
-                                    }
-                                }}
-                            >
-                                {"< Назад"}
-                            </div>
-                            : null
-                    }
+                    {amount === 5 && currentBar > 0 ?
+                        <div
+                            className={"onboarding__back int-3 blue"}
+                            onClick={() => {
+                                if (currentBar > 0) {
+                                    setCurrentBar((prev) => prev - 1)
+                                }
+                            }}
+                        >
+                            {"< Назад"}
+                        </div>
+                        : null}
                     <h3 className={"h3 blue"}>{currentSlides?.[currentBar]?.heading}</h3>
                     <p className={"int-3 blue"}>{currentSlides?.[currentBar]?.text}</p>
                 </div>

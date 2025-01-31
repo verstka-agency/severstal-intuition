@@ -7,11 +7,9 @@
   align-items: center;
   height: $headerHeightDesktop;
   padding: 1rem 1.5rem 0 1rem;
-  background: $very-light-blue;
 
   @media all and (min-width: $desktop) {
     padding: 0;
     height: $headerHeightDesktop;
-    background: none;
   }
 }

@@ -1,10 +1,6 @@
 @use 'src/scss/mixins';
 @import "src/scss/variables";
 
-.container {
-  background: radial-gradient(50% 69.6% at 50% 50%, #FFFFFF 0%, #DAE2EF 100%);
-}
-
 .memory {
   display: flex;
   flex-direction: column;

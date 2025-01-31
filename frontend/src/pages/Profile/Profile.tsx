@@ -34,11 +34,10 @@ const Profile = () => {
         <Formik
             initialValues={profile ?? profileInitials}
             onSubmit={(values, formikHelpers) => {
+                updateProfile(values)
                 if (!profile?.isGameRulesConfirmed || !profile?.isPrivacyPolicyConfirmed) {
-                    updateProfile(values)
                     navigate("/")
                 }
-                updateProfile(values)
             }}
             enableReinitialize={true}
             validationSchema={object().shape({
@@ -55,6 +54,7 @@ const Profile = () => {
             })}
         >
             {({ values, errors, isValid, setFieldValue }) => {
+                console.log(errors)
                 return (
                     <Paper className={"profile__paper"}>
                         <Logo/>
@@ -193,18 +193,18 @@ const Profile = () => {
                                         </Button>
                                     </MediaQuery>
                                 </div>
+                                <MediaQuery maxWidth={1279.98}>
+                                    <Button
+                                        variant={ButtonVariantsEnum.PRIMARY_NEXT}
+                                        type={ButtonTypeEnum.SUBMIT}
+                                        disabled={isProfileUpdating || isProfileLoading || !isValid}
+                                        className={"profile-form__button"}
+                                    >
+                                        Сохранить
+                                    </Button>
+                                </MediaQuery>
                             </Form>
                         </div>
-                        <MediaQuery maxWidth={1279.98}>
-                            <Button
-                                variant={ButtonVariantsEnum.PRIMARY_NEXT}
-                                type={ButtonTypeEnum.SUBMIT}
-                                disabled={isProfileUpdating || isProfileLoading || !isValid}
-                                className={"profile-form__button"}
-                            >
-                                Сохранить
-                            </Button>
-                        </MediaQuery>
                     </Paper>
                 )
             }}
