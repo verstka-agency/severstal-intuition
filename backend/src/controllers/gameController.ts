@@ -211,6 +211,17 @@ export const gameController = {
                 return
             }
 
+            if (type === "postcards" && !game.dataValues.isAdditionalGamePassed) {
+                await game.update({
+                    score: newScore,
+                    isAdditionalGamePassed: true
+                })
+                res.status(200).json({
+                    "status": "ok"
+                })
+                return
+            }
+
         } catch (error) {
             console.error(error)
         }
