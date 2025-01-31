@@ -37,7 +37,7 @@ const RoundPreview = () => {
     const navigate = useNavigate()
 
     if (isLoading) {
-        return <div>...Loading</div>
+        return <div>...Загрузка</div>
     }
 
     return (

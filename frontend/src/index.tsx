@@ -26,7 +26,7 @@ const queryClient = new QueryClient({
 })
 
 root.render(
-    <Suspense fallback={<div>Loading</div>}>
+    <Suspense fallback={<div>Загрузка</div>}>
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <NetworkProvider>
