@@ -10,6 +10,7 @@ import RoundProgressBar from "src/components/RoundProgressBar/RoundProgressBar"
 import Dashboard from "src/components/Dashboard/Dashboard"
 import Modal from 'src/components/Modal/Modal'
 import MediaQuery from "react-responsive"
+import { declineRound } from "src/pages/Index/utils"
 
 const Index = () => {
     const { profile } = useProfile()
@@ -39,7 +40,7 @@ const Index = () => {
                     <p className={"h3 blue"}>Супер, вы прошли все раунды! X января состоится розыгрыш призов</p>
                     :
                     !!profile?.game.currentRound && profile?.game.currentRound > 1 ?
-                        <p className={"h3 blue"}>Вы прошли {profile?.game.currentRound} раунд из 5. Успейте пройти все
+                        <p className={"h3 blue"}>Вы прошли {profile?.game.currentRound} {declineRound(profile?.game.currentRound)} из 5. Успейте пройти все
                             раунды до X января
                         </p>
                         : null}
