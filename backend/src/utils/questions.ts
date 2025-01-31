@@ -168,8 +168,7 @@ export const questions: Array<{
     // 13)
     {
         "author": "Елена Кукушкина",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "kukushkina.png",
         "question": "Лучшее путешествие в жизни Елены было на Чукотку. В какой стране мечтает побывать Елена?",
         "city": "из Ярославля",
         "answers": [
@@ -209,7 +208,6 @@ export const questions: Array<{
     {
         "author": "Екатерина Фадеева",
         "avatar": "fadeeva.png",
-
         "question": "Екатерина умеет выполнять один практически цирковой трюк. Угадаете, какой?",
         "city": "из Череповца",
         "answers": [
@@ -235,8 +233,7 @@ export const questions: Array<{
     // 18)
     {
         "author": "Антон Юзов",
-        // TODO ДОБАВИТЬ
-        "avatar": "",
+        "avatar": "yuzov.png",
         "question": "Лучший день в жизни Антона — это…",
         "city": "из Череповца",
         "answers": [
@@ -249,8 +246,7 @@ export const questions: Array<{
     // 19)
     {
         "author": "Вера Куницына",
-        // TODO ДОБАВИТЬ
-        "avatar": "",
+        "avatar": "kunicina.png",
         "question": "Сколько воздушных шариков Вера может надуть за раз?",
         "city": "из Колпино",
         "answers": [
@@ -263,7 +259,6 @@ export const questions: Array<{
     // 20)
     {
         "author": "Анастасия Савёлова",
-        // TODO ДОБАВИТЬ
         "avatar": "savelova.png",
         "question": "О каком навыке обращения с животными Анастасия знает не понаслышке?",
         "city": "из Череповца",
@@ -290,8 +285,7 @@ export const questions: Array<{
     // 22)
     {
         "author": "Екатерина Петухова",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "petuhova.png",
         "question": "Какие необычные животные живут дома у Екатерины?",
         "city": "из Череповца",
         "answers": [
@@ -317,8 +311,7 @@ export const questions: Array<{
     // 24)
     {
         "author": "Ирина Шанаева",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "shanaeva.png",
         "question": "Во сколько лет Ирина впервые попала в металлургию?",
         "city": "из Череповца",
         "answers": [
@@ -357,8 +350,7 @@ export const questions: Array<{
     // 27)
     {
         "author": "Богдан Гнусин",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "gnusin.png",
         "question": "Богдан обожает настольные игры. Сколькичасовую партию однажды он сыграл, не выходя из-за стола?",
         "city": "из Москвы",
         "answers": [
@@ -371,8 +363,7 @@ export const questions: Array<{
     // 28)
     {
         "author": "Анна Ушакова",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "ushakova.png",
         "question": "В среднем у людей их четыре, а у Анны целых 22. Догадаетесь, о чём речь?",
         "city": "из Череповца",
         "answers": [
@@ -425,8 +416,7 @@ export const questions: Array<{
     // 32)
     {
         "author": "Никита Карев",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "karev.png",
         "question": "Никита любитель экстремальных гастрономических впечатлений. Что в жизни пробовал Никита?",
         "city": "из Череповца",
         "answers": [
@@ -452,8 +442,7 @@ export const questions: Array<{
     // 34)
     {
         "author": "Татьяна Громова",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "gromova.png",
         "question": "У Татьяны дома есть триста…",
         "city": "из Череповца",
         "answers": [
@@ -492,8 +481,7 @@ export const questions: Array<{
     // 37)
     {
         "author": "Оксана Самсонова",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "samsonova.png",
         "question": "Однажды Оксана написала биографию…",
         "city": "из Череповца",
         "answers": [
@@ -532,8 +520,7 @@ export const questions: Array<{
     // 40)
     {
         "author": "Ольга Тихомирова",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "tikhomirova.png",
         "question": "Ольга занимается коллекционированием кое-чего очень яркого. Чего же именно?",
         "city": "из Череповца",
         "answers": [
@@ -559,8 +546,7 @@ export const questions: Array<{
     // 42)
     {
         "author": "Ольга Потапова",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "potapova.png",
         "question": "Ольга пишет стихи в былинном стиле. В каком необычном месте ей удалось их однажды почитать?",
         "city": "из Москвы",
         "answers": [
@@ -652,8 +638,7 @@ export const questions: Array<{
     // 49)
     {
         "author": "Амур, кот Дарьи Шнитко",
-        // TODO добавить
-        "avatar": "",
+        "avatar": "shnitko.png",
         "question": "Меня назвали в честь римского бога любви. Но как меня зовут дома?",
         "city": "из Костомукши",
         "answers": [
