@@ -7,6 +7,7 @@ import CitiesProvider from "src/hoc/CitiesProvider"
 import ProfileProvider from "src/hoc/ProfileProvider"
 import { BrowserRouter } from "react-router-dom"
 import NetworkProvider from "src/hoc/NetworkProvider/NetworkProvider"
+import { ScoreProvider } from './contexts/ScoreContext'
 import Modal from 'react-modal'
 import HeaderProvider from './hoc/HeaderProvider'
 
@@ -32,9 +33,11 @@ root.render(
                     <HeaderProvider>
                         <AuthenticationProvider>
                             <ProfileProvider>
+                                {/* <ScoreProvider> */}
                                 <CitiesProvider>
-                                    <App/>
+                                    <App />
                                 </CitiesProvider>
+                                {/* </ScoreProvider> */}
                             </ProfileProvider>
                         </AuthenticationProvider>
                     </HeaderProvider>

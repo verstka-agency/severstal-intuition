@@ -46,6 +46,7 @@ const modalData = [
 
 const GiftModal: React.FC = (props) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
+    //TODO: сюда передать выигрыш (тип подарка)
     const [currentModal, setCurrentModal] = useState(modalData[0])
 
     const openModal = () => {

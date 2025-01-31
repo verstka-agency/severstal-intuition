@@ -16,10 +16,10 @@ const GameIndicators: React.FC<GameIndicatorsProps> = (props) => {
     return (
         <div className={styles.filter(Boolean).join(" ")}>
             {showTimer ?
-                <Timer/>
+                <Timer />
                 : null}
             {showMoney ?
-                <Money/>
+                <Money />
                 : null}
         </div>
     )
